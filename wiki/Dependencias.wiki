@@ -1,0 +1,12 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+El programa requiere ciertas dependencias ya que se establece una comunicacion serial entre java y arduino por lo cual dependiedo del sistema operativo donde se encuentre se requeriran estas "librerias"
+
+
+= Details =
+
+Librerias, Descargas->
+
+http://rxtx.qbang.org/wiki/index.php/Download
