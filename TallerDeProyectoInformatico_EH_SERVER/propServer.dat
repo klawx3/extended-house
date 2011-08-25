@@ -1,0 +1,7 @@
+#Propiedades del Servidor
+#Mon Jul 18 01:09:58 CLT 2011
+database.user=NULL
+database.name=NULL
+database.pass=NULL
+database.ip=NULL
+arduino.port=NULL
