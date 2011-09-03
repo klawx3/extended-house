@@ -48,8 +48,12 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
     private BufferedReader leer;
     private ConexionExtendedHouse conexion_basedatos;
     private NetworksInterfaces net_interfaces;
-
+    private byte BufferChunk[];
+    private int bufferChunkDeComienzo;
     public ServerExtendedHouse(){
+        BufferChunk = new byte[64];
+        bufferChunkDeComienzo = 0;
+        clearBuffer();
         Log.set(Log.LEVEL_DEBUG);
         vector_adru_str = new Vector<String>();
         leer = new BufferedReader(new InputStreamReader(System.in));
@@ -147,10 +151,56 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
     public void serialEvent(SerialPortEvent evento) {
         if (evento.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
+                
                 int available = SerialArduino.input.available();
                 byte chunk[] = new byte[available];
+                int byteDeCorte = 0;
                 SerialArduino.input.read(chunk, 0, available);
+                /*if (BufferChunk[0] != -1) { //tiene algo
+                    for (int i = 0; i < BufferChunk.length; i++) {
+                        if (BufferChunk[i] != -1) {
+                            bufferChunkDeComienzo = i;
+                            break;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < chunk.length; i++) {//byte de corte ";"
+                    if (((char) chunk[i]) == ';') {
+                        byteDeCorte = i;
+                        break;
+                    }
+                }
+                if (byteDeCorte != 0) { // encontro el ;
+                    //char buffer[] = new char[byteDeCorte];
+                    for (int i = 0; i < byteDeCorte; i++) {
+                        BufferChunk[bufferChunkDeComienzo] = chunk[i];
+                        bufferChunkDeComienzo++;
+                    }
+                    byte[] byteFull = new byte[bufferChunkDeComienzo];
+                    for(int i = 0; i < bufferChunkDeComienzo; i++){
+                        byteFull[i] = BufferChunk[i];
+                    }
+                    String mensaje = new String(byteFull).trim();
+                    System.out.println(mensaje);
+                    clearBuffer();
+                    bufferChunkDeComienzo=0;
+                    if(chunk.length != (byteDeCorte + 1)){//existe una cadena despues del ;
+                        for(int i = byteDeCorte; i < chunk.length ; i++){
+                            BufferChunk[bufferChunkDeComienzo] = chunk[i];
+                            bufferChunkDeComienzo++;
+                        }
+                    }
+                } else {
+                    for (int i = 0; i < byteDeCorte; i++) {
+                        BufferChunk[bufferChunkDeComienzo] = chunk[i];
+                        bufferChunkDeComienzo++;
+                    }
+                }
+                */
+                
                 String incomplete_arduino_string = new String(chunk);
+                //System.out.println("incomplete_arduino_string:"+incomplete_arduino_string);
 
                 vector_adru_str.add(posicion_lista_arduino_string, incomplete_arduino_string);
                 if (incomplete_arduino_string.contains(";")) {
@@ -160,29 +210,42 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                     }//despues de for me qda la lineaAR bien echa...
                     vector_adru_str.clear();
                     posicion_lista_arduino_string = 0;
-                    
-                    String[] nomAndVal = contenido.split("|");
-                    if (nomAndVal.length != 2) {
-                        throw new ArduinoIOException("Error al leer:"+contenido);
-                    } else {
-                        ArduinoOutput arduino_output = new ArduinoOutput();
-                        arduino_output.dispositivo = nomAndVal[0];
-                        try {
-                            arduino_output.valor = Long.parseLong(nomAndVal[1]);
-                            arduino_output.dispositivo = contenido;
-                            server.sendToAllTCP(arduino_output); /*OJOO !!!!!!*/
-                        } catch (NumberFormatException e) {
-                            debug(SECTOR,e.getMessage());
+                    /*correcto-------------*/
+                    String[] punto_coma_buffer_error = contenido.split(";");
+                    for(int i = 0; i < punto_coma_buffer_error.length ; i++){
+                        String[] nomAndVal = punto_coma_buffer_error[i].split("-");
+                        if (nomAndVal.length != 3) {
+                            throw new ArduinoIOException("Error al leer:"+contenido);
+                        } else {
+                            ArduinoOutput arduino_output = new ArduinoOutput();
+                            arduino_output.dispositivo = nomAndVal[0];
+                            arduino_output.numero = nomAndVal[1];
+                            try {
+                                arduino_output.valor = Float.parseFloat(nomAndVal[2]);
+                                System.err.println("dispositivo:"+arduino_output.dispositivo);
+                                System.err.println("numero:"+arduino_output.numero);
+                                System.err.println("valor:"+Float.toString(arduino_output.valor));
+                                //server.sendToAllTCP(arduino_output); /*OJOO !!!!!!
+                            } catch (NumberFormatException e) {
+                                debug(SECTOR,e.getMessage());
+                            }
                         }
                     }
+                    /*correcto---------*/
                 } else {
                     posicion_lista_arduino_string++;
                 }
             } catch (Exception e) {
-                error(e.getMessage());
+                error(e.toString());
             }
         }
 
+    }
+    
+    public void clearBuffer(){
+        for(int i = 0; i < BufferChunk.length ; i++){
+            BufferChunk[i] = -1;
+        }
     }
     
     static class ExtendedHouseConnection extends Connection{

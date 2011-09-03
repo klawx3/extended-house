@@ -1,7 +1,7 @@
 #Propiedades del Servidor
 #Mon Jul 18 01:09:58 CLT 2011
-database.user=NULL
-database.name=NULL
-database.pass=NULL
-database.ip=NULL
-arduino.port=NULL
+database.user=root
+database.name=ih_db
+database.pass=piramid
+database.ip=localhost
+arduino.port=COM4
