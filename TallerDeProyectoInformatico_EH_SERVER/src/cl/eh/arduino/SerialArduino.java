@@ -23,7 +23,7 @@ public final class SerialArduino {
 
     public static final String SECTOR = SerialArduino.class.getSimpleName();
     private boolean connecionArduinoEstablecida;
-    private static final int TIME_OUT = 4000;
+    private static final int TIME_OUT = 2000;
     private static final int DATA_RATE = 9600;
     public static InputStream input;
     public static OutputStream output;
@@ -88,6 +88,7 @@ public final class SerialArduino {
             try {
                 output.write(s);
                 output.flush();
+                //System.err.println("PASO POR FLUSH");
             } catch (IOException ex) {
                 error(ex.getMessage());
             }

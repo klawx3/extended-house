@@ -5,6 +5,8 @@
 
 package cl.eh.server;
 
+import cl.eh.common.ArduinoSignal;
+import cl.eh.arduino.ReleeShield;
 import cl.eh.util.NetworksInterfaces;
 import cl.eh.util.Ip;
 import cl.eh.util.Interface;
@@ -12,6 +14,7 @@ import java.util.Vector;
 import cl.eh.server.ServerExtendedHouse.ExtendedHouseConnection;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.arduino.SerialArduino;
+import cl.eh.common.ClientArduinoSignal;
 import cl.eh.common.Network;
 import cl.eh.common.Network.*;
 import cl.eh.db.ConexionExtendedHouse;
@@ -37,13 +40,14 @@ import static com.esotericsoftware.minlog.Log.*;
  * @author Usuario
  */
 public final class ServerExtendedHouse implements Runnable,SerialPortEventListener {
-    private static final String VERSION = "0.2.2";
+    private static final String VERSION = "0.2.3";
     private static final String SECTOR = ServerExtendedHouse.class.getSimpleName();
     private static final String WELCOME = ">>Bienvenid@ a EXTENDED HOUSE v"+VERSION+"<<";
     private static Vector<String> vector_adru_str;
     private static  SerialArduino serial_arduino;
     private static int posicion_lista_arduino_string = 0;
     private static Server server;
+    private static ReleeShield relee_sh;
     private PropiedadesServer propiedades_server;
     private BufferedReader leer;
     private ConexionExtendedHouse conexion_basedatos;
@@ -60,6 +64,7 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
         propiedades_server = new PropiedadesServer();
         propiedades_server.getAllServerPropiedadesOfFile();
         serial_arduino = new SerialArduino(propiedades_server.getArduino_port());
+        relee_sh = new ReleeShield(serial_arduino);
         server = new Server() {
 
             @Override
@@ -85,15 +90,36 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                         ex_con.close();
                     }
                 }else if(ex_con.isValidConnection){ // si la coneccion el valida me comunico con el cliente
-                    
-                    /*--------------------------END OBJECTOS A MANIPULAR-----------------------*/
+                    /*--------------------------OBJECTOS A MANIPULAR-----------------------*/
                     if (object instanceof ArduinoInput) {
                         ArduinoInput ai = (ArduinoInput) object;
-                        serial_arduino.enviarSeñal(ai.señal);
+                        switch (ai.señal) {
+                            case ArduinoSignal.RELEE_SIGNAL: {
+                                assert (ai.dispositivo >= 0 && ai.dispositivo <= 7);
+                                assert (ai.valor == 0 || ai.valor == 1);
+                                if (relee_sh.isReleePowerOn(ai.dispositivo)
+                                        != (ai.valor == 0) ? false : true) { // encazo q este apagado o prendido ,envio a todos la info
+                                    ArduinoOutput ao = new ArduinoOutput();
+                                    ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
+                                    ao.numero = Integer.toString(ai.dispositivo);
+                                    ao.valor = ai.valor;
+                                    server.sendToAllTCP(ao);
+                                    relee_sh.powerOnRelee(ai.dispositivo);
+                                }
+                            }
+                        }
+                        //serial_arduino.enviarSeñal(ai.señal);
                     } else if (object instanceof DatabaseQuery) {
                         DatabaseQuery dq = (DatabaseQuery) object;
                     } else if (object instanceof AdvanceCommand) {
                         verificarComando(((AdvanceCommand) object).commando);
+                    } else if (object instanceof ServerStatusRequest) { // status de to2 el server
+                        for (int i = 0; i < ReleeShield.MAX_RELES; i++) {
+                            ArduinoOutput ao = new ArduinoOutput();
+                            ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
+                            ao.numero = Integer.toString(i);
+                            ao.valor = (relee_sh.isReleePowerOn(i)) ? 1 : 0;
+                        }
                     }
                     /*--------------------------END OBJECTOS A MANIPULAR-----------------------*/
                 }
@@ -139,8 +165,8 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                 }
             }
         }
-        System.out.println("=========================================");   
-        
+        System.out.println("=========================================");
+
     }
 
     public static void main(String[] args){
@@ -222,12 +248,9 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                             arduino_output.numero = nomAndVal[1];
                             try {
                                 arduino_output.valor = Float.parseFloat(nomAndVal[2]);
-                                System.err.println("dispositivo:"+arduino_output.dispositivo);
-                                System.err.println("numero:"+arduino_output.numero);
-                                System.err.println("valor:"+Float.toString(arduino_output.valor));
-                                //server.sendToAllTCP(arduino_output); /*OJOO !!!!!!
+                                server.sendToAllTCP(arduino_output);
                             } catch (NumberFormatException e) {
-                                debug(SECTOR,e.getMessage());
+                                error(SECTOR,e.getMessage());
                             }
                         }
                     }
@@ -260,10 +283,13 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
     public void run() {
         try {
             info(SECTOR,"Comandos Disponibles para digitar"
-                    + ":'exit','restart'");
+                    + ":'exit','restart','r0'(de prueba)");
             System.out.println(WELCOME);
             while (true) {
                 String line = leer.readLine().trim();
+                if(line.equals("r0")){
+                    relee_sh.powerOnRelee(1);
+                }// solo de prueba
                 verificarComando(line);
             }
         } catch (IOException ex) {
@@ -276,6 +302,7 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
             cerrarServicios();
         } else if (line.equals("restart")) {
             /*FALTA COMO HACER EL RESTART*/
+            
         } else {
             info(SECTOR,"Comando '" + line + "' no reconocido");
         }
