@@ -31,15 +31,23 @@ public class Network {
         kryo.register(ValidacionConnection.class);
         kryo.register(AdvanceCommand.class);
         kryo.register(Msg.class);
+        kryo.register(ServerStatusRequest.class);
+
     }
 
     public static int getNetworkPort() {
         return PORT;
     }
 
+
     public static class ArduinoInput {
         public int señal;
         public int valor;
+        public int dispositivo; // <------ opcional
+    }
+    
+    public static class ServerStatusRequest{
+    
     }
 
     public static class ArduinoOutput {

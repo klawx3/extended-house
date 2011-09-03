@@ -11,9 +11,7 @@
 package cl.eh.client;
 
 
-import cl.eh.common.PunteroArduino;
 import cl.eh.common.Network;
-import cl.eh.common.Network.ArduinoInput;
 import cl.eh.common.Network.HistorialList;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.properties.PropiedadesClient;
@@ -233,9 +231,9 @@ public class Cliente_Prototipo01 extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void b_rl01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_rl01ActionPerformed
-        ArduinoInput ai = new ArduinoInput();
-        ai.señal = PunteroArduino.RL01;
-        client.sendTCP(ai);
+//        ArduinoInput ai = new ArduinoInput();
+//        ai.señal = PunteroArduino.RL01;
+//        client.sendTCP(ai);
     }//GEN-LAST:event_b_rl01ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
