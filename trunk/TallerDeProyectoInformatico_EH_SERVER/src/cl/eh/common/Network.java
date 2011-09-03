@@ -39,11 +39,13 @@ public class Network {
 
     public static class ArduinoInput {
         public int señal;
+        public int valor;
     }
 
     public static class ArduinoOutput {
         public String dispositivo;
-        public long valor;
+        public String numero;
+        public float valor;
     }
 
     public static class DatabaseQuery {
