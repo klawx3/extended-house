@@ -11,6 +11,9 @@ import cl.eh.db.model.Historial;
 import cl.eh.db.model.Rol;
 import cl.eh.db.model.Sensor;
 import cl.eh.db.model.Usuario;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,7 +34,18 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
     }
 
     public void addHistorial(Historial obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (isConnected()) {
+            try {
+                est = con.createStatement();
+                est.execute(QueryGenerator.getQuery(obj));
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            System.err.println("No esta conectado.. imposible registar");
+        }
+        
+       
     }
 
     public void addRol(Rol obj) {
@@ -44,5 +58,46 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
 
     public void addUsuario(Usuario obj) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public int getIdOfActuador(Actuador obj) {
+        if (obj != null) {
+            assert (obj.getNombre() == null || obj.getNumero() == 0);
+            String query = "SELECT id FROM actuador "
+                    + "WHERE nombre = '" + obj.getNombre() + "' "
+                    + "and numero = '" + obj.getNumero() + "'";
+            try {
+                est = con.createStatement();
+                rs = est.executeQuery(query);
+                if (rs.next()) {
+                    int i = rs.getInt("id");
+                    return i;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
+    }
+
+    public int getIdOfSensor(Sensor obj) {
+        if (obj != null) {
+            assert (obj.getNombre() == null || obj.getNumero() == 0);
+            String query = "SELECT id FROM SENSOR "
+                    + "WHERE nombre = '" + obj.getNombre() + "' "
+                    + "and numero = '" + obj.getNumero() + "'";
+            System.err.println("String sql:"+query);
+            try {
+                est = con.createStatement();
+                rs = est.executeQuery(query);
+                if (rs.next()) {
+                    int i = rs.getInt("id");
+                    return i;
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return -1;
     }
 }

@@ -13,14 +13,24 @@ public class Sensor {
 
     private int id;
     private String nombre;
+    private int numero;
     private String ubicacion;
+    private String caracteristicas;
+
+    
     private String puntero;
 
-    public Sensor(int id, String nombre, String ubicacion, String puntero) {
+    public Sensor(int id, String nombre,int numero, String ubicacion,String caracteristicas, String puntero) {
         this.id = id;
         this.nombre = nombre;
+        this.numero = numero;
         this.ubicacion = ubicacion;
+        this.caracteristicas = caracteristicas;
         this.puntero = puntero;
+    }
+
+    public Sensor() {
+        
     }
 
     public int getId() {
@@ -54,7 +64,22 @@ public class Sensor {
     public void setUbicacion(String ubicacion) {
         this.ubicacion = ubicacion;
     }
+    
+    public String getCaracteristicas() {
+        return caracteristicas;
+    }
 
+    public void setCaracteristicas(String caracteristicas) {
+        this.caracteristicas = caracteristicas;
+    }
+
+    public int getNumero() {
+        return numero;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
 
 

@@ -19,4 +19,7 @@ public interface ExtendedHouseDatabaseModel {
     public void addSensor(Sensor obj);
     public void addUsuario(Usuario obj);
     
+    public int getIdOfActuador(Actuador obj);
+    public int getIdOfSensor(Sensor obj);
+    
 }
