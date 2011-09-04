@@ -22,7 +22,7 @@ public class Network {
         kryo.register(java.util.ArrayList.class);
         /*----------------Network Classes----------------*/
         kryo.register(ArduinoInput.class);
-        kryo.register(ArduinoInput.class);
+        kryo.register(ArduinoOutput.class);
         kryo.register(DatabaseQuery.class);
         kryo.register(HistorialList.class);
         kryo.register(Advice.class);

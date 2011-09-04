@@ -42,6 +42,7 @@ public class QueryGenerator {
                     + "VALUES(NULL,'" + evnt.getNombre_evento()
                     + "'," + v3 + "," + v4 + "," + v5 + ",'" + v6 + "'," + v7 + ")";
         }
+        //System.out.println("QGEN:"+query);
         return query;
     }
 

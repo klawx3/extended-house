@@ -36,8 +36,10 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
     public void addHistorial(Historial obj) {
         if (isConnected()) {
             try {
-                est = con.createStatement();
-                est.execute(QueryGenerator.getQuery(obj));
+                synchronized (con) {
+                    est = con.createStatement();
+                    est.execute(QueryGenerator.getQuery(obj));
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -66,13 +68,17 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             String query = "SELECT id FROM actuador "
                     + "WHERE nombre = '" + obj.getNombre() + "' "
                     + "and numero = '" + obj.getNumero() + "'";
+
             try {
-                est = con.createStatement();
-                rs = est.executeQuery(query);
-                if (rs.next()) {
-                    int i = rs.getInt("id");
-                    return i;
+                synchronized (con) {
+                    est = con.createStatement();
+                    rs = est.executeQuery(query);
+                    if (rs.next()) {
+                        int i = rs.getInt("id");
+                        return i;
+                    }
                 }
+                
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -86,13 +92,15 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             String query = "SELECT id FROM SENSOR "
                     + "WHERE nombre = '" + obj.getNombre() + "' "
                     + "and numero = '" + obj.getNumero() + "'";
-            System.err.println("String sql:"+query);
+            //System.err.println("-->String sql:"+query);
             try {
-                est = con.createStatement();
-                rs = est.executeQuery(query);
-                if (rs.next()) {
-                    int i = rs.getInt("id");
-                    return i;
+                synchronized (con) {
+                    est = con.createStatement();
+                    rs = est.executeQuery(query);
+                    if (rs.next()) {
+                        int i = rs.getInt("id");
+                        return i;
+                    }
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
