@@ -5,6 +5,8 @@
 
 package cl.eh.server;
 
+import cl.eh.exceptions.Nivel8Exception;
+import cl.eh.db.model.Actuador;
 import cl.eh.db.model.Historial;
 import cl.eh.db.model.Sensor;
 import cl.eh.common.ArduinoSignal;
@@ -23,6 +25,7 @@ import cl.eh.common.Network.*;
 import cl.eh.db.ConexionExtendedHouse;
 import cl.eh.exceptions.ArduinoIOException;
 import cl.eh.properties.PropiedadesServer;
+import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -38,6 +41,7 @@ import java.util.List;
 import java.util.TooManyListenersException;
 
 import static com.esotericsoftware.minlog.Log.*;
+import java.util.logging.Level;
 
 /**
  *
@@ -58,11 +62,15 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
     private NetworksInterfaces net_interfaces;
     private byte BufferChunk[];
     private int bufferChunkDeComienzo;
+    private ThreadFrecuente threadTemp,threadLuz;
+    
     public ServerExtendedHouse(){
+        threadLuz = new ThreadFrecuente(5); // min
+        threadTemp = new ThreadFrecuente(5); // min
         BufferChunk = new byte[64];
         bufferChunkDeComienzo = 0;
         clearBuffer();
-        Log.set(Log.LEVEL_DEBUG);
+        //Log.set(Log.LEVEL_DEBUG);
         vector_adru_str = new Vector<String>();
         leer = new BufferedReader(new InputStreamReader(System.in));
         propiedades_server = new PropiedadesServer();
@@ -101,15 +109,39 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                             case ArduinoSignal.RELEE_SIGNAL: {
                                 assert (ai.dispositivo >= 0 && ai.dispositivo <= 7);
                                 assert (ai.valor == 0 || ai.valor == 1);
-                                if (relee_sh.isReleePowerOn(ai.dispositivo)
-                                        != (ai.valor == 0) ? false : true) { // encazo q este apagado o prendido ,envio a todos la info
-                                    ArduinoOutput ao = new ArduinoOutput();
-                                    ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
-                                    ao.numero = Integer.toString(ai.dispositivo);
-                                    ao.valor = ai.valor;
-                                    server.sendToAllTCP(ao);
+                                if(ai.valor == 1){
                                     relee_sh.powerOnRelee(ai.dispositivo);
+                                }else{
+                                    relee_sh.powerOffRelee(ai.dispositivo);
+                                } 
+                                ArduinoOutput ao = new ArduinoOutput();
+                                ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
+                                ao.numero = Integer.toString(ai.dispositivo);
+                                ao.valor = ai.valor;
+                                server.sendToAllTCP(ao);
+                                //ahora enviar a la bd
+                                if (conexion_basedatos.isConnected()) {
+                                    Actuador ef = new Actuador();
+                                    ef.setNombre(ClientArduinoSignal.RELEE_SIGNAL);//RL
+                                    ef.setNumero(ai.dispositivo); // ej: 0
+                                    int id = conexion_basedatos.getIdOfActuador(ef);
+                                    ef.setId(id);
+                                    if (id != -1) { // se registra en bd
+                                        Historial his = new Historial(0,ef,null,
+                                                Calendar.getInstance(),
+                                                ex_con.getRemoteAddressTCP().getAddress().toString(),
+                                                (ai.valor == 0) ? "Apagado":"Encendido");
+                                        conexion_basedatos.addHistorial(his);
+                                    } else {
+                                        try {
+                                            throw new Nivel8Exception("weon te dio -1 el id");
+                                        } catch (Nivel8Exception ex) {
+                                            java.util.logging.Logger.getLogger(ServerExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                    }
                                 }
+
+
                             }
                         }
                         //serial_arduino.enviarSeñal(ai.señal);
@@ -257,22 +289,25 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                                 arduino_output.valor = Float.parseFloat(
                                         nomAndVal[2].trim());
                                 server.sendToAllTCP(arduino_output);//<<<<<-------------
-                                if (!ArduinoHelp.isAnActuador(
-                                        arduino_output.dispositivo)) {
-                                    Sensor sen = new Sensor();
-                                    sen.setNombre(arduino_output.dispositivo);
-                                    sen.setNumero(Integer.parseInt(
-                                            arduino_output.numero));
-                                    int id = conexion_basedatos.getIdOfSensor(
-                                            sen);
-                                    sen.setId(id);
-                                    if (id != -1) {
-                                        conexion_basedatos.addHistorial(
-                                                new Historial(0, null, sen,
-                                                Calendar.getInstance(),
-                                                "localhost",nomAndVal[2].trim())); // el ultimo es el valor
+                                if (conexion_basedatos.isConnected()) {
+                                    if (!ArduinoHelp.isAnActuador(
+                                            arduino_output.dispositivo)) {
+                                        Sensor sen = new Sensor();
+                                        sen.setNombre(arduino_output.dispositivo);
+                                        sen.setNumero(Integer.parseInt(
+                                                arduino_output.numero));
+                                        int id = conexion_basedatos.getIdOfSensor(
+                                                sen);
+                                        sen.setId(id);
+                                        if (id != -1) {
+                                            conexion_basedatos.addHistorial(
+                                                    new Historial(0, null, sen,
+                                                    Calendar.getInstance(),
+                                                    "localhost", nomAndVal[2].trim())); // el ultimo es el valor
+                                        }
                                     }
                                 }
+                                
                             } catch (NumberFormatException e) {
                                 error(SECTOR, e.getMessage()); //SAKER LUEGO
                                 //e.printStackTrace();

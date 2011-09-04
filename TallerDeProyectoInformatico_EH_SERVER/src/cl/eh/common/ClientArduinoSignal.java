@@ -14,4 +14,5 @@ public interface ClientArduinoSignal { // debe estar en concordancia con el prin
     final String TEMPERATURA_SIGNAL          = "TMP"; //numero 0
     final String INTERRUPTOR_LENGUETA_SIGNAL = "ILG"; //numero 0 - 4
     final String LUZ_SIGNAL                  = "LUZ"; //numero 0
+    final String MOVIMIENTO_SIGNAL           = "DDM";
 }
