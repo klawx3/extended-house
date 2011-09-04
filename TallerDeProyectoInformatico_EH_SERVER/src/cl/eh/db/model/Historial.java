@@ -12,19 +12,28 @@ import java.util.Calendar;
  * @author Usuario
  */
 public class Historial {
-
     private int id;
-    private int id_actuador;
-    private int id_sensor;
+    private Actuador actuador;
+    private Sensor sensor;
     private Calendar fecha;
+    private String ip;
     private String detalle;
-
-    public Historial(int id, int id_actuador, int id_sensor, Calendar fecha, String detalle) {
+    
+     public Historial(int id, Actuador actuador, Sensor sensor, Calendar fecha, String ip, String detalle) {
         this.id = id;
-        this.id_actuador = id_actuador;
-        this.id_sensor = id_sensor;
+        this.actuador = actuador;
+        this.sensor = sensor;
         this.fecha = fecha;
+        this.ip = ip;
         this.detalle = detalle;
+    }
+
+    public Actuador getActuador() {
+        return actuador;
+    }
+
+    public void setActuador(Actuador actuador) {
+        this.actuador = actuador;
     }
 
     public String getDetalle() {
@@ -51,23 +60,19 @@ public class Historial {
         this.id = id;
     }
 
-    public int getId_actuador() {
-        return id_actuador;
+    public String getIp() {
+        return ip;
     }
 
-    public void setId_actuador(int id_actuador) {
-        this.id_actuador = id_actuador;
+    public void setIp(String ip) {
+        this.ip = ip;
     }
 
-    public int getId_sensor() {
-        return id_sensor;
+    public Sensor getSensor() {
+        return sensor;
     }
 
-    public void setId_sensor(int id_sensor) {
-        this.id_sensor = id_sensor;
+    public void setSensor(Sensor sensor) {
+        this.sensor = sensor;
     }
-
-
-
-
 }

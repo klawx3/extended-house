@@ -20,12 +20,13 @@ public class QueryGenerator {
         if(object instanceof Historial){
 
             Historial his = (Historial)object;
-            String v2 = his.getId_actuador() == 0 ? "NULL" : String.valueOf(his.getId_actuador());
-            String v3 = his.getId_sensor() == 0 ? "NULL" : String.valueOf(his.getId_actuador());
+            String v2 = his.getActuador() == null ? "NULL" : String.valueOf(his.getActuador().getId());
+            String v3 = his.getSensor()   == null ? "NULL" : String.valueOf(his.getSensor().getId());
             //ejemplo fecha mysql latin -> 2011-07-13 21:21:5
             String v4 = MysqlCalendar.getMysqlDateString(his.getFecha());
+            String v4_01 = his.getIp();
             query = "INSERT INTO historial "
-                    + "VALUES(NULL,'"+v2+"','"+v3+"','"+v4+"','"+his.getDetalle()+"')";
+                    + "VALUES(NULL,"+v2+","+v3+",'"+v4+"','"+v4_01+"','"+his.getDetalle()+"')";
         }else if(object instanceof Evento){
 
             Evento evnt = (Evento)object;

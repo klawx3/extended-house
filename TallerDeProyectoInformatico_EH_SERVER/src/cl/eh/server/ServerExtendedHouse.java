@@ -5,6 +5,8 @@
 
 package cl.eh.server;
 
+import cl.eh.db.model.Historial;
+import cl.eh.db.model.Sensor;
 import cl.eh.common.ArduinoSignal;
 import cl.eh.arduino.ReleeShield;
 import cl.eh.util.NetworksInterfaces;
@@ -14,6 +16,7 @@ import java.util.Vector;
 import cl.eh.server.ServerExtendedHouse.ExtendedHouseConnection;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.arduino.SerialArduino;
+import cl.eh.common.ArduinoHelp;
 import cl.eh.common.ClientArduinoSignal;
 import cl.eh.common.Network;
 import cl.eh.common.Network.*;
@@ -29,6 +32,7 @@ import gnu.io.SerialPortEventListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TooManyListenersException;
@@ -166,7 +170,6 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
             }
         }
         System.out.println("=========================================");
-
     }
 
     public static void main(String[] args){
@@ -228,7 +231,9 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                 String incomplete_arduino_string = new String(chunk);
                 //System.out.println("incomplete_arduino_string:"+incomplete_arduino_string);
 
-                vector_adru_str.add(posicion_lista_arduino_string, incomplete_arduino_string);
+                vector_adru_str.add(
+                        posicion_lista_arduino_string,
+                        incomplete_arduino_string);
                 if (incomplete_arduino_string.contains(";")) {
                     String contenido = "";
                     for (int i = 0; i < vector_adru_str.size(); i++) {
@@ -238,19 +243,39 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                     posicion_lista_arduino_string = 0;
                     /*correcto-------------*/
                     String[] punto_coma_buffer_error = contenido.split(";");
-                    for(int i = 0; i < punto_coma_buffer_error.length ; i++){
-                        String[] nomAndVal = punto_coma_buffer_error[i].split("-");
+                    for (int i = 0; i < punto_coma_buffer_error.length; i++) {
+                        String[] nomAndVal = punto_coma_buffer_error[i].split(
+                                "-");
                         if (nomAndVal.length != 3) {
-                            throw new ArduinoIOException("Error al leer:"+contenido);
+                            throw new ArduinoIOException(
+                                    "Error al leer:" + contenido);
                         } else {
                             ArduinoOutput arduino_output = new ArduinoOutput();
-                            arduino_output.dispositivo = nomAndVal[0];
-                            arduino_output.numero = nomAndVal[1];
+                            arduino_output.dispositivo = nomAndVal[0].trim();
+                            arduino_output.numero = nomAndVal[1].trim();
                             try {
-                                arduino_output.valor = Float.parseFloat(nomAndVal[2]);
-                                server.sendToAllTCP(arduino_output);
+                                arduino_output.valor = Float.parseFloat(
+                                        nomAndVal[2].trim());
+                                server.sendToAllTCP(arduino_output);//<<<<<-------------
+                                if (!ArduinoHelp.isAnActuador(
+                                        arduino_output.dispositivo)) {
+                                    Sensor sen = new Sensor();
+                                    sen.setNombre(arduino_output.dispositivo);
+                                    sen.setNumero(Integer.parseInt(
+                                            arduino_output.numero));
+                                    int id = conexion_basedatos.getIdOfSensor(
+                                            sen);
+                                    sen.setId(id);
+                                    if (id != -1) {
+                                        conexion_basedatos.addHistorial(
+                                                new Historial(0, null, sen,
+                                                Calendar.getInstance(),
+                                                "localhost",nomAndVal[2].trim())); // el ultimo es el valor
+                                    }
+                                }
                             } catch (NumberFormatException e) {
-                                error(SECTOR,e.getMessage());
+                                error(SECTOR, e.getMessage()); //SAKER LUEGO
+                                //e.printStackTrace();
                             }
                         }
                     }
@@ -259,7 +284,8 @@ public final class ServerExtendedHouse implements Runnable,SerialPortEventListen
                     posicion_lista_arduino_string++;
                 }
             } catch (Exception e) {
-                error(e.toString());
+                error(SECTOR,e.toString()); //SAKER LUEGO
+                //e.printStackTrace();
             }
         }
 
