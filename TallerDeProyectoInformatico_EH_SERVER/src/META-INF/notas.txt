@@ -1,3 +1,4 @@
 domingo,04 septiembre 3:47: hay que ver el arduino input en el servidor la wea de mysql
 domingo 04 septiempre 17:12: java no hace la transformacion de el valor 0 a char 
                 por tanto cualquier valor que sea 0 hacia arduino deve ser tratado como {48}
+lunes 05 septiembre 2:42: se deve ejecutar el applet con la sigiente instruccion en la JVM: -Djava.security.policy=applet.policy
