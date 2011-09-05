@@ -41,7 +41,7 @@ public class ReleeShield implements ArduinoSignal {
                     s_a.enviarSeñal(RELEE_SIGNAL);
                     s_a.enviarSeñal((rele == 0) ? 48 : rele);
                 }
-                estado_rele_s[rele] = !estado_rele_s[rele];
+                estado_rele_s[rele] = true;
                 System.err.println("Rele int:" + rele + "||||Rele char:" + (char) rele);
             }
         } else {
@@ -61,7 +61,7 @@ public class ReleeShield implements ArduinoSignal {
                     s_a.enviarSeñal(RELEE_SIGNAL);
                     s_a.enviarSeñal((rele == 0) ? 48 : rele);
                 }
-                estado_rele_s[rele] = !estado_rele_s[rele];
+                estado_rele_s[rele] = false;
                 System.err.println("Rele int:" + rele + "||||Rele char:" + (char) rele);
             }
         } else {

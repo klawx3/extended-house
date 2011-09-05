@@ -6,7 +6,7 @@
 package cl.eh.main_program;
 
 
-import cl.eh.client.Cliente_Prototipo01;
+;
 import cl.eh.server.ServerExtendedHouse;
 import cl.eh.properties.Propiedades;
 import cl.eh.properties.PropiedadesClient;
@@ -36,7 +36,7 @@ public class MainDispatcher {
                     SwingUtilities.invokeLater(new Runnable() {
 
                         public void run() {
-                            new Cliente_Prototipo01().setVisible(true);
+                           // new Cliente_Prototipo01().setVisible(true); ----------------
                         }
                     });
                     return;

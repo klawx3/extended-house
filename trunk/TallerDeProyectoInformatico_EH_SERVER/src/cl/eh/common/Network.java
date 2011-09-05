@@ -25,14 +25,14 @@ public class Network {
         kryo.register(ArduinoOutput.class);
         kryo.register(DatabaseQuery.class);
         kryo.register(HistorialList.class);
-        kryo.register(Advice.class);
+        kryo.register(ServerInfo.class);
         kryo.register(DatabasePrimitiveResponse.class);
         kryo.register(InvalidConnection.class);
         kryo.register(ValidacionConnection.class);
         kryo.register(AdvanceCommand.class);
         kryo.register(Msg.class);
         kryo.register(ServerStatusRequest.class);
-
+        kryo.register(UsersOnline.class);
     }
 
     public static int getNetworkPort() {
@@ -71,8 +71,8 @@ public class Network {
         public ArrayList lista;
     }
 
-    public static class Advice{
-        public String advice;
+    public static class ServerInfo{
+        public String server_info;
     }
     public static class InvalidConnection{}
     
@@ -87,5 +87,9 @@ public class Network {
     
     public static class Msg{
         public String mensaje;
+    }
+    
+    public static class UsersOnline{
+        public int users;
     }
 }

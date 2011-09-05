@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50153
 File Encoding         : 65001
 
-Date: 2011-09-03 19:16:30
+Date: 2011-09-03 23:55:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,14 +82,11 @@ CREATE TABLE `historial` (
   KEY `sen_ref_his` (`sensor`),
   CONSTRAINT `act_ref_his` FOREIGN KEY (`actuador`) REFERENCES `actuador` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `sen_ref_his` FOREIGN KEY (`sensor`) REFERENCES `sensor` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=176 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of historial
 -- ----------------------------
-INSERT INTO `historial` VALUES ('1', '1', null, '2011-07-13 21:21:55', null, 'accionado por weon');
-INSERT INTO `historial` VALUES ('2', '1', null, '2011-07-09 22:10:25', null, 'ABIDIS');
-INSERT INTO `historial` VALUES ('4', '1', null, '2011-09-03 18:23:53', '200.23', 'hola');
 
 -- ----------------------------
 -- Table structure for `rol`
@@ -120,7 +117,7 @@ CREATE TABLE `sensor` (
   `caracteristicas` varchar(50) DEFAULT NULL,
   `puntero` binary(8) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of sensor
@@ -131,6 +128,7 @@ INSERT INTO `sensor` VALUES ('10', 'ILG', '1', 'Sala', 'Sensor Magnetico Nº1', 
 INSERT INTO `sensor` VALUES ('11', 'ILG', '2', 'Sala', 'Sensor Magnetico Nº2', null);
 INSERT INTO `sensor` VALUES ('12', 'ILG', '3', 'Sala', 'Sensor Magnetico Nº3', null);
 INSERT INTO `sensor` VALUES ('13', 'LUZ', '0', 'Sala', 'Sensor de Luz Nº0', null);
+INSERT INTO `sensor` VALUES ('14', 'DDM', '0', 'Sala', 'Sensor de Movimientro Nº0', null);
 
 -- ----------------------------
 -- Table structure for `usuario`

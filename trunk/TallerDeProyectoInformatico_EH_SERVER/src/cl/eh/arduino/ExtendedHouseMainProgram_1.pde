@@ -25,7 +25,7 @@
 #include <string.h>
 #include <LiquidCrystal.h>
 /*START CONSTANTES*/
-const short MILLISECONDS_FOR_DISPLAY     = 2500;
+const short MILLISECONDS_FOR_DISPLAY     = 1200;
 const short SERIAL_DATA_RATE             = 9600;
 const short MAX_BUFFER                   = 5;
 const short DELAY                        = 30;
@@ -33,6 +33,7 @@ const short MAX_INTERRUPTOR_LENGUETA     = 4;
 const int DISPLAY_PREC_CONST             = MILLISECONDS_FOR_DISPLAY / DELAY; // osea se imprime cada los milli segundos puesto arriba
 const short MAX_TMP_SENSORS              = 1;
 const short MAX_LUZ_SENSORS              = 1;
+const short MAX_DETECTOR_MOVIMIENTO      = 1;
 /*START PIN DEF*/
 const short relay_shield_data            = 3;
 const short relay_shield_latch           = 4;
@@ -46,6 +47,10 @@ const short relay_shield_clock           = 5;
  */
 const int interruptor_lengueta[MAX_INTERRUPTOR_LENGUETA] = { //DigialInput
     40,41,42,43
+};
+
+const int detector_movimiento[MAX_DETECTOR_MOVIMIENTO] = {
+    36
 };
 /**
  * LCD RS pin to digital pin 48
@@ -74,6 +79,7 @@ int sensor_luz_analg[MAX_LUZ_SENSORS] ={ // AnalogInput
 int _buffer[MAX_BUFFER];
 int _relay_shield_value = B00000000;
 int _interruptor_lengueta_estado[MAX_INTERRUPTOR_LENGUETA];
+int _sensor_movimiento_estado[MAX_DETECTOR_MOVIMIENTO];
 char _sprintf_buffer[50];
 unsigned int _display_presicion;
 
@@ -93,12 +99,16 @@ void setup(){
     for(int i = 0 ; i < 6 ; i++){
         pinMode(lcd_led16x2[i],OUTPUT);
     }
+    for(int i = 0; i < MAX_DETECTOR_MOVIMIENTO;  i++){
+        pinMode(detector_movimiento[i],INPUT);
+    }
     pinMode(relay_shield_data ,OUTPUT);
     pinMode(relay_shield_latch,OUTPUT);
     pinMode(relay_shield_clock,OUTPUT);
     /*--------------------------------------------*/
     inputBufferClear();
-    clearVector(_interruptor_lengueta_estado,MAX_INTERRUPTOR_LENGUETA,LOW);
+    clearVector(_interruptor_lengueta_estado,MAX_INTERRUPTOR_LENGUETA,HIGH);
+    clearVector(_sensor_movimiento_estado,MAX_DETECTOR_MOVIMIENTO,LOW);
     _relay_shield_value=~_relay_shield_value;
     shiftOutInput(_relay_shield_value,relay_shield_data,relay_shield_clock,relay_shield_latch);
     fdev_setup_stream(&uartout, uart_putchar, NULL, _FDEV_SETUP_WRITE);
@@ -113,7 +123,7 @@ void loop(){
         for(int i = 0 ; i < serial_buffer_lenght ; i++){
             _buffer[i] = Serial.read();
         }
-        printBuffer(_buffer,serial_buffer_lenght);
+        //printBuffer(_buffer,serial_buffer_lenght);
         switch(_buffer[0]){//aqui se ubican to2 los tipos de input asociados a una letra...
         case 'r': // relee shield
             {  
@@ -142,7 +152,7 @@ void loop(){
         Serial.flush();
     }
     updateEstadoInterruptoresLengueta();
-
+    updateEstadoDetectoresDeMovimiento();
     if(++_display_presicion == DISPLAY_PREC_CONST){ //muestro, imprimo todo el asd imprimible... (to2 dentro del if se imprime cada 1 seg)
         delayMicroseconds(20);
         printTMPSensor(sensor_tmp_analg,0);
@@ -175,6 +185,17 @@ void printEstadoIL(){
     for(int i = 0 ; i < MAX_INTERRUPTOR_LENGUETA  ; i++){
         delayMicroseconds(20);
         printf("ILG-%d-%d;\n",i,_interruptor_lengueta_estado[i]);
+    }
+}
+/*----------------------detector de movimientos------------------*/
+void updateEstadoDetectoresDeMovimiento(){
+    for(int i= 0; i < MAX_DETECTOR_MOVIMIENTO ; i++){
+        int val = digitalRead(detector_movimiento[i]);
+        if(_sensor_movimiento_estado[i] != val){
+            delayMicroseconds(20);
+            printf("DDM-%d-%d;\n",i,val);
+        }
+        _sensor_movimiento_estado[i] = val;
     }
 }
 
