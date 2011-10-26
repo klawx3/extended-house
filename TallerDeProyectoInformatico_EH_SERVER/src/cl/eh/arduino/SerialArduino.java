@@ -63,7 +63,7 @@ public final class SerialArduino {
             input = serialPort.getInputStream();
             output = serialPort.getOutputStream();
             connecionArduinoEstablecida = true;
-            info(SECTOR,"Arduino Connection open");
+            info(SECTOR,"Arduino ["+puerto+"] Connection open");
         } catch (Exception e) {
             error(e.toString());
         }
@@ -88,12 +88,25 @@ public final class SerialArduino {
             try {
                 output.write(s);
                 output.flush();
-                //System.err.println("PASO POR FLUSH");
+                
             } catch (IOException ex) {
                 error(ex.getMessage());
             }
         } else {
-            info(SECTOR, "No se ha podido enviar señal a [" + puerto + "], ya que no hay coneccion");
+            info(SECTOR, "No se ha podido enviar señal ["+s+"] a [" + puerto + "], ya que no hay coneccion");
+        }
+    }
+    
+    public synchronized void enviarSeñal(byte[] s) {
+        if (isConnecionArduinoEstablecida()) {
+            try {
+                output.write(s);
+                output.flush();
+            } catch (IOException ex) {
+                error(ex.getMessage());
+            }
+        } else {
+            info(SECTOR, "No se ha podido enviar señal ["+s+"] a [" + puerto + "], ya que no hay coneccion");
         }
     }
 

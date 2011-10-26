@@ -10,7 +10,7 @@ import cl.eh.properties.Propiedades;
 import cl.eh.util.Interface;
 import cl.eh.util.Ip;
 import cl.eh.util.NetworksInterfaces;
-import cl.eh.util.MysqlCalendar;
+import cl.eh.db.util.MysqlCalendar;
 import java.io.IOException;
 import java.net.InterfaceAddress;
 import java.util.Calendar;

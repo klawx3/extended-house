@@ -55,7 +55,7 @@ public class Conexion {
                 rs.close();
             }
             if (est != null) {
-                if (est.isClosed()) {
+                if (!est.isClosed()) {
                     est.close();
                 }
             }

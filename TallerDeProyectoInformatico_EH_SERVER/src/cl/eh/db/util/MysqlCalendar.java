@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package cl.eh.util;
+package cl.eh.db.util;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;

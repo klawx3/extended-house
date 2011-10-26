@@ -16,14 +16,18 @@ public class Historial {
     private Actuador actuador;
     private Sensor sensor;
     private Calendar fecha;
+    private String user;
+
+    
     private String ip;
     private String detalle;
     
-     public Historial(int id, Actuador actuador, Sensor sensor, Calendar fecha, String ip, String detalle) {
+     public Historial(int id, Actuador actuador, Sensor sensor, Calendar fecha,String user, String ip, String detalle) {
         this.id = id;
         this.actuador = actuador;
         this.sensor = sensor;
         this.fecha = fecha;
+        this.user = user;
         this.ip = ip;
         this.detalle = detalle;
     }
@@ -74,5 +78,12 @@ public class Historial {
 
     public void setSensor(Sensor sensor) {
         this.sensor = sensor;
+    }
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
     }
 }

@@ -41,7 +41,7 @@ public class Ip {
                 }
             }
         } else {
-            throw new UnsupportedOperationException("Not yet implemented");
+            throw new UnsupportedOperationException("Clase de ip desconosida");
         }
         return aux;
     }

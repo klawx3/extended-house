@@ -4,49 +4,56 @@
  */
 package cl.eh.util;
 
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Usuario
- */
+
 public class ThreadFrecuente implements Runnable {
-    //al sobrepasar los minutos se queda "pegado"
 
-    private int minutos ;
-    private boolean stuck;
+    private boolean isThreadFinishWork;
+    private boolean detenido;
+    private long millisegundos;
+    private boolean startAgain;
     
-    public ThreadFrecuente(int minutos){
-        minutos = minutos * (60 * 1000);
+    public ThreadFrecuente(long millisegundos){
+        detenido = false;
+        isThreadFinishWork = false;
+        startAgain = false;
+        this.millisegundos = millisegundos;
     }
     
+    @SuppressWarnings("SleepWhileInLoop")
     public void run() {
-        while(true){
-            while(!stuck){
+        while (!detenido) {
+            while (startAgain) {
+                isThreadFinishWork = false;
                 try {
-                    Thread.sleep(minutos);
+                    Thread.sleep(millisegundos);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(ThreadFrecuente.class.getName())
-                            .log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ThreadFrecuente.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                stuck = true;
-            }            
+                startAgain = false;
+                isThreadFinishWork = true;
+            }
+            
         }
-
     }
     
-    public boolean isParado(){
-        return stuck;
+    public void startThreadAgain(){
+        startAgain = true;
     }
     
-    public void parar(){
-        stuck = true;
+    public boolean isThreadFinishWork(){
+        return isThreadFinishWork;
+    }
+    public void stopThread(){
+        detenido = true;
     }
     
-    public void continuar(){
-        stuck = false;
-    }
+    
+    
+  
     
     
 }

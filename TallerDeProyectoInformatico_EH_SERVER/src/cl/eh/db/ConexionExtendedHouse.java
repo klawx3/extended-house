@@ -20,6 +20,8 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public final class ConexionExtendedHouse extends Conexion implements ExtendedHouseDatabaseModel {
+    public static final int NULL_ID = -1;
+    public static final String EXTENDEDHOUSE_DEFAULT_USER = "extended_house";
 
     public ConexionExtendedHouse(String ip_db, String nom_db, String user_db, String pass_db) {
         super("jdbc:mysql://" + ip_db + "/" + nom_db, user_db, pass_db);
@@ -83,7 +85,26 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return -1;
+        return ConexionExtendedHouse.NULL_ID;
+    }
+    public boolean isaValidUser(String user){
+        if(user != null){
+            if(!user.isEmpty()){
+                String query = "SELECT * FROM usuario WHERE usuario = '"+user+"'";
+                try {
+                    synchronized (con) {
+                        est = con.createStatement();
+                        rs = est.executeQuery(query);
+                        if (rs.next()) {
+                            return true;
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return false;
     }
 
     public int getIdOfSensor(Sensor obj) {
@@ -106,6 +127,6 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        return -1;
+        return ConexionExtendedHouse.NULL_ID;
     }
 }
