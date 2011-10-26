@@ -30,9 +30,10 @@ public class Network {
         kryo.register(InvalidConnection.class);
         kryo.register(ValidacionConnection.class);
         kryo.register(AdvanceCommand.class);
-        kryo.register(Msg.class);
+
         kryo.register(ServerStatusRequest.class);
         kryo.register(UsersOnline.class);
+        kryo.register(ServerMesage.class);
     }
 
     public static int getNetworkPort() {
@@ -43,7 +44,7 @@ public class Network {
     public static class ArduinoInput {
         public int señal;
         public int valor;
-        public int dispositivo; // <------ opcional
+        public int dispositivo;
     }
     
     public static class ServerStatusRequest{
@@ -78,14 +79,13 @@ public class Network {
     
     public static class ValidacionConnection{
         public String user;
-        public String pass;
         public String client_ip;
     }
     public static class AdvanceCommand{
         public String commando;
     }
     
-    public static class Msg{
+    public static class ServerMesage{
         public String mensaje;
     }
     

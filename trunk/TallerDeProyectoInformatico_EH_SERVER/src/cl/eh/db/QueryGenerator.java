@@ -7,7 +7,7 @@ package cl.eh.db;
 
 import cl.eh.db.model.Evento;
 import cl.eh.db.model.Historial;
-import cl.eh.util.MysqlCalendar;
+import cl.eh.db.util.MysqlCalendar;
 
 /**
  *
@@ -24,9 +24,10 @@ public class QueryGenerator {
             String v3 = his.getSensor()   == null ? "NULL" : String.valueOf(his.getSensor().getId());
             //ejemplo fecha mysql latin -> 2011-07-13 21:21:5
             String v4 = MysqlCalendar.getMysqlDateString(his.getFecha());
-            String v4_01 = his.getIp();
+            String v5 = his.getUser();
+            String v6 = his.getIp();
             query = "INSERT INTO historial "
-                    + "VALUES(NULL,"+v2+","+v3+",'"+v4+"','"+v4_01+"','"+his.getDetalle()+"')";
+                    + "VALUES(NULL,"+v2+","+v3+",'"+v4+"','"+v5+"','"+v6+"','"+his.getDetalle()+"')";
         }else if(object instanceof Evento){
 
             Evento evnt = (Evento)object;

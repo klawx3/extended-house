@@ -32,16 +32,22 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public class ExtendedHouseClient extends javax.swing.JApplet {
-
-    private String ipserver;
+    private final boolean pruebaLocal = false;
     private Client client;
-    private Thread hilo_conectar;
     private StatusExtendedHouse status_eh;
+    private Parametros params;
+    
     /** Initializes the applet ExtendedHouseClient */
     
     @Override
     public void init() {
         status_eh = new StatusExtendedHouse();
+        params = new Parametros(
+                super.getParameter(Parametros.PARAM_SERVERIP),
+                super.getParameter(Parametros.PARAM_CLIENTIP),
+                super.getParameter(Parametros.PARAM_USER));
+        
+        
         loadCliente();
         try {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
@@ -54,7 +60,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             ex.printStackTrace();
         }
         
-        
+        jLabel3.setText("ip_cliente"+params.getIp_cliente());
+        jLabel28.setText("ipserver:"+params.getIp_server());
+        jLabel29.setText("user:"+params.getUser());
     
     }
     /** This method is called from within the init() method to
@@ -66,12 +74,10 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -115,29 +121,29 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         txt_usuarios = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
 
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 137, -1));
 
         jTextField2.setEditable(false);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, 47, -1));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 47, -1));
 
         jTextField3.setEditable(false);
         getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 290, -1));
 
-        jButton1.setText("conectar");
+        jButton1.setText("Conectar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 148, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 10, 370, -1));
 
         jLabel1.setText("status");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
-
-        jLabel2.setText("ip");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sensores"));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -184,7 +190,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel17.setText("            ");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 200, 210));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 200, 190));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Actuadores"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -357,26 +363,45 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel25.setText("Rele 8:");
         jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
 
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 210, 210));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 160, 280));
 
         jLabel26.setText("Server Info:");
         getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
 
         jLabel27.setText("Usuarios Conectados:");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
 
         txt_usuarios.setEditable(false);
-        getContentPane().add(txt_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 60, -1));
+        getContentPane().add(txt_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 60, -1));
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Developer Info:"));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setText("jLabel3");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel28.setText("jLabel28");
+        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jLabel29.setText("jLabel29");
+        jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 80));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ipserver = jTextField1.getText().trim();
+
         new Thread("Conectar a servidor") {
 
             @Override
             public void run() {
                 try {
-                    client.connect(5000, ipserver, Network.getNetworkPort());
+                    if(pruebaLocal){
+                        client.connect(5000, "127.0.0.1", Network.getNetworkPort());
+                    }else{
+                        client.connect(5000, params.getIp_server(), Network.getNetworkPort());
+                    }
+                    
                     jTextField2.setText("UP");
                     jTextField2.setForeground(new java.awt.Color(0, 255, 0));
                     /*VALIDO ALTOKE ^^*/
@@ -561,7 +586,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -570,6 +594,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -578,7 +605,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txt_usuarios;
@@ -659,29 +686,25 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         client.addListener(new Listener() {
             @Override
             public void connected(Connection connection) {
-                //Se valida
                 ValidacionConnection vc = new ValidacionConnection();
-                vc.user = Network.LOCALUSER;
-                client.sendTCP(vc);
-                //luego ahce una peticion del estado del servidor
-                client.sendTCP(new ServerStatusRequest());
-                /*new Thread("Wit for server info"){
-                    @Override
-                    public void run(){
-                        try {
-                            Thread.sleep(3000);
-                            setsButtonsRelayState();
-                        } catch (InterruptedException ex) {
-                            Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                }.start();*/
+                if(!pruebaLocal){
+                    vc.user = params.getUser();
+                    vc.client_ip = params.getIp_cliente();
+                }else{
+                    vc.user = "extended_house";
+                    vc.client_ip = "127.0.0.1";
+                }
+                
+                client.sendTCP(vc); //validacion de connecion
+                client.sendTCP(new ServerStatusRequest()); //peticion del estado del servidor
                 
             }
 
             @Override
             public void disconnected(Connection connection) {
                 System.out.println("El servidor se ha caido:");
+                jTextField2.setText("DOWN");
+                jTextField2.setForeground(new java.awt.Color(255, 0, 0));
             }
 
             @Override
@@ -830,6 +853,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 }else if(object instanceof UsersOnline){
                     UsersOnline uo = (UsersOnline) object;
                     txt_usuarios.setText(Integer.toString(uo.users));
+                }else if(object instanceof ServerMesage){
+                    ServerMesage sm = (ServerMesage)object;
+                    jTextField3.setText(sm.mensaje);
                 }
                 
             }
