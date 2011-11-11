@@ -19,26 +19,39 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
+//import com.jtattoo.plaf.*;
 import java.io.IOException;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author Usuario
  */
 public class ExtendedHouseClient extends javax.swing.JApplet {
-    private final boolean pruebaLocal = false;
+
+    private final boolean pruebaLocal = true;
     private Client client;
     private StatusExtendedHouse status_eh;
     private Parametros params;
+    private ImageIcon sen_pasivo, sen_activo;
+    /*
+    jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"))); // NOI18N
+    jLabel2.setText("jLabel2");
     
+    jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+     */
+
     /** Initializes the applet ExtendedHouseClient */
-    
     @Override
     public void init() {
         status_eh = new StatusExtendedHouse();
@@ -46,25 +59,42 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 super.getParameter(Parametros.PARAM_SERVERIP),
                 super.getParameter(Parametros.PARAM_CLIENTIP),
                 super.getParameter(Parametros.PARAM_USER));
-        
-        
+
+
         loadCliente();
         try {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
 
                 public void run() {
+//                    try {
+//                        UIManager.put("ClassLoader", getClass().getClassLoader());
+//                        UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+//
+//                    } catch (ClassNotFoundException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (InstantiationException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (IllegalAccessException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (UnsupportedLookAndFeelException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                     initComponents();
+                    sen_pasivo = new ImageIcon(getClass().getResource("/cl/eh/images/selection.png"));
+                    sen_activo = new ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"));
+                    
                 }
             });
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        
-        jLabel3.setText("ip_cliente"+params.getIp_cliente());
-        jLabel28.setText("ipserver:"+params.getIp_server());
-        jLabel29.setText("user:"+params.getUser());
-    
+
+        jLabel3.setText("ip_cliente" + params.getIp_cliente());
+        jLabel28.setText("ipserver:" + params.getIp_server());
+        jLabel29.setText("user:" + params.getUser());
+
     }
+
     /** This method is called from within the init() method to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -74,25 +104,20 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        jLabel27 = new javax.swing.JLabel();
+        txt_usuarios = new javax.swing.JTextField();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -118,261 +143,36 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         btn_rele8_off = new javax.swing.JButton();
         btn_rele8_on = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        jToolBar2 = new javax.swing.JToolBar();
         jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        txt_usuarios = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTextField2.setEditable(false);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 47, -1));
-
-        jTextField3.setEditable(false);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 290, -1));
-
-        jButton1.setText("Conectar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 10, 370, -1));
-
-        jLabel1.setText("status");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, -1, -1));
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sensores"));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setText("Sensor Luz:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel5.setText("            ");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 20, -1, -1));
-
-        jLabel6.setText("Temperatura:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
-
-        jLabel7.setText("            ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
-
-        jLabel8.setText("Magnetico 4:");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
-
-        jLabel9.setText("            ");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, -1, -1));
-
-        jLabel10.setText("Magnetico 1:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
-
-        jLabel11.setText("Magnetico 2:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
-
-        jLabel12.setText("Magnetico 3:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
-
-        jLabel13.setText("            ");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
-
-        jLabel14.setText("            ");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, -1, -1));
-
-        jLabel15.setText("            ");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
-
-        jLabel16.setText("Sensor Mov:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
-
-        jLabel17.setText("            ");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, -1, -1));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 200, 190));
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Actuadores"));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel18.setText("Rele 7:");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-
-        jLabel19.setText("Rele 1:");
-        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
-
-        jLabel20.setText("Rele 2:");
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
-
-        jLabel21.setText("Rele 3:");
-        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
-
-        jLabel22.setText("Rele 4:");
-        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
-
-        jLabel23.setText("Rele 5:");
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
-
-        jLabel24.setText("Rele 6:");
-        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
-
-        btn_rele7_off.setText("Off");
-        btn_rele7_off.setEnabled(false);
-        btn_rele7_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele7_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele7_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, -1, 20));
-
-        btn_rele7_on.setText("On");
-        btn_rele7_on.setEnabled(false);
-        btn_rele7_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele7_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele7_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, 20));
-
-        btn_rele1_on.setText("On");
-        btn_rele1_on.setEnabled(false);
-        btn_rele1_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele1_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele1_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 20));
-
-        btn_rele2_on.setText("On");
-        btn_rele2_on.setEnabled(false);
-        btn_rele2_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele2_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele2_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, 20));
-
-        btn_rele3_on.setText("On");
-        btn_rele3_on.setEnabled(false);
-        btn_rele3_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele3_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele3_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, -1, 20));
-
-        btn_rele4_on.setText("On");
-        btn_rele4_on.setEnabled(false);
-        btn_rele4_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele4_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele4_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, -1, 20));
-
-        btn_rele5_on.setText("On");
-        btn_rele5_on.setEnabled(false);
-        btn_rele5_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele5_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele5_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, 20));
-
-        btn_rele6_on.setText("On");
-        btn_rele6_on.setEnabled(false);
-        btn_rele6_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele6_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele6_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, 20));
-
-        btn_rele1_off.setText("Off");
-        btn_rele1_off.setEnabled(false);
-        btn_rele1_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele1_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele1_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 20, -1, 20));
-
-        btn_rele2_off.setText("Off");
-        btn_rele2_off.setEnabled(false);
-        btn_rele2_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele2_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele2_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, 20));
-
-        btn_rele3_off.setText("Off");
-        btn_rele3_off.setEnabled(false);
-        btn_rele3_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele3_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele3_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 60, -1, 20));
-
-        btn_rele4_off.setText("Off");
-        btn_rele4_off.setEnabled(false);
-        btn_rele4_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele4_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele4_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, -1, 20));
-
-        btn_rele5_off.setText("Off");
-        btn_rele5_off.setEnabled(false);
-        btn_rele5_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele5_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele5_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, 20));
-
-        btn_rele6_off.setText("Off");
-        btn_rele6_off.setEnabled(false);
-        btn_rele6_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele6_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele6_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, -1, 20));
-
-        btn_rele8_off.setText("Off");
-        btn_rele8_off.setEnabled(false);
-        btn_rele8_off.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele8_offActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele8_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, -1, 20));
-
-        btn_rele8_on.setText("On");
-        btn_rele8_on.setEnabled(false);
-        btn_rele8_on.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_rele8_onActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btn_rele8_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, 20));
-
-        jLabel25.setText("Rele 8:");
-        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 160, 280));
-
-        jLabel26.setText("Server Info:");
-        getContentPane().add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, -1, -1));
-
-        jLabel27.setText("Usuarios Conectados:");
-        getContentPane().add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 330, -1, -1));
-
-        txt_usuarios.setEditable(false);
-        getContentPane().add(txt_usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 60, -1));
+        setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Developer Info:"));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -386,7 +186,367 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel29.setText("jLabel29");
         jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 200, 80));
+        jToolBar1.setFloatable(false);
+
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 11));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/lightning.png"))); // NOI18N
+        jButton1.setText("Conectar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jButton1);
+        jToolBar1.add(jSeparator1);
+
+        jLabel1.setText("Server status:");
+        jToolBar1.add(jLabel1);
+
+        jTextField2.setEditable(false);
+        jToolBar1.add(jTextField2);
+        jToolBar1.add(jSeparator2);
+
+        jLabel27.setText("Usuarios Conectados:");
+        jToolBar1.add(jLabel27);
+
+        txt_usuarios.setEditable(false);
+        jToolBar1.add(txt_usuarios);
+
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Reles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 11), new java.awt.Color(0, 0, 153))); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel18.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel18.setText("Rele 7:");
+        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel19.setText("Rele 1:");
+        jPanel2.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel20.setText("Rele 2:");
+        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
+
+        jLabel21.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel21.setText("Rele 3:");
+        jPanel2.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel22.setText("Rele 4:");
+        jPanel2.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel23.setText("Rele 5:");
+        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel24.setText("Rele 6:");
+        jPanel2.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        btn_rele7_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele7_off.setText("Off");
+        btn_rele7_off.setEnabled(false);
+        btn_rele7_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele7_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele7_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 140, 110, 20));
+
+        btn_rele7_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele7_on.setText("On");
+        btn_rele7_on.setEnabled(false);
+        btn_rele7_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele7_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele7_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 110, 20));
+
+        btn_rele1_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele1_on.setText("On");
+        btn_rele1_on.setEnabled(false);
+        btn_rele1_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele1_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele1_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 110, 20));
+
+        btn_rele2_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele2_on.setText("On");
+        btn_rele2_on.setEnabled(false);
+        btn_rele2_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele2_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele2_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 110, 20));
+
+        btn_rele3_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele3_on.setText("On");
+        btn_rele3_on.setEnabled(false);
+        btn_rele3_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele3_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele3_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 110, 20));
+
+        btn_rele4_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele4_on.setText("On");
+        btn_rele4_on.setEnabled(false);
+        btn_rele4_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele4_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele4_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, 110, 20));
+
+        btn_rele5_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele5_on.setText("On");
+        btn_rele5_on.setEnabled(false);
+        btn_rele5_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele5_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele5_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 110, 20));
+
+        btn_rele6_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele6_on.setText("On");
+        btn_rele6_on.setEnabled(false);
+        btn_rele6_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele6_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele6_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 110, 20));
+
+        btn_rele1_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele1_off.setText("Off");
+        btn_rele1_off.setEnabled(false);
+        btn_rele1_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele1_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele1_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 20, 110, 20));
+
+        btn_rele2_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele2_off.setText("Off");
+        btn_rele2_off.setEnabled(false);
+        btn_rele2_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele2_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele2_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 110, 20));
+
+        btn_rele3_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele3_off.setText("Off");
+        btn_rele3_off.setEnabled(false);
+        btn_rele3_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele3_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele3_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 110, 20));
+
+        btn_rele4_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele4_off.setText("Off");
+        btn_rele4_off.setEnabled(false);
+        btn_rele4_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele4_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele4_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, 110, 20));
+
+        btn_rele5_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele5_off.setText("Off");
+        btn_rele5_off.setEnabled(false);
+        btn_rele5_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele5_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele5_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 100, 110, 20));
+
+        btn_rele6_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele6_off.setText("Off");
+        btn_rele6_off.setEnabled(false);
+        btn_rele6_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele6_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele6_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 110, 20));
+
+        btn_rele8_off.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/apagado.png"))); // NOI18N
+        btn_rele8_off.setText("Off");
+        btn_rele8_off.setEnabled(false);
+        btn_rele8_off.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele8_offActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele8_off, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 110, 20));
+
+        btn_rele8_on.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/encendido.png"))); // NOI18N
+        btn_rele8_on.setText("On");
+        btn_rele8_on.setEnabled(false);
+        btn_rele8_on.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_rele8_onActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_rele8_on, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 110, 20));
+
+        jLabel25.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/switch.png"))); // NOI18N
+        jLabel25.setText("Rele 8:");
+        jPanel2.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, -1));
+
+        jPanel5.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 210));
+
+        jTabbedPane1.addTab("Actuadores", jPanel5);
+
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "General", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 11))); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/lightbulb.png"))); // NOI18N
+        jLabel4.setText("Sensor Luz:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel5.setText("0");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 20, -1));
+
+        jLabel6.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/timeline_marker.png"))); // NOI18N
+        jLabel6.setText("Temperatura:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jLabel7.setText("0");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 20, -1));
+
+        jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 220));
+
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Puertas y Ventanas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 11))); // NOI18N
+        jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Movimiento"));
+        jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel7.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 230, 90));
+
+        jLabel10.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/magnet.png"))); // NOI18N
+        jLabel10.setText("Magnetico 1:");
+        jPanel7.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/magnet.png"))); // NOI18N
+        jLabel11.setText("Magnetico 2:");
+        jPanel7.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/magnet.png"))); // NOI18N
+        jLabel12.setText("Magnetico 3:");
+        jPanel7.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/magnet.png"))); // NOI18N
+        jLabel8.setText("Magnetico 4:");
+        jPanel7.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+        jPanel7.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 20, -1));
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+        jPanel7.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 20, -1));
+
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+        jPanel7.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 20, -1));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+        jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, 20, -1));
+
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 230, 120));
+
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Movimiento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 1, 11))); // NOI18N
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Movimiento"));
+        jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel9.add(jPanel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 230, 90));
+
+        jLabel16.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/transmit.png"))); // NOI18N
+        jLabel16.setText("Detector Nº1:");
+        jPanel9.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
+
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/selection.png"))); // NOI18N
+        jPanel9.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+
+        jPanel4.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, 230, 90));
+
+        jTabbedPane1.addTab("Sensores", jPanel4);
+
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 120));
+        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 310, -1));
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/script.png"))); // NOI18N
+        jButton2.setText("Enviar Comando");
+        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 140, -1));
+
+        jTabbedPane1.addTab("Avanzado", jPanel6);
+
+        jToolBar2.setFloatable(false);
+
+        jLabel26.setText("Server Info:");
+        jToolBar2.add(jLabel26);
+
+        jTextField3.setEditable(false);
+        jToolBar2.add(jTextField3);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -396,17 +556,17 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             @Override
             public void run() {
                 try {
-                    if(pruebaLocal){
+                    if (pruebaLocal) {
                         client.connect(5000, "127.0.0.1", Network.getNetworkPort());
-                    }else{
+                    } else {
                         client.connect(5000, params.getIp_server(), Network.getNetworkPort());
                     }
-                    
                     jTextField2.setText("UP");
                     jTextField2.setForeground(new java.awt.Color(0, 255, 0));
+                    jButton1.setEnabled(false);
                     /*VALIDO ALTOKE ^^*/
                 } catch (IOException ex) {
-                    jTextField2.setText("DOWN");
+                    jTextField2.setText(ex.getMessage());
                     jTextField2.setForeground(new java.awt.Color(255, 0, 0));
                 }
             }
@@ -414,7 +574,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_rele1_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele1_onActionPerformed
-        int señal = 0 ; int valor = 1;
+        int señal = 0;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -423,7 +584,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele1_onActionPerformed
 
     private void btn_rele1_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele1_offActionPerformed
-        int señal = 0 ; int valor = 0;
+        int señal = 0;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -432,7 +594,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele1_offActionPerformed
 
     private void btn_rele2_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele2_onActionPerformed
-        int señal = 1 ; int valor = 1;
+        int señal = 1;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -441,7 +604,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele2_onActionPerformed
 
     private void btn_rele2_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele2_offActionPerformed
-        int señal = 1 ; int valor = 0;
+        int señal = 1;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -450,7 +614,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele2_offActionPerformed
 
     private void btn_rele3_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele3_onActionPerformed
-        int señal = 2 ; int valor = 1;
+        int señal = 2;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -459,7 +624,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele3_onActionPerformed
 
     private void btn_rele3_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele3_offActionPerformed
-        int señal = 2 ; int valor = 0;
+        int señal = 2;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -468,7 +634,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele3_offActionPerformed
 
     private void btn_rele4_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele4_onActionPerformed
-        int señal = 3 ; int valor = 1;
+        int señal = 3;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -477,7 +644,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele4_onActionPerformed
 
     private void btn_rele4_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele4_offActionPerformed
-        int señal = 3 ; int valor = 0;
+        int señal = 3;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -486,7 +654,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele4_offActionPerformed
 
     private void btn_rele5_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele5_onActionPerformed
-        int señal = 4 ; int valor = 1;
+        int señal = 4;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -495,7 +664,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele5_onActionPerformed
 
     private void btn_rele5_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele5_offActionPerformed
-        int señal = 4 ; int valor = 0;
+        int señal = 4;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -504,7 +674,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele5_offActionPerformed
 
     private void btn_rele6_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele6_onActionPerformed
-        int señal = 5 ; int valor = 1;
+        int señal = 5;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -513,7 +684,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele6_onActionPerformed
 
     private void btn_rele6_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele6_offActionPerformed
-        int señal = 5 ; int valor = 0;
+        int señal = 5;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -522,7 +694,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele6_offActionPerformed
 
     private void btn_rele7_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele7_onActionPerformed
-        int señal = 6 ; int valor = 1;
+        int señal = 6;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -531,7 +704,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele7_onActionPerformed
 
     private void btn_rele7_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele7_offActionPerformed
-        int señal = 6 ; int valor = 0;
+        int señal = 6;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -540,7 +714,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele7_offActionPerformed
 
     private void btn_rele8_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele8_onActionPerformed
-        int señal = 7 ; int valor = 1;
+        int señal = 7;
+        int valor = 1;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -549,7 +724,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_btn_rele8_onActionPerformed
 
     private void btn_rele8_offActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele8_offActionPerformed
-        int señal = 7 ; int valor = 0;
+        int señal = 7;
+        int valor = 0;
         ArduinoInput ai = new ArduinoInput();
         ai.dispositivo = señal;
         ai.señal = ArduinoSignal.RELEE_SIGNAL;
@@ -575,6 +751,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JButton btn_rele8_off;
     private javax.swing.JButton btn_rele8_on;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -604,78 +781,93 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar2;
     private javax.swing.JTextField txt_usuarios;
     // End of variables declaration//GEN-END:variables
 
-    private void setButtonEnable(JButton boton,boolean estado){
+    private void setButtonEnable(JButton boton, boolean estado) {
         boton.setEnabled(estado);
     }
     /*
     private void setsButtonsRelayState() {
-        if (status_eh.getValorActuadorRelay(0) == 0) {
-            setButtonEnable(btn_rele1_off, false);
-            setButtonEnable(btn_rele1_on, true);
-        } else {
-            setButtonEnable(btn_rele1_off, true);
-            setButtonEnable(btn_rele1_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(1) == 0) {
-            setButtonEnable(btn_rele2_off, false);
-            setButtonEnable(btn_rele2_on, true);
-        } else {
-            setButtonEnable(btn_rele2_off, true);
-            setButtonEnable(btn_rele2_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(2) == 0) {
-            setButtonEnable(btn_rele3_off, false);
-            setButtonEnable(btn_rele3_on, true);
-        } else {
-            setButtonEnable(btn_rele3_off, true);
-            setButtonEnable(btn_rele3_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(3) == 0) {
-            setButtonEnable(btn_rele4_off, false);
-            setButtonEnable(btn_rele4_on, true);
-        } else {
-            setButtonEnable(btn_rele4_off, true);
-            setButtonEnable(btn_rele4_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(4) == 0) {
-            setButtonEnable(btn_rele5_off, false);
-            setButtonEnable(btn_rele5_on, true);
-        } else {
-            setButtonEnable(btn_rele5_off, true);
-            setButtonEnable(btn_rele5_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(5) == 0) {
-            setButtonEnable(btn_rele6_off, false);
-            setButtonEnable(btn_rele6_on, true);
-        } else {
-            setButtonEnable(btn_rele6_off, true);
-            setButtonEnable(btn_rele6_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(6) == 0) {
-            setButtonEnable(btn_rele7_off, false);
-            setButtonEnable(btn_rele7_on, true);
-        } else {
-            setButtonEnable(btn_rele7_off, true);
-            setButtonEnable(btn_rele7_on, false);
-        }
-        if (status_eh.getValorActuadorRelay(7) == 0) {
-            setButtonEnable(btn_rele8_off, false);
-            setButtonEnable(btn_rele8_on, true);
-        } else {
-            setButtonEnable(btn_rele8_off, true);
-            setButtonEnable(btn_rele8_on, false);
-        }
-        for(int i = 0; i < 8; i++){
-            System.out.println(i+"|||"+status_eh.getValorActuadorRelay(i));
-        }
-
+    if (status_eh.getValorActuadorRelay(0) == 0) {
+    setButtonEnable(btn_rele1_off, false);
+    setButtonEnable(btn_rele1_on, true);
+    } else {
+    setButtonEnable(btn_rele1_off, true);
+    setButtonEnable(btn_rele1_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(1) == 0) {
+    setButtonEnable(btn_rele2_off, false);
+    setButtonEnable(btn_rele2_on, true);
+    } else {
+    setButtonEnable(btn_rele2_off, true);
+    setButtonEnable(btn_rele2_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(2) == 0) {
+    setButtonEnable(btn_rele3_off, false);
+    setButtonEnable(btn_rele3_on, true);
+    } else {
+    setButtonEnable(btn_rele3_off, true);
+    setButtonEnable(btn_rele3_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(3) == 0) {
+    setButtonEnable(btn_rele4_off, false);
+    setButtonEnable(btn_rele4_on, true);
+    } else {
+    setButtonEnable(btn_rele4_off, true);
+    setButtonEnable(btn_rele4_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(4) == 0) {
+    setButtonEnable(btn_rele5_off, false);
+    setButtonEnable(btn_rele5_on, true);
+    } else {
+    setButtonEnable(btn_rele5_off, true);
+    setButtonEnable(btn_rele5_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(5) == 0) {
+    setButtonEnable(btn_rele6_off, false);
+    setButtonEnable(btn_rele6_on, true);
+    } else {
+    setButtonEnable(btn_rele6_off, true);
+    setButtonEnable(btn_rele6_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(6) == 0) {
+    setButtonEnable(btn_rele7_off, false);
+    setButtonEnable(btn_rele7_on, true);
+    } else {
+    setButtonEnable(btn_rele7_off, true);
+    setButtonEnable(btn_rele7_on, false);
+    }
+    if (status_eh.getValorActuadorRelay(7) == 0) {
+    setButtonEnable(btn_rele8_off, false);
+    setButtonEnable(btn_rele8_on, true);
+    } else {
+    setButtonEnable(btn_rele8_off, true);
+    setButtonEnable(btn_rele8_on, false);
+    }
+    for(int i = 0; i < 8; i++){
+    System.out.println(i+"|||"+status_eh.getValorActuadorRelay(i));
+    }
+    
     }*/
 
     private void loadCliente() {
@@ -684,20 +876,21 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         client.start();
         Network.register(client);
         client.addListener(new Listener() {
+
             @Override
             public void connected(Connection connection) {
                 ValidacionConnection vc = new ValidacionConnection();
-                if(!pruebaLocal){
+                if (!pruebaLocal) {
                     vc.user = params.getUser();
                     vc.client_ip = params.getIp_cliente();
-                }else{
+                } else {
                     vc.user = "extended_house";
                     vc.client_ip = "127.0.0.1";
                 }
-                
+
                 client.sendTCP(vc); //validacion de connecion
                 client.sendTCP(new ServerStatusRequest()); //peticion del estado del servidor
-                
+
             }
 
             @Override
@@ -709,28 +902,26 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
             @Override
             public void received(Connection connection, Object object) {
-                if(object instanceof Network.InvalidConnection){
-                    JOptionPane.showMessageDialog(rootPane,
-                            "Coneccion rechasada.. usuario invalido");
-                    return;
-                }else if(object instanceof ArduinoOutput){
-                    ArduinoOutput ao = (ArduinoOutput)object;
+                if (object instanceof Network.InvalidConnection) {
+                    jTextField2.setText("Rechazada");
+                } else if (object instanceof ArduinoOutput) {
+                    ArduinoOutput ao = (ArduinoOutput) object;
                     String dispostv = ao.dispositivo;
                     int numero = Integer.parseInt(ao.numero);
-                    int valor  = (int)ao.valor;
-                    
-                    if(dispostv.equals(ClientArduinoSignal.TEMPERATURA_SIGNAL)){
-                        status_eh.updateSensorTemperatura(numero,valor);
-                        
+                    int valor = (int) ao.valor;
+
+                    if (dispostv.equals(ClientArduinoSignal.TEMPERATURA_SIGNAL)) {
+                        status_eh.updateSensorTemperatura(numero, valor);
+
                         jLabel7.setText(Integer.toString(status_eh.getValorSensorTemperatura(
                                 Integer.parseInt(ao.numero))));
-                    
-                    }else if(dispostv.equals(ClientArduinoSignal.LUZ_SIGNAL)){
-                        status_eh.updateSensorLuminico(numero,valor);
-                        
+
+                    } else if (dispostv.equals(ClientArduinoSignal.LUZ_SIGNAL)) {
+                        status_eh.updateSensorLuminico(numero, valor);
+
                         jLabel5.setText(Integer.toString(status_eh.getValorSensorLuminico(
                                 Integer.parseInt(ao.numero))));
-                    
+
                     } else if (dispostv.equals(ClientArduinoSignal.RELEE_SIGNAL)) {
                         status_eh.updateActuadorRelay(numero, valor);
                         switch (numero) {
@@ -815,49 +1006,72 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                                 break;
                             }
                         }
-                    
-                    }else if(dispostv.equals(ClientArduinoSignal.MOVIMIENTO_SIGNAL)){
-                        status_eh.updateSensorMovimiento(numero,valor);
-                        jLabel17.setText(Integer.toString(status_eh.getValorSensorMovimiento(
-                                Integer.parseInt(ao.numero))));
-                        
-                        
-                        
-                    }else if(dispostv.equals(ClientArduinoSignal.INTERRUPTOR_LENGUETA_SIGNAL)){
-                        status_eh.updateSensorMagnetico(numero,valor);
-                        
-                        switch(numero){
+
+                    } else if (dispostv.equals(ClientArduinoSignal.MOVIMIENTO_SIGNAL)) {
+                        status_eh.updateSensorMovimiento(numero, valor);
+                        if(status_eh.getValorSensorMovimiento(numero) == 1){
+                            setLabelSensorIcon(jLabel17, true);
+                        }else{
+                            setLabelSensorIcon(jLabel17, false);
+                        }
+
+
+
+                    } else if (dispostv.equals(ClientArduinoSignal.INTERRUPTOR_LENGUETA_SIGNAL)) {
+                        status_eh.updateSensorMagnetico(numero, valor);
+
+                        switch (numero) {
                             case 0: {
-                                jLabel9.setText(Integer.toString(status_eh.getValorSensorMagnetico(
-                                Integer.parseInt(ao.numero))));
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel9, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel9, false);
+                                }
                                 break;
                             }
                             case 1: {
-                                jLabel13.setText(Integer.toString(status_eh.getValorSensorMagnetico(
-                                Integer.parseInt(ao.numero))));
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel13, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel13, false);
+                                }
                                 break;
                             }
                             case 2: {
-                                jLabel14.setText(Integer.toString(status_eh.getValorSensorMagnetico(
-                                Integer.parseInt(ao.numero))));
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel14, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel14, false);
+                                }
                                 break;
                             }
                             case 3: {
-                                jLabel15.setText(Integer.toString(status_eh.getValorSensorMagnetico(
-                                Integer.parseInt(ao.numero))));
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel15, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel15, false);
+                                }
                                 break;
                             }
 
                         }
                     }
-                }else if(object instanceof UsersOnline){
+                } else if (object instanceof UsersOnline) {
                     UsersOnline uo = (UsersOnline) object;
                     txt_usuarios.setText(Integer.toString(uo.users));
-                }else if(object instanceof ServerMesage){
-                    ServerMesage sm = (ServerMesage)object;
+                } else if (object instanceof ServerMesage) {
+                    ServerMesage sm = (ServerMesage) object;
                     jTextField3.setText(sm.mensaje);
                 }
-                
+
+            }
+
+            private void setLabelSensorIcon(JLabel a, boolean b) {
+                if (b) {//activado
+                    a.setIcon(sen_pasivo);
+                } else {
+                    a.setIcon(sen_activo);
+                }
             }
         });
     }

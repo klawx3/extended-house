@@ -19,10 +19,10 @@ public class ReleeShield implements ArduinoSignal {
     public static final int MAX_RELES = 8;
     private int[] rele_s;
     private boolean[] estado_rele_s;
-    private SerialArduino s_a;
+    private SerialArduino serialArduino;
 
     public ReleeShield(SerialArduino s_a) {
-        this.s_a = s_a;
+        this.serialArduino = s_a;
         rele_s = new int[MAX_RELES];
         estado_rele_s = new boolean[MAX_RELES];
         for (int i = 0; i < estado_rele_s.length; i++) {
@@ -35,11 +35,11 @@ public class ReleeShield implements ArduinoSignal {
     }
 
     public void powerOnRelee(int rele) {
-        if (rele >= 0 && rele <= 7) {
+        if (rele >= 0 && rele <= MAX_RELES -1) {
             if (estado_rele_s[rele] == false) {
-                synchronized (s_a) {
-                    s_a.enviarSeñal(RELEE_SIGNAL);
-                    s_a.enviarSeñal((rele == 0) ? 48 : rele);
+                synchronized (serialArduino) {
+                    serialArduino.enviarSeñal(RELEE_SIGNAL);
+                    serialArduino.enviarSeñal((rele == 0) ? 48 : rele);
                 }
                 estado_rele_s[rele] = true;
             }
@@ -54,11 +54,11 @@ public class ReleeShield implements ArduinoSignal {
     }
 
     public void powerOffRelee(int rele) {
-        if (rele >= 0 && rele <= 7) {
+        if (rele >= 0 && rele <= MAX_RELES -1) {
             if (estado_rele_s[rele] == true) {
-                synchronized (s_a) {
-                    s_a.enviarSeñal(RELEE_SIGNAL);
-                    s_a.enviarSeñal((rele == 0) ? 48 : rele);
+                synchronized (serialArduino) {
+                    serialArduino.enviarSeñal(RELEE_SIGNAL);
+                    serialArduino.enviarSeñal((rele == 0) ? 48 : rele);
                 }
                 estado_rele_s[rele] = false;
                 

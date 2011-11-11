@@ -23,10 +23,12 @@ import cl.eh.common.ArduinoHelp;
 import cl.eh.common.ClientArduinoSignal;
 import cl.eh.common.Network;
 import cl.eh.common.Network.*;
+import cl.eh.db.AutomaticDatabaseMaintenance;
 import cl.eh.db.ConexionExtendedHouse;
 import cl.eh.exceptions.ArduinoIOException;
 import cl.eh.properties.PropiedadesServer;
 import cl.eh.serial.SerialOutput;
+import cl.eh.util.Fecha;
 import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -66,6 +68,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
     private ConexionExtendedHouse conexion_basedatos;
     private NetworksInterfaces net_interfaces;
     private ExecutorService exService;
+    private AutomaticDatabaseMaintenance auto_db;
     
     private SerialOutput serial_output;
 
@@ -204,7 +207,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
         } catch (IOException ex) {
             error(SECTOR,ex.getMessage());
             error(SECTOR,"Verifique que el puerto '"
-                    +Network.getNetworkPort()+"' no este en uso...");
+                    +Network.getNetworkPort()+"'que no este en uso...");
             System.exit(1);
         }
         server.start();
@@ -232,7 +235,11 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
         info(SECTOR,"Ingresos a la BD en ([ "
                 +((double)propiedades_server.getDatabase_millisencods_insert())/(double)(60*1000)
                 +" ]min)");
+
         System.out.println("=========================================");
+        info(SECTOR,Fecha.getFecha(false, false));
+        
+        
     }
 
 
@@ -346,19 +353,21 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                         serial_arduino.enviarSeñal((numero_de_usuarios_conectados == 0)
                                 ? 48 : numero_de_usuarios_conectados);
                     }
-
-
                 }
             }
         };
         Thread s3 = new Thread(thread_sen_tmp);
         Thread s4 = new Thread(thread_sen_luz);
-
         exService = Executors.newCachedThreadPool();
         exService.execute(s1);
         exService.execute(s2);
         exService.execute(s3);
         exService.execute(s4);
+        if(conexion_basedatos.isConnected()){
+            auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos
+                    ,AutomaticDatabaseMaintenance.SEMANAL);
+            exService.execute(auto_db.getThread());
+        }
         exService.shutdown();
         thread_sen_tmp.startThreadAgain();
         thread_sen_luz.startThreadAgain();
@@ -367,7 +376,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
     public void run() {
         try {
             info(SECTOR,"Comandos Disponibles para digitar"
-                    + ":'exit','restart','send <arg>'");
+                    + ":'exit','restart','send <arg>',ard <arg[n]>");
             System.out.println(WELCOME);
             while (true) {
                 String line = leer.readLine().trim();
@@ -395,7 +404,20 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                 error(SECTOR,"El comando [send] requiere argumento");
             }
             
-        } else {
+        } else if(line.startsWith("ard")){
+            try{
+                String mensaje = line.trim().split(" ",2)[1];
+                try {
+                    arduinoComandosEh.sendCommand(mensaje, true);
+                } catch (ArduinoIOException ex) {
+                    error(SECTOR,ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }catch(java.lang.ArrayIndexOutOfBoundsException e){
+                error(SECTOR,"El comando [ard] requiere argumento");
+                
+            }
+        }else {
             info(SECTOR,"Comando '" + line + "' no reconocido");
         }
     }

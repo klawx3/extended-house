@@ -36,6 +36,7 @@ public class ThreadFrecuente implements Runnable {
                 startAgain = false;
                 isThreadFinishWork = true;
             }
+
             
         }
     }

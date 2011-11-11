@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cl.eh.db;
 
 import cl.eh.db.model.Actuador;
@@ -20,11 +19,21 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public final class ConexionExtendedHouse extends Conexion implements ExtendedHouseDatabaseModel {
+
     public static final int NULL_ID = -1;
     public static final String EXTENDEDHOUSE_DEFAULT_USER = "extended_house";
+    public static final String PORT = "3306";
+    private String ip_db;
+    private String nom_db;
+    private String user_db;
+    private String pass_db;
 
     public ConexionExtendedHouse(String ip_db, String nom_db, String user_db, String pass_db) {
         super("jdbc:mysql://" + ip_db + "/" + nom_db, user_db, pass_db);
+        this.ip_db = ip_db;
+        this.nom_db = nom_db;
+        this.user_db = user_db;
+        this.pass_db = pass_db;
     }
 
     public void addActuador(Actuador obj) {
@@ -45,11 +54,11 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
+        } else {
             System.err.println("No esta conectado.. imposible registar");
         }
-        
-       
+
+
     }
 
     public void addRol(Rol obj) {
@@ -80,17 +89,18 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                         return i;
                     }
                 }
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return ConexionExtendedHouse.NULL_ID;
     }
-    public boolean isaValidUser(String user){
-        if(user != null){
-            if(!user.isEmpty()){
-                String query = "SELECT * FROM usuario WHERE usuario = '"+user+"'";
+
+    public boolean isaValidUser(String user) {
+        if (user != null) {
+            if (!user.isEmpty()) {
+                String query = "SELECT * FROM usuario WHERE usuario = '" + user + "'";
                 try {
                     synchronized (con) {
                         est = con.createStatement();
@@ -128,5 +138,35 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             }
         }
         return ConexionExtendedHouse.NULL_ID;
+    }
+    
+    public boolean customQuery(String query){
+        if (query != null) {
+            try {
+                synchronized (con) {
+                    est = con.createStatement();
+                    return est.execute(query);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return false;
+    }
+
+    public String getIp_db() {
+        return ip_db;
+    }
+
+    public String getNom_db() {
+        return nom_db;
+    }
+
+    public String getPass_db() {
+        return pass_db;
+    }
+
+    public String getUser_db() {
+        return user_db;
     }
 }
