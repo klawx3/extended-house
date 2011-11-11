@@ -39,6 +39,7 @@ public class MainDispatcher {
                 Log.set(Log.LEVEL_INFO);
             }
             new ExtendedHouseSERVER().serverThreadsStarts();
+            System.out.println("hola mundo");
             return;
         } else {
             String arduino_port, db_ip, db_name, db_user, db_pass, db_insert,log_developer;

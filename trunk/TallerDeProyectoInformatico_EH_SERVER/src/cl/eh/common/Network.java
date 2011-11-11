@@ -5,6 +5,8 @@
 package cl.eh.common;
 
 import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryo.compress.DeflateCompressor;
+import com.esotericsoftware.kryo.serialize.FieldSerializer;
 import com.esotericsoftware.kryonet.EndPoint;
 import java.util.ArrayList;
 
@@ -15,25 +17,24 @@ public class Network {
     
     static public void register(EndPoint endPoint) {
         Kryo kryo = endPoint.getKryo();
-        kryo.register(Object.class);
-        kryo.register(int[].class);
-        kryo.register(int[][].class);
-        kryo.register(String[].class);
-        kryo.register(java.util.ArrayList.class);
+        kryo.register(Object.class, new DeflateCompressor(new FieldSerializer(kryo, Object.class)));
+        kryo.register(int[].class, new DeflateCompressor(new FieldSerializer(kryo, int[].class)));
+        kryo.register(int[][].class, new DeflateCompressor(new FieldSerializer(kryo, int[][].class)));
+        kryo.register(String[].class, new DeflateCompressor(new FieldSerializer(kryo, String[].class)));
+        kryo.register(java.util.ArrayList.class, new DeflateCompressor(new FieldSerializer(kryo, java.util.ArrayList.class)));
         /*----------------Network Classes----------------*/
-        kryo.register(ArduinoInput.class);
-        kryo.register(ArduinoOutput.class);
-        kryo.register(DatabaseQuery.class);
-        kryo.register(HistorialList.class);
-        kryo.register(ServerInfo.class);
-        kryo.register(DatabasePrimitiveResponse.class);
-        kryo.register(InvalidConnection.class);
-        kryo.register(ValidacionConnection.class);
-        kryo.register(AdvanceCommand.class);
-
-        kryo.register(ServerStatusRequest.class);
-        kryo.register(UsersOnline.class);
-        kryo.register(ServerMesage.class);
+        kryo.register(ArduinoInput.class, new DeflateCompressor(new FieldSerializer(kryo, ArduinoInput.class)));
+        kryo.register(ArduinoOutput.class, new DeflateCompressor(new FieldSerializer(kryo, ArduinoOutput.class)));
+        kryo.register(DatabaseQuery.class, new DeflateCompressor(new FieldSerializer(kryo, DatabaseQuery.class)));
+        kryo.register(HistorialList.class, new DeflateCompressor(new FieldSerializer(kryo, HistorialList.class)));
+        kryo.register(ServerInfo.class, new DeflateCompressor(new FieldSerializer(kryo, ServerInfo.class)));
+        kryo.register(DatabasePrimitiveResponse.class, new DeflateCompressor(new FieldSerializer(kryo, DatabasePrimitiveResponse.class)));
+        kryo.register(InvalidConnection.class, new DeflateCompressor(new FieldSerializer(kryo, InvalidConnection.class)));
+        kryo.register(ValidacionConnection.class, new DeflateCompressor(new FieldSerializer(kryo, ValidacionConnection.class)));
+        kryo.register(AdvanceCommand.class, new DeflateCompressor(new FieldSerializer(kryo, AdvanceCommand.class)));
+        kryo.register(ServerStatusRequest.class, new DeflateCompressor(new FieldSerializer(kryo, ServerStatusRequest.class)));
+        kryo.register(UsersOnline.class, new DeflateCompressor(new FieldSerializer(kryo, UsersOnline.class)));
+        kryo.register(ServerMesage.class, new DeflateCompressor(new FieldSerializer(kryo, ServerMesage.class)));
     }
 
     public static int getNetworkPort() {

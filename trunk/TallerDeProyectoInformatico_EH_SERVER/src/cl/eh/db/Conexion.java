@@ -35,7 +35,7 @@ public class Conexion {
             try {
                 con = DriverManager.getConnection(url_db, user_db, pass_db);
                 isConnected = true;
-                info(SECTOR,"Database Connection open");
+                info(SECTOR, "Database Connection open");
             } catch (SQLException ex) {
                 warn(SECTOR, "No se ha podido conectar a la db["
                         + url_db + "," + user_db + "," + pass_db + "]");
@@ -44,8 +44,8 @@ public class Conexion {
             error(SECTOR, "No se ha encontrado el Driver para mysql");
         }
     }
-    
-    public boolean isConnected(){
+
+    public boolean isConnected() {
         return isConnected;
     }
 
@@ -68,5 +68,13 @@ public class Conexion {
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public static String getCONTROLADOR() {
+        return CONTROLADOR;
+    }
+
+    public Connection getCon() {
+        return con;
     }
 }

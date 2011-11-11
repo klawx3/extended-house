@@ -93,7 +93,7 @@ public final class SerialArduino {
                 error(ex.getMessage());
             }
         } else {
-            info(SECTOR, "No se ha podido enviar señal ["+s+"] a [" + puerto + "], ya que no hay coneccion");
+            info(SECTOR, "No se ha podido enviar señal ["+(char)s+"] a [" + puerto + "], ya que no hay coneccion");
         }
     }
     
