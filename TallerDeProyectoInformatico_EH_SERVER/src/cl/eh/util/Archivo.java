@@ -49,6 +49,13 @@ public class Archivo {
             }
         }
     }
+    public static boolean eliminarArchivo(String ruta) {
+        File f = new File(ruta);
+        if (f.isFile()) {
+            return f.delete();
+        }
+        return false;
+    }
     public static boolean crearDirectorio(String ruta){
         File f = new File(ruta);
         return f.mkdir();

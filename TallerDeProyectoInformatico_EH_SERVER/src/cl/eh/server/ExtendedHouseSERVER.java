@@ -25,9 +25,12 @@ import cl.eh.common.Network;
 import cl.eh.common.Network.*;
 import cl.eh.db.AutomaticDatabaseMaintenance;
 import cl.eh.db.ConexionExtendedHouse;
+import cl.eh.db.RespaldoBd;
 import cl.eh.exceptions.ArduinoIOException;
+import cl.eh.properties.ConfiguracionServidor;
 import cl.eh.properties.PropiedadesServer;
 import cl.eh.serial.SerialOutput;
+import cl.eh.util.ArchivoObjectosJava;
 import cl.eh.util.Fecha;
 import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
@@ -45,8 +48,10 @@ import java.util.TooManyListenersException;
 import java.util.concurrent.Executors;
 
 import static com.esotericsoftware.minlog.Log.*;
+import java.util.ArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.logging.Level;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -55,6 +60,7 @@ import java.util.logging.Level;
 public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListener {
     private static final String VERSION = "0.3.3a";
     private static final String SECTOR = ExtendedHouseSERVER.class.getSimpleName();
+    private static final String NOM_ARCH_CONF_SERV = "conf.eh";
     private static final String WELCOME = "------>>>>Bienvenid@ a EXTENDED HOUSE v"+VERSION+"<<<<<------";
     private static final int segundosIntervaloDeEnvioInfoUsuarios = 2;
     private static int numero_de_usuarios_conectados;
@@ -62,6 +68,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
     private static Server server;
     private static ReleeShield relee_sh;
     private static ArduinoCommands arduinoComandosEh;
+    private static ConfiguracionServidor conf_server_interno;
     private ThreadFrecuente thread_sen_tmp,thread_sen_luz;
     private PropiedadesServer propiedades_server;
     private BufferedReader leer;
@@ -69,16 +76,29 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
     private NetworksInterfaces net_interfaces;
     private ExecutorService exService;
     private AutomaticDatabaseMaintenance auto_db;
-    
     private SerialOutput serial_output;
 
     
     public ExtendedHouseSERVER(){
-
         numero_de_usuarios_conectados = 0;
-
         propiedades_server   = new PropiedadesServer();
         propiedades_server.getAllServerPropiedadesOfFile();
+        conf_server_interno = (ConfiguracionServidor) ArchivoObjectosJava.abrirObjecto(NOM_ARCH_CONF_SERV);
+        if (conf_server_interno == null) {
+            conf_server_interno = new ConfiguracionServidor();
+            try {
+                long millis_backup = Long.parseLong(propiedades_server.getDatabase_millisecontsToBackup());
+                conf_server_interno.tiempoRestanteNuevoRespaldo = millis_backup;
+            } catch (NumberFormatException e) {
+                conf_server_interno.tiempoRestanteNuevoRespaldo = AutomaticDatabaseMaintenance.TIEMPORESTANTEDEFAULT_MILLISECONDS;
+            }
+            ArchivoObjectosJava.guardarObjecto(conf_server_interno, NOM_ARCH_CONF_SERV);
+            debug(SECTOR, "Detectada 1º Ejecuccion de EH... Archivo " + NOM_ARCH_CONF_SERV + " Creado");
+        } else {
+            debug(SECTOR, "Archivo " + NOM_ARCH_CONF_SERV + " Abierto Exitosamente!");
+        }
+        info(SECTOR, conf_server_interno.tiempoRestanteNuevoRespaldo+" MILLISEGUNDOS para nuevo respaldo de BD.");
+        
         serial_output        = new SerialOutput(ArduinoHelp.ENDOFSTRING);
         conexion_basedatos   = new ConexionExtendedHouse(
                 propiedades_server.getDatabase_ip(),
@@ -98,13 +118,13 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
         };
         Network.register(server);
         /*------------------------START SERVER LISTENER----------------------*/
-        server.addListener(new Listener(){
+        server.addListener(new Listener() {
+
             @Override
             public void received(Connection c, Object object) {
                 ExtendedHouseConnection ex_con = (ExtendedHouseConnection) c;
                 if (object instanceof ValidacionConnection) { // seria la primera señal
                     ValidacionConnection val_con = (ValidacionConnection) object;
-                    
                     if (conexion_basedatos.isConnected()) {
                         if (conexion_basedatos.isaValidUser(val_con.user)) {
                             ex_con.isValidConnection = true;
@@ -112,7 +132,9 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                                     + "] Aceptada (" + ex_con.ip + ")");
                             ex_con.ip = val_con.client_ip;
                             ex_con.user = val_con.user;
+                            ex_con.isAnAdministrador = conexion_basedatos.isaAdministrador(val_con.user);
                             numero_de_usuarios_conectados++;
+                            actualizarUsuarios();
                         } else {
                             ex_con.isValidConnection = false;
                             info(SECTOR, "Coneccion [" + val_con.user
@@ -129,7 +151,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                         ex_con.close();
                         warn(SECTOR, "Coneccion nueva RECHAZADA, ya que, NO EXISTE CONECCION A BD");
                     }
-                }else if(ex_con.isValidConnection){ // si la coneccion el valida me comunico con el cliente
+                } else if (ex_con.isValidConnection) { // si la coneccion el valida me comunico con el cliente
                     /*--------------------------OBJECTOS A MANIPULAR-----------------------*/
                     if (object instanceof ArduinoInput) {
                         ArduinoInput ai = (ArduinoInput) object;
@@ -137,11 +159,11 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                             case ArduinoSignal.RELEE_SIGNAL: {
                                 assert (ai.dispositivo >= 0 && ai.dispositivo <= 7);
                                 assert (ai.valor == 0 || ai.valor == 1);
-                                if(ai.valor == 1){
+                                if (ai.valor == 1) {
                                     relee_sh.powerOnRelee(ai.dispositivo);
-                                }else{
+                                } else {
                                     relee_sh.powerOffRelee(ai.dispositivo);
-                                } 
+                                }
                                 ArduinoOutput ao = new ArduinoOutput();
                                 ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
                                 ao.numero = Integer.toString(ai.dispositivo);
@@ -155,11 +177,11 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                                     int id = conexion_basedatos.getIdOfActuador(ef);
                                     ef.setId(id);
                                     if (id != ConexionExtendedHouse.NULL_ID) { // se registra en bd
-                                        Historial his = new Historial(0,ef,null,
+                                        Historial his = new Historial(0, ef, null,
                                                 Calendar.getInstance(),
                                                 ex_con.user,
                                                 ex_con.ip,
-                                                (ai.valor == 0) ? "Apagado":"Encendido");
+                                                (ai.valor == 0) ? "Apagado" : "Encendido");
                                         conexion_basedatos.addHistorial(his);
                                     } else {
                                         try {
@@ -184,11 +206,67 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
                             ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
                             ao.numero = Integer.toString(i);
                             ao.valor = (relee_sh.isReleePowerOn(i)) ? 1 : 0;
-                            server.sendToTCP(ex_con.getID(),ao);
+                            server.sendToTCP(ex_con.getID(), ao);
                         }
                         UsersOnline users = new UsersOnline();
                         users.users = numero_de_usuarios_conectados;
                         server.sendToTCP(ex_con.getID(), users);
+                    } else if (object instanceof RespaldoRequest) {
+                        if (ex_con.isAnAdministrador) {
+                            Network.ListaRespaldos lr = new ListaRespaldos();
+                            lr.respaldos = new ArrayList();
+                            for (RespaldoBd res : auto_db.getRespaldos()) {
+                                Network.Respaldo r = new Network.Respaldo();
+                                r.fecha = res.getFecha().getTimeInMillis();
+                                r.isRespaldoByUsuario = res.isIsRespaldoByUsuario();
+                                r.nom = res.getNom();
+                                lr.respaldos.add(r);
+                            }
+                            server.sendToTCP(ex_con.getID(), lr);
+                        } else { // enviar wea que es un usuario invalido
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
+                        }
+
+                        //server.sendToTCP(ex_con.getID(), );
+                    } else if (object instanceof MakeDatabaseRestore) {
+                        if (ex_con.isAnAdministrador) {
+                            MakeDatabaseRestore mdb = (MakeDatabaseRestore) object;
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTimeInMillis(mdb.fecha);
+                            if (auto_db.restoreDatabase(cal, mdb.restaurarYEliminarDatosHastaLaFecha)) {
+                                sendMessage(ex_con.getID(), "Restaurado con Exito "
+                                        +(mdb.restaurarYEliminarDatosHastaLaFecha ? 
+                                        ",Datos posteriores a la fecha eliminados"
+                                        :null), JOptionPane.INFORMATION_MESSAGE);
+                            } else {
+                                sendMessage(ex_con.getID(), "Se ha producido un error al restaurar", JOptionPane.ERROR_MESSAGE);
+                            }
+                            
+                        } else {
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
+                        }
+
+                    } else if (object instanceof MakeDatabaseBackup) {
+                        if (ex_con.isAnAdministrador) {
+                            auto_db.backupDatabaseNow();
+                        } else {
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else if (object instanceof PacketePrueba) {
+                        PacketePrueba pp = (PacketePrueba) object;
+                        switch (pp.numero_prueba) {
+                            case 1: {
+                                sendMessage(ex_con.getID(), "Mensaje de prueba",JOptionPane.ERROR_MESSAGE);
+                                break;
+                            }
+
+                        }
                     }
                     /*--------------------------END OBJECTOS A MANIPULAR-----------------------*/
                 }
@@ -196,6 +274,26 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
             @Override
             public void disconnected (Connection c) {
                 numero_de_usuarios_conectados--;
+                actualizarUsuarios();
+                
+            }
+
+            private void sendMessage(int iD, String mensaje, int tipo_error) {
+                ServerErrorInfoToUser srrr = new ServerErrorInfoToUser();
+                srrr.mensaje = mensaje;
+                srrr.tipo_error = tipo_error;
+                server.sendToTCP(iD, srrr);
+            }
+            
+            private void actualizarUsuarios() {
+                UsersOnline users = new UsersOnline();
+                users.users = numero_de_usuarios_conectados;
+                server.sendToAllTCP(users);
+                if (serial_arduino.isConnecionArduinoEstablecida()) {
+                    serial_arduino.enviarSeñal((int) 'u');
+                    serial_arduino.enviarSeñal((numero_de_usuarios_conectados == 0)
+                            ? 48 : numero_de_usuarios_conectados);
+                }
             }
         });
         /*------------------------END SERVER LISTENER-------------------------*/
@@ -313,6 +411,7 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
     static class ExtendedHouseConnection extends Connection{
         public boolean isValidConnection;
         public boolean isInvalidConnectionRequestSended;
+        public boolean isAnAdministrador;
         public String user;
         public String ip;
     }
@@ -333,40 +432,16 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
 
     public void serverThreadsStarts(){
         Thread s1 = new Thread(this, "Server Sniffer");
-
-        Thread s2 = new Thread() { // envio de cantidad de usuarios en el sistema a usuarios
-
-            @Override
-            public void run() {
-
-                while (true) {
-                    try {
-                        Thread.sleep(segundosIntervaloDeEnvioInfoUsuarios * 1000);
-                    } catch (InterruptedException ex) {
-                        java.util.logging.Logger.getLogger(ExtendedHouseSERVER.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    UsersOnline users = new UsersOnline();
-                    users.users = numero_de_usuarios_conectados;
-                    server.sendToAllTCP(users);
-                    if (serial_arduino.isConnecionArduinoEstablecida()) {
-                        serial_arduino.enviarSeñal((int) 'u');
-                        serial_arduino.enviarSeñal((numero_de_usuarios_conectados == 0)
-                                ? 48 : numero_de_usuarios_conectados);
-                    }
-                }
-            }
-        };
         Thread s3 = new Thread(thread_sen_tmp);
         Thread s4 = new Thread(thread_sen_luz);
         exService = Executors.newCachedThreadPool();
         exService.execute(s1);
-        exService.execute(s2);
         exService.execute(s3);
         exService.execute(s4);
         if(conexion_basedatos.isConnected()){
             auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos
-                    ,AutomaticDatabaseMaintenance.SEMANAL);
-            exService.execute(auto_db.getThread());
+                    ,conf_server_interno);
+            auto_db.start();
         }
         exService.shutdown();
         thread_sen_tmp.startThreadAgain();
@@ -421,9 +496,18 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
             info(SECTOR,"Comando '" + line + "' no reconocido");
         }
     }
+    
+    private void guardarConfServer(){
+        if(conexion_basedatos.isConnected()){
+            auto_db.save();
+        }
+        ArchivoObjectosJava.guardarObjecto(conf_server_interno,NOM_ARCH_CONF_SERV);
+    }
 
     private void cerrarServicios() {
-        info("Closing services....");
+        info("Saving settings...");
+        guardarConfServer();
+        info("Closing services...");
         Connection[] connections = server.getConnections();
         for (int i = 0; i < connections.length; i++) {
             connections[i].close();
@@ -433,8 +517,10 @@ public final class ExtendedHouseSERVER implements Runnable,SerialPortEventListen
         server.close();
         serial_arduino.close();
         conexion_basedatos.close();
+        auto_db.stop();
         System.exit(0);
     }
+
 
 
 }

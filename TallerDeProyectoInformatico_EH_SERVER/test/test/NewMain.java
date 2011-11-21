@@ -29,10 +29,10 @@ public class NewMain {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws ArduinoIOException {
+    public static void main(String[] args) throws ArduinoIOException, IOException {
         
-        
-        System.out.println(Archivo.recuperarTextoArchivo("c:\\hola.txt"));
+        NewClass nc = new NewClass();
+        //System.out.println(Archivo.recuperarTextoArchivo("c:\\hola.txt"));
         
         /*String a = "2011-07-13 21:21:5";
         String date = "";

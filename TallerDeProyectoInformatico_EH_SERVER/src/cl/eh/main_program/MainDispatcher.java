@@ -39,10 +39,9 @@ public class MainDispatcher {
                 Log.set(Log.LEVEL_INFO);
             }
             new ExtendedHouseSERVER().serverThreadsStarts();
-            System.out.println("hola mundo");
             return;
         } else {
-            String arduino_port, db_ip, db_name, db_user, db_pass, db_insert,log_developer;
+            String arduino_port, db_ip, db_name, db_user, db_pass, db_insert,log_developer,db_backup;
 
             leer = new BufferedReader(new InputStreamReader(System.in));
             propiedades_server = new PropiedadesServer();
@@ -62,6 +61,8 @@ public class MainDispatcher {
                 db_pass = leerEntrada();
                 System.out.println("Ingrese los MILLISEGUNDOS DE UPDATE de la BASEDATOS:");
                 db_insert = leerEntrada();
+                System.out.println("Ingrese los MILLISEGUNDOS para el BACKUP de la BASEDATOS:");
+                db_backup = leerEntrada();
                 System.out.println("¿ Desea activar el MODO DESAROLLADOR (s/n)?:");
                 String entrada = leerEntrada();
                 if (entrada.equalsIgnoreCase("si")
@@ -73,13 +74,14 @@ public class MainDispatcher {
                     log_developer = "false";
                 }
             } else {
-                arduino_port = db_ip = db_name = db_user = db_pass  = "NULL";
+                arduino_port = db_ip = db_name = db_user = db_pass = "NULL";
+                db_backup = "10080000"; // 1 semana
                 db_insert = "600000";
                 log_developer ="false";
             }
 
             propiedades_server.setAllServerPropiedadesToFile
-                    (arduino_port, db_ip, db_name, db_user, db_pass, db_insert,log_developer);
+                    (arduino_port, db_ip, db_name, db_user, db_pass, db_insert,log_developer,db_backup);
             System.out.println("DATOS INGRESADOS CORRECTAMENTE...QUIT");
         }
     }

@@ -4,10 +4,10 @@
  */
 package cl.eh.db;
 
+
 import cl.eh.util.Fecha2;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FilenameFilter;
 import java.io.IOException;
@@ -24,10 +24,10 @@ import java.util.logging.Logger;
  *
  * @author Usuario
  */
-class ADMGestionDeArchivosRespaldo implements FilenameFilter{
+final class ADMGestionDeArchivosRespaldo implements FilenameFilter{
 
     private final static String extencion = ".respaldo";
-    private List<Respaldo> ls_respaldo;
+    private List<RespaldoBd> ls_respaldo;
     private ObjectOutputStream salida;
     private ObjectInputStream entrada;
     private FileOutputStream salida_formato;
@@ -37,55 +37,64 @@ class ADMGestionDeArchivosRespaldo implements FilenameFilter{
 
     public ADMGestionDeArchivosRespaldo(String ruta_respaldos) {
         this.ruta_respaldos = ruta_respaldos;
-        ls_respaldo = new ArrayList<Respaldo>();
+        ls_respaldo = new ArrayList<RespaldoBd>();
+        searchRespaldos();
     }
 
-    public List<Respaldo> getListRespaldo() {
+    public List<RespaldoBd> getListRespaldo() {
         return ls_respaldo;
     }
 
-    public void addNuevoRespaldo(Respaldo res) throws IOException {
-        f = new File(ruta_respaldos + File.separatorChar
-                + Fecha2.getFecha(res.getFecha(), '-') + "_" + Fecha2.getHora(res.getFecha(), ';')
-                + extencion);
+    public void addNuevoRespaldo(RespaldoBd res) throws IOException {
+        StringBuilder ruta = new StringBuilder();
+        ruta.append(ruta_respaldos);
+        ruta.append(File.separatorChar);
+        ruta.append(Fecha2.getFecha(res.getFecha(), '-'));
+        ruta.append("_");
+        ruta.append(Fecha2.getHora(res.getFecha(), ';'));
+        if(res.isIsRespaldoByUsuario()){
+            ruta.append("_");
+            ruta.append("byUser");
+        }
+        ruta.append(extencion);
+        f = new File(ruta.toString());
         salida_formato = new FileOutputStream(f);
         salida = new ObjectOutputStream(salida_formato);
         salida.writeObject(res);
         salida.flush();
         cerrarFlujosSalida(salida);
-        cerrarFlujosSalida(salida_formato);
-        
-        salida = null;
-        salida_formato = null;
-        f = null;
+        cerrarFlujosSalida(salida_formato);        
+        ls_respaldo.add(res);
+        ruta = null;
     }
 
     public void searchRespaldos() {
         f = new File(ruta_respaldos);
         ls_respaldo.clear();
-        for(File file: f.listFiles(this)){
-            try {
-                File archivo_respaldo = file.getAbsoluteFile();
-                entrada_formato = new FileInputStream(archivo_respaldo);
-                entrada = new ObjectInputStream(entrada_formato);
-                Respaldo res = (Respaldo) entrada.readObject();
-                ls_respaldo.add(res);
-                System.out.println("asdasdasd!!!!");
-            } catch (IOException ex) {
-                Logger.getLogger(ADMGestionDeArchivosRespaldo.class.getName())
-                        .log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(ADMGestionDeArchivosRespaldo.class.getName())
-                        .log(Level.SEVERE, null, ex);
-            }finally{
-                cerrarFlujoEntrada(entrada);
-                cerrarFlujoEntrada(entrada_formato);
+        if (f.listFiles() != null) {
+            for (File file : f.listFiles(this)) {
+                try {
+                    File archivo_respaldo = file.getAbsoluteFile();
+                    entrada_formato = new FileInputStream(archivo_respaldo);
+                    entrada = new ObjectInputStream(entrada_formato);
+                    RespaldoBd res = (RespaldoBd) entrada.readObject();
+                    ls_respaldo.add(res);
+                } catch (IOException ex) {
+                    Logger.getLogger(ADMGestionDeArchivosRespaldo.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ADMGestionDeArchivosRespaldo.class.getName()).log(Level.SEVERE, null, ex);
+                } finally {
+                    cerrarFlujoEntrada(entrada);
+                    cerrarFlujoEntrada(entrada_formato);
+                }
             }
+            entrada = null;
+            salida_formato = null;
+            f = null;
         }
-        
-        entrada = null;
-        salida_formato = null;
-        f = null;
+
+
+
 
     }
 

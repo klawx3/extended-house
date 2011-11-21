@@ -10,19 +10,25 @@
  */
 package cl.eh.client;
 
+import cl.eh.client.gui.ModeloListaRestauracion;
+import cl.eh.client.gui.RendererListaRestauracion;
 import cl.eh.client.status.StatusExtendedHouse;
+import cl.eh.client.status.StatusRespaldos;
 import cl.eh.common.ArduinoSignal;
 import cl.eh.common.ClientArduinoSignal;
 import cl.eh.common.Network;
 import cl.eh.common.Network.*;
+import cl.eh.util.Fecha2;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
-//import com.jtattoo.plaf.*;
+import com.jtattoo.plaf.*;
 import java.io.IOException;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -44,6 +50,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private StatusExtendedHouse status_eh;
     private Parametros params;
     private ImageIcon sen_pasivo, sen_activo;
+    private ModeloListaRestauracion modelo_lista_rest;
     /*
     jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"))); // NOI18N
     jLabel2.setText("jLabel2");
@@ -55,30 +62,29 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     @Override
     public void init() {
         status_eh = new StatusExtendedHouse();
+        modelo_lista_rest = new ModeloListaRestauracion();
         params = new Parametros(
                 super.getParameter(Parametros.PARAM_SERVERIP),
                 super.getParameter(Parametros.PARAM_CLIENTIP),
                 super.getParameter(Parametros.PARAM_USER));
-
-
         loadCliente();
         try {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
 
                 public void run() {
-//                    try {
-//                        UIManager.put("ClassLoader", getClass().getClassLoader());
-//                        UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
-//
-//                    } catch (ClassNotFoundException ex) {
-//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (InstantiationException ex) {
-//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (IllegalAccessException ex) {
-//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    } catch (UnsupportedLookAndFeelException ex) {
-//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-//                    }
+                    try {
+                        UIManager.put("ClassLoader", getClass().getClassLoader());
+                        UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (InstantiationException ex) {
+                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalAccessException ex) {
+                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (UnsupportedLookAndFeelException ex) {
+                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     initComponents();
                     sen_pasivo = new ImageIcon(getClass().getResource("/cl/eh/images/selection.png"));
                     sen_activo = new ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"));
@@ -88,10 +94,10 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-        jLabel3.setText("ip_cliente" + params.getIp_cliente());
-        jLabel28.setText("ipserver:" + params.getIp_server());
-        jLabel29.setText("user:" + params.getUser());
+        
+//        jLabel3.setText("ip_cliente" + params.getIp_cliente());
+//        jLabel28.setText("ipserver:" + params.getIp_server());
+//        jLabel29.setText("user:" + params.getUser());
 
     }
 
@@ -104,10 +110,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
@@ -168,23 +170,19 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jTextArea1 = new javax.swing.JTextArea();
         jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jPanel11 = new javax.swing.JPanel();
+        jPanel12 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList();
+        jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jPanel13 = new javax.swing.JPanel();
+        jButton6 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         jLabel26 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
 
         setForeground(new java.awt.Color(255, 255, 255));
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Developer Info:"));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel3.setText("jLabel3");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
-
-        jLabel28.setText("jLabel28");
-        jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
-
-        jLabel29.setText("jLabel29");
-        jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
 
         jToolBar1.setFloatable(false);
 
@@ -211,6 +209,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
         txt_usuarios.setEditable(false);
         jToolBar1.add(txt_usuarios);
+
+        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 11));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -510,14 +510,95 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 460, 120));
-        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 310, -1));
+        jPanel6.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 530, 120));
+        jPanel6.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 380, -1));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/script.png"))); // NOI18N
         jButton2.setText("Enviar Comando");
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 140, -1));
+        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 140, 140, -1));
 
         jTabbedPane1.addTab("Avanzado", jPanel6);
+
+        jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Restauracion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 11))); // NOI18N
+
+        jList1.setFont(new java.awt.Font("Verdana", 0, 11));
+        jScrollPane2.setViewportView(jList1);
+
+        jButton4.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/find.png"))); // NOI18N
+        jButton4.setText("Obtener Lista");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/database.png"))); // NOI18N
+        jButton5.setText("Restaurar respaldo Seleccionado");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
+        jPanel12.setLayout(jPanel12Layout);
+        jPanel12Layout.setHorizontalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                .addGap(25, 25, 25))
+        );
+        jPanel12Layout.setVerticalGroup(
+            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 250));
+
+        jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Respaldo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 11))); // NOI18N
+
+        jButton6.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/disk.png"))); // NOI18N
+        jButton6.setText("Crear nuevo respaldo");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
+        jPanel13.setLayout(jPanel13Layout);
+        jPanel13Layout.setHorizontalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton6)
+                .addContainerGap())
+        );
+        jPanel13Layout.setVerticalGroup(
+            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel13Layout.createSequentialGroup()
+                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(187, Short.MAX_VALUE))
+        );
+
+        jPanel11.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 210, 250));
+
+        jTabbedPane1.addTab("Gestion de Respaldos", jPanel11);
 
         jToolBar2.setFloatable(false);
 
@@ -531,21 +612,18 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
-            .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jToolBar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -733,6 +811,32 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         client.sendTCP(ai);
     }//GEN-LAST:event_btn_rele8_offActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+         client.sendTCP(new RespaldoRequest());
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        client.sendTCP(new Network.MakeDatabaseBackup());
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        StatusRespaldos sr = (StatusRespaldos) jList1.getSelectedValue();
+        if(sr != null){
+
+            MakeDatabaseRestore mdr = new MakeDatabaseRestore();
+            mdr.fecha = sr.getFecha_res().getTimeInMillis();
+            mdr.restaurarYEliminarDatosHastaLaFecha = true;
+            System.out.println(Fecha2.getHora(sr.getFecha_res(), '-'));
+            client.sendTCP(mdr);
+        }else{
+            JOptionPane.showMessageDialog(rootPane
+                    , "Deve seleccionar un respaldo 1º"
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+       
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_rele1_off;
     private javax.swing.JButton btn_rele1_on;
@@ -752,6 +856,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JButton btn_rele8_on;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -771,19 +878,19 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
+    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -791,6 +898,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
@@ -884,7 +992,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                     vc.user = params.getUser();
                     vc.client_ip = params.getIp_cliente();
                 } else {
-                    vc.user = "extended_house";
+                    vc.user = "weon";
                     vc.client_ip = "127.0.0.1";
                 }
 
@@ -1062,10 +1170,33 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 } else if (object instanceof ServerMesage) {
                     ServerMesage sm = (ServerMesage) object;
                     jTextField3.setText(sm.mensaje);
+                } else if (object instanceof ListaRespaldos) {
+                    ListaRespaldos lr = (ListaRespaldos) object;
+                    Iterator ir = lr.respaldos.iterator();
+                    status_eh.getListRespaldos().clear();
+                    while (ir.hasNext()) {
+                        Network.Respaldo rr = (Network.Respaldo) ir.next();
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTimeInMillis(rr.fecha);
+                        StatusRespaldos sr = new StatusRespaldos(rr.isRespaldoByUsuario, cal);
+                        status_eh.getListRespaldos().add(sr); 
+                    }
+                    modelo_lista_rest.actualizarLista(status_eh.getListRespaldos());
+                    jList1.setModel(modelo_lista_rest);
+                    jList1.setCellRenderer(new RendererListaRestauracion());
+
+                } else if (object instanceof ServerErrorInfoToUser) {
+                    final ServerErrorInfoToUser seitu = (ServerErrorInfoToUser) object;
+                    new Thread(new Runnable() {
+
+                        public void run() {
+                            JOptionPane.showMessageDialog(rootPane, seitu.mensaje, "Mensaje desde el servidor", seitu.tipo_error);
+                        }
+                    }).start();
+
                 }
 
             }
-
             private void setLabelSensorIcon(JLabel a, boolean b) {
                 if (b) {//activado
                     a.setIcon(sen_pasivo);
