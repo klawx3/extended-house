@@ -51,8 +51,8 @@ public class MysqlBackUp {
         String mysqldump_ = mysqldump == null ? "mysqldump" : mysqldump;
         Process run = Runtime.getRuntime().exec(mysqldump_ + " --host="
                 + host + " --port=" + port + " --user=" + user + " --password="
-                + password + " --compact --complete-insert --extended-insert "
-                + "--skip-comments --skip-triggers " + db);
+                + password + " --complete-insert --extended-insert "
+                + "--skip-comments --skip-triggers --skip-set-charset " + db);
         return getProcessText(run);
     }
 

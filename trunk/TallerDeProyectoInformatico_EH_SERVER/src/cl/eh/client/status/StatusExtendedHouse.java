@@ -5,6 +5,8 @@
 package cl.eh.client.status;
 
 import cl.eh.common.ClientArduinoSignal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,8 +25,10 @@ public class StatusExtendedHouse {
     private StatusSensor[]     movimiento;
     private StatusSensor[]     magnetico; 
     private StatusSensor[]     luminico;
+    private List<StatusRespaldos>  respaldos;
     
     public StatusExtendedHouse(){ // nota los numero parten del 0
+        respaldos = new ArrayList<StatusRespaldos>();
         relay = new StatusActuador[MAX_RELAY];
         for(int i = 0; i < relay.length ; i++){
             relay[i] = new StatusActuador(ClientArduinoSignal.RELEE_SIGNAL,i);
@@ -79,6 +83,9 @@ public class StatusExtendedHouse {
         return luminico[numero_sensor].getValor();
     }
     
+    public ArrayList<StatusRespaldos> getListRespaldos(){
+        return (ArrayList<StatusRespaldos>) respaldos;
+    }
     
     
     

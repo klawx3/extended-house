@@ -12,7 +12,7 @@ import java.util.Calendar;
  */
 public class Fecha2 {
     
-    public static String getFecha(Calendar cal,char separador){
+    public static String getFecha(final Calendar cal,char separador){
         StringBuilder sb = new StringBuilder();
         int dia,mes,año;
         dia = cal.get(Calendar.DAY_OF_MONTH);
@@ -26,7 +26,7 @@ public class Fecha2 {
         return sb.toString();
     }
     
-    public static String getHora(Calendar cal,char separador){
+    public static String getHora(final Calendar cal,char separador){
         StringBuilder sb = new StringBuilder();
         int hora,min,seg;
         hora = cal.get(Calendar.HOUR);
@@ -37,6 +37,8 @@ public class Fecha2 {
         sb.append(min);
         sb.append(separador);
         sb.append(seg);
+        sb.append(" ");
+        sb.append(cal.get(Calendar.AM_PM) == 1 ? "PM" : "AM");
         return sb.toString();
     }
     

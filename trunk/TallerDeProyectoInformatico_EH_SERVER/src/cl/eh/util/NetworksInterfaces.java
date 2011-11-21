@@ -24,7 +24,7 @@ public class NetworksInterfaces {
     private List<Interface> interfaces;
 
     public NetworksInterfaces() {
-        interfaces = new ArrayList();
+        interfaces = new ArrayList<Interface>();
         try {
             nets = NetworkInterface.getNetworkInterfaces();
             for (NetworkInterface net : Collections.list(nets)) {

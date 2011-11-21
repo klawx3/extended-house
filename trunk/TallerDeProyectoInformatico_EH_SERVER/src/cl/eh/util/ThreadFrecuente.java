@@ -36,8 +36,11 @@ public class ThreadFrecuente implements Runnable {
                 startAgain = false;
                 isThreadFinishWork = true;
             }
-
-            
+            try {
+                Thread.sleep(millisegundos);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ThreadFrecuente.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
     }
     

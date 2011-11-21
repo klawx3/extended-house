@@ -16,7 +16,8 @@ import static com.esotericsoftware.minlog.Log.*;
  */
 public final class PropiedadesServer extends Propiedades {
     public static final String NOM_ARCHIVO    = "server_properties.ini";
-    private static final String CARAC_ARCHIVO = "Propiedades del Servidor";
+    private static final String CARAC_ARCHIVO = "Propiedades del Servidor"
+            + "\n Nota:Deve estar mysql y mysqldump en la path";
     private static final String ARDUINO_PORT  = "arduino.port";
     private static final String DATABASE_IP   = "database.ip";
     private static final String DATABASE_NOM  = "database.name";
@@ -24,6 +25,7 @@ public final class PropiedadesServer extends Propiedades {
     private static final String DATABASE_PASS = "database.pass";
     private static final String MILLIS_INSERT_DB="database.millisecond.insert";
     private static final String DEVELOPER_LOG_LEVEL = "loggin.developer";
+    private static final String MILLIS_BACKUP_DB = "database.backup.milliseconds";
 
     private String arduino_port;
     private String database_ip;
@@ -32,6 +34,7 @@ public final class PropiedadesServer extends Propiedades {
     private String database_pass;
     private String database_millisencods_insert;
     private String loggin_level;
+    private String database_millisecontsToBackup;
 
    
 
@@ -54,11 +57,12 @@ public final class PropiedadesServer extends Propiedades {
         database_pass = tabla.getProperty(DATABASE_PASS);
         database_millisencods_insert = tabla.getProperty(MILLIS_INSERT_DB);
         loggin_level = tabla.getProperty(DEVELOPER_LOG_LEVEL);
+        database_millisecontsToBackup = tabla.getProperty(MILLIS_BACKUP_DB);
     }
 
      public void setAllServerPropiedadesToFile
              (String arduino_port,String db_ip,String db_name,String db_user,
-             String db_pass,String db_milli_insert,String log_level) {
+             String db_pass,String db_milli_insert,String log_level,String db_milli_backup) {
         addPropiedadTabla(ARDUINO_PORT, arduino_port);
         addPropiedadTabla(DATABASE_IP, db_ip);
         addPropiedadTabla(DATABASE_NOM, db_name);
@@ -66,6 +70,7 @@ public final class PropiedadesServer extends Propiedades {
         addPropiedadTabla(DATABASE_PASS, db_pass);
         addPropiedadTabla(MILLIS_INSERT_DB, db_milli_insert);
         addPropiedadTabla(DEVELOPER_LOG_LEVEL,log_level);
+        addPropiedadTabla(MILLIS_BACKUP_DB,db_milli_backup);
         try {
             super.guardadPropiedades();
         } catch (IOException ex) {
@@ -92,6 +97,10 @@ public final class PropiedadesServer extends Propiedades {
 
     public String getDatabase_user() {
         return database_user;
+    }
+    
+    public String getDatabase_millisecontsToBackup(){
+        return database_millisecontsToBackup;
     }
 
     public long getDatabase_millisencods_insert() {

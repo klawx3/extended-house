@@ -19,7 +19,8 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public final class ConexionExtendedHouse extends Conexion implements ExtendedHouseDatabaseModel {
-
+    public static final String DB_ADMIN = "ADMIN";
+    public static final String DB_NORMAL_USER = "USER";
     public static final int NULL_ID = -1;
     public static final String EXTENDEDHOUSE_DEFAULT_USER = "extended_house";
     public static final String PORT = "3306";
@@ -116,6 +117,28 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         }
         return false;
     }
+    
+    public boolean isaAdministrador(String user){
+        if (user != null) {
+            if (!user.isEmpty()) {
+                String query = "SELECT * FROM usuario,rol "
+                        + "WHERE usuario.rol = rol.id and rol.nombre = '"+DB_ADMIN+"'"
+                        + " and usuario.usuario = '"+user+"' ";
+                try {
+                    synchronized (con) {
+                        est = con.createStatement();
+                        rs = est.executeQuery(query);
+                        if (rs.next()) {
+                            return true;
+                        }
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return false;
+    }
 
     public int getIdOfSensor(Sensor obj) {
         if (obj != null) {
@@ -140,12 +163,22 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         return ConexionExtendedHouse.NULL_ID;
     }
     
+    public boolean eliminarDatosNoInmportantes(){
+        String[] tablasAEliminar = {"historial","evento"};
+        boolean borrado_ok = true;
+        for(int i = 0; i<tablasAEliminar.length;i++){
+            borrado_ok = borrado_ok && customQuery("DELETE FROM "+tablasAEliminar[i]);
+        }
+        return borrado_ok;
+    }
+    
     public boolean customQuery(String query){
         if (query != null) {
             try {
                 synchronized (con) {
                     est = con.createStatement();
-                    return est.execute(query);
+                    est.execute(query);
+                    return true;
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);

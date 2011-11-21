@@ -11,18 +11,20 @@ import java.util.Calendar;
  *
  * @author Usuario
  */
-class Respaldo implements Serializable {
+public class RespaldoBd implements Serializable,Cloneable {
     
     private String nom;
     private Calendar fecha;
     private String contenido;
+    private boolean isRespaldoByUsuario;
 
     
-
-    public Respaldo(String nom, Calendar fecha, String contenido) {
+    
+    public RespaldoBd(String nom, Calendar fecha, String contenido,boolean isRespaldoByUsuario) {
         this.nom = nom;
         this.fecha = fecha;
         this.contenido = contenido;
+        this.isRespaldoByUsuario = isRespaldoByUsuario;
     }
 
 
@@ -50,10 +52,32 @@ class Respaldo implements Serializable {
         this.nom = nom;
     }
 
-    public boolean equals(Respaldo otro_res){
+    public boolean equals(RespaldoBd otro_res){
         return contenido.equals(otro_res.getContenido()) 
                 && fecha.equals(otro_res.getFecha())
                 && nom.equals(otro_res.nom);
+    }
+    
+    public boolean isIsRespaldoByUsuario() {
+        return isRespaldoByUsuario;
+    }
+
+    public void setIsRespaldoByUsuario(boolean isRespaldoByUsuario) {
+        this.isRespaldoByUsuario = isRespaldoByUsuario;
+    }
+    
+    @Override
+    public Object clone(){
+        try {
+            RespaldoBd other = (RespaldoBd) super.clone();
+            other.contenido = this.contenido;
+            other.fecha = (Calendar) this.fecha.clone();
+            other.nom = this.nom;
+            return other;
+        }
+        catch (CloneNotSupportedException e) {
+            throw new InternalError();
+        }
     }
     
 }
