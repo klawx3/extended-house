@@ -45,7 +45,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ExtendedHouseClient extends javax.swing.JApplet {
 
-    private final boolean pruebaLocal = true;
+    private final boolean pruebaLocal = false;
     private Client client;
     private StatusExtendedHouse status_eh;
     private Parametros params;
