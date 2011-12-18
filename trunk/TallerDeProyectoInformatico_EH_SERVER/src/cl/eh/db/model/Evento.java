@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package cl.eh.db.model;
 
 import java.util.Calendar;
@@ -12,78 +11,42 @@ import java.util.Calendar;
  * @author Usuario
  */
 public class Evento {
-    private int id;
-    private String nombre_evento;
-    private int id_actuador;
-    private int id_sensor;
-    private int id_sensor_sec;
-    private Calendar tiempo;
-    private boolean incluyente;
 
-    public Evento(int id, String nombre_evento, int id_actuador, int id_sensor, int id_sensor_sec, Calendar tiempo, boolean incluyente) {
-        this.id = id;
-        this.nombre_evento = nombre_evento;
-        this.id_actuador = id_actuador;
-        this.id_sensor = id_sensor;
-        this.id_sensor_sec = id_sensor_sec;
-        this.tiempo = tiempo;
-        this.incluyente = incluyente;
+    private String evento_simple;
+    private boolean activo;
+    private Usuario usuario;
+
+    public Evento() {
     }
 
-    public int getId() {
-        return id;
+    public Evento(String evento_simple, boolean activo, Usuario usuario) {
+        this.evento_simple = evento_simple;
+        this.activo = activo;
+        this.usuario = usuario;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setActivo(boolean activo) {
+        this.activo = activo;
     }
 
-    public int getId_actuador() {
-        return id_actuador;
+    public void setEvento_simple(String evento_simple) {
+        this.evento_simple = evento_simple;
     }
 
-    public void setId_actuador(int id_actuador) {
-        this.id_actuador = id_actuador;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
-    public int getId_sensor() {
-        return id_sensor;
+    public boolean isActivo() {
+        return activo;
     }
 
-    public void setId_sensor(int id_sensor) {
-        this.id_sensor = id_sensor;
+    public String getEvento_simple() {
+        return evento_simple;
     }
 
-    public int getId_sensor_sec() {
-        return id_sensor_sec;
-    }
-
-    public void setId_sensor_sec(int id_sensor_sec) {
-        this.id_sensor_sec = id_sensor_sec;
-    }
-
-    public boolean isIncluyente() {
-        return incluyente;
-    }
-
-    public void setIncluyente(boolean incluyente) {
-        this.incluyente = incluyente;
-    }
-
-    public String getNombre_evento() {
-        return nombre_evento;
-    }
-
-    public void setNombre_evento(String nombre_evento) {
-        this.nombre_evento = nombre_evento;
-    }
-
-    public Calendar getTiempo() {
-        return tiempo;
-    }
-
-    public void setTiempo(Calendar tiempo) {
-        this.tiempo = tiempo;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
 

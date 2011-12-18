@@ -2,12 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package cl.eh.server;
+
+package respaldos;
 
 import cl.eh.arduino.ArduinoCommands;
+import cl.eh.arduino.ArduinoOutputErrorDetection;
 import cl.eh.arduino.model.ArduinoEvent;
-import cl.eh.eventos.model.EventoEvent;
-import cl.eh.exceptions.LESException;
 import cl.eh.exceptions.Nivel8Exception;
 import cl.eh.db.model.Actuador;
 import cl.eh.db.model.Historial;
@@ -15,7 +15,8 @@ import cl.eh.db.model.Sensor;
 import cl.eh.common.ArduinoSignal;
 import cl.eh.arduino.ReleeShield;
 import cl.eh.util.NetworksInterfaces;
-import cl.eh.server.ExtendedHouseSERVER.ExtendedHouseConnection;
+import cl.eh.util.Ip;
+import cl.eh.util.Interface;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.arduino.SerialArduino;
 import cl.eh.arduino.model.ArduinoEventListener;
@@ -26,10 +27,6 @@ import cl.eh.common.Network.*;
 import cl.eh.db.AutomaticDatabaseMaintenance;
 import cl.eh.db.ConexionExtendedHouse;
 import cl.eh.db.RespaldoBd;
-import cl.eh.eventos.HiloDeEventoLES;
-import cl.eh.eventos.LESAdministador;
-import cl.eh.eventos.compilator_utils.LESCompUtils;
-import cl.eh.eventos.model.EventoListener;
 import cl.eh.exceptions.ArduinoIOException;
 import cl.eh.properties.ConfiguracionServidor;
 import cl.eh.properties.PropiedadesServer;
@@ -40,10 +37,15 @@ import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
+import com.esotericsoftware.minlog.Log;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Calendar;
+import java.util.List;
+import java.util.TooManyListenersException;
 import java.util.concurrent.Executors;
 
 import static com.esotericsoftware.minlog.Log.*;
@@ -57,19 +59,18 @@ import javax.swing.JOptionPane;
  * @author Usuario
  */
 public final class ExtendedHouseSERVER implements Runnable {
-
     private static final String VERSION = "0.3.3a";
     private static final String SECTOR = ExtendedHouseSERVER.class.getSimpleName();
     private static final String NOM_ARCH_CONF_SERV = "conf.eh";
-    private static final String WELCOME = "------>>>>Bienvenid@ a EXTENDED HOUSE v" + VERSION + "<<<<<------";
+    private static final String WELCOME = "------>>>>Bienvenid@ a EXTENDED HOUSE v"+VERSION+"<<<<<------";
     private static final int segundosIntervaloDeEnvioInfoUsuarios = 2;
     private static int numero_de_usuarios_conectados;
-    private static SerialArduino serial_arduino;
+    private static  SerialArduino serial_arduino;
     private static Server server;
     private static ReleeShield relee_sh;
     private static ArduinoCommands arduinoComandosEh;
     private static ConfiguracionServidor conf_server_interno;
-    private ThreadFrecuente thread_sen_tmp, thread_sen_luz;
+    private ThreadFrecuente thread_sen_tmp,thread_sen_luz;
     private PropiedadesServer propiedades_server;
     private BufferedReader leer;
     private ConexionExtendedHouse conexion_basedatos;
@@ -77,11 +78,11 @@ public final class ExtendedHouseSERVER implements Runnable {
     private ExecutorService exService;
     private AutomaticDatabaseMaintenance auto_db;
     private SerialOutput serial_output;
-    private LESAdministador lesAdm;
 
-    public ExtendedHouseSERVER() {
+    
+    public ExtendedHouseSERVER(){
         numero_de_usuarios_conectados = 0;
-        propiedades_server = new PropiedadesServer();
+        propiedades_server   = new PropiedadesServer();
         propiedades_server.getAllServerPropiedadesOfFile();
         conf_server_interno = (ConfiguracionServidor) ArchivoObjectosJava.abrirObjecto(NOM_ARCH_CONF_SERV);
         if (conf_server_interno == null) {
@@ -97,20 +98,21 @@ public final class ExtendedHouseSERVER implements Runnable {
         } else {
             debug(SECTOR, "Archivo " + NOM_ARCH_CONF_SERV + " Abierto Exitosamente!");
         }
-        info(SECTOR, conf_server_interno.tiempoRestanteNuevoRespaldo + " MILLISEGUNDOS para nuevo respaldo de BD.");
-
-        serial_output = new SerialOutput(ArduinoHelp.ENDOFSTRING);
-        conexion_basedatos = new ConexionExtendedHouse(
+        info(SECTOR, conf_server_interno.tiempoRestanteNuevoRespaldo+" MILLISEGUNDOS para nuevo respaldo de BD.");
+        
+        serial_output        = new SerialOutput(ArduinoHelp.ENDOFSTRING);
+        conexion_basedatos   = new ConexionExtendedHouse(
                 propiedades_server.getDatabase_ip(),
                 propiedades_server.getDatabase_name(),
                 propiedades_server.getDatabase_user(),
                 propiedades_server.getDatabase_pass());
-        leer = new BufferedReader(new InputStreamReader(System.in));
-        serial_arduino = new SerialArduino(propiedades_server.getArduino_port());
-        relee_sh = new ReleeShield(serial_arduino);
-        thread_sen_tmp = thread_sen_luz = new ThreadFrecuente(propiedades_server.getDatabase_millisencods_insert());
-        server = new Server() {
+        leer                 = new BufferedReader(new InputStreamReader(System.in));
+        serial_arduino       = new SerialArduino(propiedades_server.getArduino_port());
 
+        relee_sh             = new ReleeShield(serial_arduino);
+        thread_sen_tmp  = thread_sen_luz
+                             = new ThreadFrecuente(propiedades_server.getDatabase_millisencods_insert());
+        server               = new Server() {
             @Override
             protected Connection newConnection() {
                 return new ExtendedHouseConnection();
@@ -211,18 +213,6 @@ public final class ExtendedHouseSERVER implements Runnable {
                         UsersOnline users = new UsersOnline();
                         users.users = numero_de_usuarios_conectados;
                         server.sendToTCP(ex_con.getID(), users);
-                        
-                        ActuadorInfoList ail = new ActuadorInfoList();
-                        ail.infoActuador = new ArrayList();
-                        for(Actuador act : conexion_basedatos.getActuadores()){
-                            InfoActuador infoAct = new InfoActuador();
-                            infoAct.id = act.getId();
-                            infoAct.nombre = act.getNombre();
-                            infoAct.numero = act.getNumero();
-                            ail.infoActuador.add(infoAct);
-                        }
-                        server.sendToTCP(ex_con.getID(), ail);
-                        
                     } else if (object instanceof RespaldoRequest) {
                         if (ex_con.isAnAdministrador) {
                             Network.ListaRespaldos lr = new ListaRespaldos();
@@ -236,7 +226,9 @@ public final class ExtendedHouseSERVER implements Runnable {
                             }
                             server.sendToTCP(ex_con.getID(), lr);
                         } else { // enviar wea que es un usuario invalido
-                            sendMessage(ex_con.getID(), "No tiene los privilegios suficientes", JOptionPane.ERROR_MESSAGE);
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
                         }
 
                         //server.sendToTCP(ex_con.getID(), );
@@ -247,73 +239,45 @@ public final class ExtendedHouseSERVER implements Runnable {
                             cal.setTimeInMillis(mdb.fecha);
                             if (auto_db.restoreDatabase(cal, mdb.restaurarYEliminarDatosHastaLaFecha)) {
                                 sendMessage(ex_con.getID(), "Restaurado con Exito "
-                                        + (mdb.restaurarYEliminarDatosHastaLaFecha
-                                        ? ",Datos posteriores a la fecha eliminados"
-                                        : null), JOptionPane.INFORMATION_MESSAGE);
+                                        +(mdb.restaurarYEliminarDatosHastaLaFecha ? 
+                                        ",Datos posteriores a la fecha eliminados"
+                                        :null), JOptionPane.INFORMATION_MESSAGE);
                             } else {
                                 sendMessage(ex_con.getID(), "Se ha producido un error al restaurar", JOptionPane.ERROR_MESSAGE);
                             }
-
+                            
                         } else {
-                            sendMessage(ex_con.getID(), "No tiene los privilegios suficientes", JOptionPane.ERROR_MESSAGE);
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
                         }
 
                     } else if (object instanceof MakeDatabaseBackup) {
                         if (ex_con.isAnAdministrador) {
                             auto_db.backupDatabaseNow();
                         } else {
-                            sendMessage(ex_con.getID(), "No tiene los privilegios suficientes", JOptionPane.ERROR_MESSAGE);
+                            sendMessage(ex_con.getID()
+                                    , "No tiene los privilegios suficientes"
+                                    ,JOptionPane.ERROR_MESSAGE);
                         }
                     } else if (object instanceof PacketePrueba) {
                         PacketePrueba pp = (PacketePrueba) object;
                         switch (pp.numero_prueba) {
                             case 1: {
-                                sendMessage(ex_con.getID(), "Mensaje de prueba", JOptionPane.ERROR_MESSAGE);
+                                sendMessage(ex_con.getID(), "Mensaje de prueba",JOptionPane.ERROR_MESSAGE);
                                 break;
                             }
 
-                        }
-                    } else if(object instanceof EventoRequest){
-                        Network.ListaEventos listE = new ListaEventos();
-                        listE.eventos = new ArrayList();
-                        for(HiloDeEventoLES les : lesAdm.getEventInExecutionList()){
-                            Network.Evento evt = new Evento();
-                            evt.LesString = les.getEventoString();
-                            evt.LesHTMLString = LESCompUtils.getHtmlLESString(les.getEventoString());
-                            evt.user = les.getUser();
-                            listE.eventos.add(evt);
-                        }
-                        server.sendToTCP(ex_con.getID(), listE);
-                        
-                    } else if(object instanceof CreacionEvento){
-                        CreacionEvento cEvt = (CreacionEvento) object;
-                        try {
-                            lesAdm.addEventoSimpleString(cEvt.LES, ex_con.user);
-                        } catch (LESException ex) {
-                            error(SECTOR,ex.toString());
-                            sendMessage(ex_con.getID(),ex.toString(),JOptionPane.ERROR_MESSAGE);
-                        }
-                    } else if (object instanceof EliminarEventoRequest) {
-                        EliminarEventoRequest el = (EliminarEventoRequest) object;
-                        if (lesAdm.removeEventoSiemple(el.lesString)) {
-                            sendMessage(ex_con.getID()
-                                    , "Evento removido exitosamente"
-                                    , JOptionPane.INFORMATION_MESSAGE);
-                        } else {
-                            sendMessage(ex_con.getID()
-                                    , "Error al remover evento"
-                                    , JOptionPane.ERROR);
                         }
                     }
                     /*--------------------------END OBJECTOS A MANIPULAR-----------------------*/
                 }
             }
-
             @Override
-            public void disconnected(Connection c) {
+            public void disconnected (Connection c) {
                 numero_de_usuarios_conectados--;
                 actualizarUsuarios();
-
+                
             }
 
             private void sendMessage(int iD, String mensaje, int tipo_error) {
@@ -322,7 +286,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                 srrr.tipo_error = tipo_error;
                 server.sendToTCP(iD, srrr);
             }
-
+            
             private void actualizarUsuarios() {
                 UsersOnline users = new UsersOnline();
                 users.users = numero_de_usuarios_conectados;
@@ -335,12 +299,14 @@ public final class ExtendedHouseSERVER implements Runnable {
             }
         });
         /*------------------------END SERVER LISTENER-------------------------*/
-
+        
+        
+        
         try {
             server.bind(Network.getNetworkPort());
         } catch (IOException ex) {
-            error(SECTOR, ex.getMessage());
-            error(SECTOR, "Verifique que el puerto '"
+            error(SECTOR,ex.getMessage());
+            error(SECTOR,"Verifique que el puerto '"
                     + Network.getNetworkPort() + "'que no este en uso...");
             System.exit(1);
         }
@@ -358,12 +324,12 @@ public final class ExtendedHouseSERVER implements Runnable {
                     server.sendToAllTCP(arduino_output);
                     arduino_output = null;
                     if (conexion_basedatos.isConnected()) {
-                        if (!ArduinoHelp.isAnActuador(evt.getNombreDisositivo())) {
+                        if (!ArduinoHelp.isAnActuador(arduino_output.dispositivo)) {
                             Sensor sen = new Sensor();
                             sen.setNombre(evt.getNombreDisositivo());
                             sen.setNumero(evt.getNumeroDispositovo());
                             String val = Float.toString(evt.getValorDispositivo());
-                            if (ArduinoHelp.isARecurrentSensor(evt.getNombreDisositivo())) {
+                            if (ArduinoHelp.isARecurrentSensor(arduino_output.dispositivo)) {
                                 if (thread_sen_tmp.isThreadFinishWork()
                                         && ArduinoHelp.TEMPERATURA_SIGNAL.equals(sen.getNombre())) {
                                     addSensorToDatabase(sen, val);
@@ -382,22 +348,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                 }
             });
         }
-        arduinoComandosEh = new ArduinoCommands(serial_arduino, relee_sh);
-        if(conexion_basedatos.isConnected()){
-            try {
-                lesAdm = new LESAdministador(conexion_basedatos);
-                lesAdm.addEventoListener(new EventoListener() {
-
-                    public void eventoPerformed(EventoEvent e) {
-                        //eventos....
-                    }
-                });
-                info(SECTOR,"Administrador de Eventos Simple [INICIADO]");
-            } catch (LESException ex) {
-                java.util.logging.Logger
-                        .getLogger(ExtendedHouseSERVER.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        arduinoComandosEh = new ArduinoCommands(serial_arduino,relee_sh);        
 //        net_interfaces = new NetworksInterfaces();
 //        List<Interface> interfaces = net_interfaces.getInterfaces();
 //        for(Interface inter: interfaces){
@@ -409,25 +360,24 @@ public final class ExtendedHouseSERVER implements Runnable {
 //                }
 //            }
 //        }
-        info(SECTOR, "Ingresos a la BD en ([ "
-                + ((double) propiedades_server.getDatabase_millisencods_insert()) / (double) (60 * 1000)
-                + " ]min)");
+        info(SECTOR,"Ingresos a la BD en ([ "
+                +((double)propiedades_server.getDatabase_millisencods_insert())/(double)(60*1000)
+                +" ]min)");
 
         System.out.println("=========================================");
-        info(SECTOR, Fecha.getFecha(false, false));
-
-
-    }
-
-    static class ExtendedHouseConnection extends Connection {
-
+        info(SECTOR,Fecha.getFecha(false, false));
+        
+        
+    }    
+    
+    static class ExtendedHouseConnection extends Connection{
         public boolean isValidConnection;
         public boolean isInvalidConnectionRequestSended;
         public boolean isAnAdministrador;
         public String user;
         public String ip;
     }
-
+    
     public void addSensorToDatabase(Sensor sen, String valor) {
         int id = conexion_basedatos.getIdOfSensor(
                 sen);
@@ -442,7 +392,7 @@ public final class ExtendedHouseSERVER implements Runnable {
         }
     }
 
-    public void serverThreadsStarts() {
+    public void serverThreadsStarts(){
         Thread s1 = new Thread(this, "Server Sniffer");
         Thread s3 = new Thread(thread_sen_tmp);
         Thread s4 = new Thread(thread_sen_luz);
@@ -450,8 +400,9 @@ public final class ExtendedHouseSERVER implements Runnable {
         exService.execute(s1);
         exService.execute(s3);
         exService.execute(s4);
-        if (conexion_basedatos.isConnected()) {
-            auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos, conf_server_interno);
+        if(conexion_basedatos.isConnected()){
+            auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos
+                    ,conf_server_interno);
             auto_db.start();
         }
         exService.shutdown();
@@ -461,7 +412,7 @@ public final class ExtendedHouseSERVER implements Runnable {
 
     public void run() {
         try {
-            info(SECTOR, "Comandos Disponibles para digitar"
+            info(SECTOR,"Comandos Disponibles para digitar"
                     + ":'exit','restart','send <arg>',ard <arg[n]>");
             System.out.println(WELCOME);
             while (true) {
@@ -469,7 +420,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                 verificarComando(line);
             }
         } catch (IOException ex) {
-            warn(SECTOR, "Error al Leer comando ingresado");
+            warn(SECTOR,"Error al Leer comando ingresado");
         }
     }
 
@@ -478,40 +429,41 @@ public final class ExtendedHouseSERVER implements Runnable {
             cerrarServicios();
         } else if (line.startsWith("restart")) {
             /*FALTA COMO HACER EL RESTART*/
-        } else if (line.startsWith("send")) {
-            try {
-                String mensaje = line.trim().split(" ", 2)[1];
-                ServerMesage sm = new ServerMesage();
-                sm.mensaje = mensaje;
-                server.sendToAllTCP(sm);
-                info(SECTOR, "Mensaje [" + mensaje + "] enviado");
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                error(SECTOR, "El comando [send] requiere argumento");
+            
+        }else if(line.startsWith("send")){
+            try{
+                String mensaje = line.trim().split(" ",2)[1];
+            ServerMesage sm = new ServerMesage();
+            sm.mensaje = mensaje;
+            server.sendToAllTCP(sm);
+            info(SECTOR,"Mensaje ["+mensaje+"] enviado");
+            }catch(java.lang.ArrayIndexOutOfBoundsException e){
+                error(SECTOR,"El comando [send] requiere argumento");
             }
-
-        } else if (line.startsWith("ard")) {
-            try {
-                String mensaje = line.trim().split(" ", 2)[1];
+            
+        } else if(line.startsWith("ard")){
+            try{
+                String mensaje = line.trim().split(" ",2)[1];
                 try {
                     arduinoComandosEh.sendCommand(mensaje, true);
                 } catch (ArduinoIOException ex) {
-                    error(SECTOR, ex.getMessage());
+                    error(SECTOR,ex.getMessage());
                     ex.printStackTrace();
                 }
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                error(SECTOR, "El comando [ard] requiere argumento");
-
+            }catch(java.lang.ArrayIndexOutOfBoundsException e){
+                error(SECTOR,"El comando [ard] requiere argumento");
+                
             }
-        } else {
-            info(SECTOR, "Comando '" + line + "' no reconocido");
+        }else {
+            info(SECTOR,"Comando '" + line + "' no reconocido");
         }
     }
-
-    private void guardarConfServer() {
-        if (conexion_basedatos.isConnected()) {
+    
+    private void guardarConfServer(){
+        if(conexion_basedatos.isConnected()){
             auto_db.save();
         }
-        ArchivoObjectosJava.guardarObjecto(conf_server_interno, NOM_ARCH_CONF_SERV);
+        ArchivoObjectosJava.guardarObjecto(conf_server_interno,NOM_ARCH_CONF_SERV);
     }
 
     private void cerrarServicios() {
@@ -530,4 +482,7 @@ public final class ExtendedHouseSERVER implements Runnable {
         auto_db.stop();
         System.exit(0);
     }
+
+
+
 }

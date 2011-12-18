@@ -10,27 +10,39 @@
  */
 package cl.eh.client;
 
+import cl.eh.client.gui.ModeloComboBoxGenerico;
 import cl.eh.client.gui.ModeloListaRestauracion;
+import cl.eh.client.gui.ModeloTablaLES;
+import cl.eh.client.gui.RendererComboBoxLES;
 import cl.eh.client.gui.RendererListaRestauracion;
+import cl.eh.client.gui.model.LESCellObject;
+import cl.eh.client.gui.model.LESString;
+import cl.eh.client.gui.model.RendererTablaLES;
+import cl.eh.client.model.ActuadorInfo;
+import cl.eh.client.model.LESClientAdmin;
 import cl.eh.client.status.StatusExtendedHouse;
 import cl.eh.client.status.StatusRespaldos;
 import cl.eh.common.ArduinoSignal;
 import cl.eh.common.ClientArduinoSignal;
 import cl.eh.common.Network;
 import cl.eh.common.Network.*;
+import cl.eh.eventos.compilator_utils.LESCompUtils;
 import cl.eh.util.Fecha2;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import com.jtattoo.plaf.*;
+import java.awt.event.ItemEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -38,6 +50,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.ListDataListener;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -45,12 +59,14 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ExtendedHouseClient extends javax.swing.JApplet {
 
-    private final boolean pruebaLocal = false;
+    private final boolean pruebaLocal = true;
     private Client client;
     private StatusExtendedHouse status_eh;
     private Parametros params;
     private ImageIcon sen_pasivo, sen_activo;
     private ModeloListaRestauracion modelo_lista_rest;
+    private List<ActuadorInfo> actuadorInfoList;
+    LESClientAdmin les_client;
     /*
     jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"))); // NOI18N
     jLabel2.setText("jLabel2");
@@ -61,6 +77,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     /** Initializes the applet ExtendedHouseClient */
     @Override
     public void init() {
+        les_client = new LESClientAdmin();
+        actuadorInfoList = new ArrayList<ActuadorInfo>();
         status_eh = new StatusExtendedHouse();
         modelo_lista_rest = new ModeloListaRestauracion();
         params = new Parametros(
@@ -72,22 +90,24 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
 
                 public void run() {
-                    try {
-                        UIManager.put("ClassLoader", getClass().getClassLoader());
-                        UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
-
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (InstantiationException ex) {
-                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (IllegalAccessException ex) {
-                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-                    } catch (UnsupportedLookAndFeelException ex) {
-                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+//                    try {
+//                        UIManager.put("ClassLoader", getClass().getClassLoader());
+//                        UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");
+//
+//                    } catch (ClassNotFoundException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (InstantiationException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (IllegalAccessException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    } catch (UnsupportedLookAndFeelException ex) {
+//                        Logger.getLogger(ExtendedHouseClient.class.getName()).log(Level.SEVERE, null, ex);
+//                    }
                     initComponents();
                     sen_pasivo = new ImageIcon(getClass().getResource("/cl/eh/images/selection.png"));
                     sen_activo = new ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"));
+                    jTextField5.setEnabled(false);
+                    jComboBox4.setEnabled(false);
                     
                 }
             });
@@ -100,6 +120,263 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 //        jLabel29.setText("user:" + params.getUser());
 
     }
+    private void loadCliente() {
+        Log.set(Log.LEVEL_DEBUG);
+        client = new Client();
+        client.start();
+        Network.register(client);
+        client.addListener(new Listener() {
+
+            @Override
+            public void connected(Connection connection) {
+                ValidacionConnection vc = new ValidacionConnection();
+                if (!pruebaLocal) {
+                    vc.user = params.getUser();
+                    vc.client_ip = params.getIp_cliente();
+                } else {
+                    vc.user = "weon";
+                    vc.client_ip = "127.0.0.1";
+                }
+
+                client.sendTCP(vc); //validacion de connecion
+                client.sendTCP(new ServerStatusRequest()); //peticion del estado del servidor
+
+            }
+
+            @Override
+            public void disconnected(Connection connection) {
+                System.out.println("El servidor se ha caido:");
+                jTextField2.setText("DOWN");
+                jTextField2.setForeground(new java.awt.Color(255, 0, 0));
+            }
+
+            @Override
+            public void received(Connection connection, Object object) {
+                if (object instanceof Network.InvalidConnection) {
+                    jTextField2.setText("Rechazada");
+                } else if (object instanceof ArduinoOutput) {
+                    ArduinoOutput ao = (ArduinoOutput) object;
+                    String dispostv = ao.dispositivo;
+                    int numero = Integer.parseInt(ao.numero);
+                    int valor = (int) ao.valor;
+
+                    if (dispostv.equals(ClientArduinoSignal.TEMPERATURA_SIGNAL)) {
+                        status_eh.updateSensorTemperatura(numero, valor);
+
+                        jLabel7.setText(Integer.toString(status_eh.getValorSensorTemperatura(
+                                Integer.parseInt(ao.numero))));
+
+                    } else if (dispostv.equals(ClientArduinoSignal.LUZ_SIGNAL)) {
+                        status_eh.updateSensorLuminico(numero, valor);
+
+                        jLabel5.setText(Integer.toString(status_eh.getValorSensorLuminico(
+                                Integer.parseInt(ao.numero))));
+
+                    } else if (dispostv.equals(ClientArduinoSignal.RELEE_SIGNAL)) {
+                        status_eh.updateActuadorRelay(numero, valor);
+                        switch (numero) {
+                            case 0: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele1_off, false);
+                                    setButtonEnable(btn_rele1_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele1_off, true);
+                                    setButtonEnable(btn_rele1_on, false);
+                                }
+                                break;
+                            }
+                            case 1: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele2_off, false);
+                                    setButtonEnable(btn_rele2_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele2_off, true);
+                                    setButtonEnable(btn_rele2_on, false);
+                                }
+                                break;
+                            }
+                            case 2: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele3_off, false);
+                                    setButtonEnable(btn_rele3_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele3_off, true);
+                                    setButtonEnable(btn_rele3_on, false);
+                                }
+                                break;
+                            }
+                            case 3: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele4_off, false);
+                                    setButtonEnable(btn_rele4_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele4_off, true);
+                                    setButtonEnable(btn_rele4_on, false);
+                                }
+                                break;
+                            }
+                            case 4: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele5_off, false);
+                                    setButtonEnable(btn_rele5_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele5_off, true);
+                                    setButtonEnable(btn_rele5_on, false);
+                                }
+                                break;
+                            }
+                            case 5: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele6_off, false);
+                                    setButtonEnable(btn_rele6_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele6_off, true);
+                                    setButtonEnable(btn_rele6_on, false);
+                                }
+                                break;
+                            }
+                            case 6: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele7_off, false);
+                                    setButtonEnable(btn_rele7_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele7_off, true);
+                                    setButtonEnable(btn_rele7_on, false);
+                                }
+                                break;
+                            }
+                            case 7: {
+                                if (valor == 0) {
+                                    setButtonEnable(btn_rele8_off, false);
+                                    setButtonEnable(btn_rele8_on, true);
+                                } else {
+                                    setButtonEnable(btn_rele8_off, true);
+                                    setButtonEnable(btn_rele8_on, false);
+                                }
+                                break;
+                            }
+                        }
+
+                    } else if (dispostv.equals(ClientArduinoSignal.MOVIMIENTO_SIGNAL)) {
+                        status_eh.updateSensorMovimiento(numero, valor);
+                        if(status_eh.getValorSensorMovimiento(numero) == 1){
+                            setLabelSensorIcon(jLabel17, true);
+                        }else{
+                            setLabelSensorIcon(jLabel17, false);
+                        }
+
+
+
+                    } else if (dispostv.equals(ClientArduinoSignal.INTERRUPTOR_LENGUETA_SIGNAL)) {
+                        status_eh.updateSensorMagnetico(numero, valor);
+
+                        switch (numero) {
+                            case 0: {
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel9, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel9, false);
+                                }
+                                break;
+                            }
+                            case 1: {
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel13, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel13, false);
+                                }
+                                break;
+                            }
+                            case 2: {
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel14, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel14, false);
+                                }
+                                break;
+                            }
+                            case 3: {
+                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
+                                    setLabelSensorIcon(jLabel15, true);
+                                } else {
+                                    setLabelSensorIcon(jLabel15, false);
+                                }
+                                break;
+                            }
+
+                        }
+                    }
+                } else if (object instanceof UsersOnline) {
+                    UsersOnline uo = (UsersOnline) object;
+                    txt_usuarios.setText(Integer.toString(uo.users));
+                } else if (object instanceof ServerMesage) {
+                    ServerMesage sm = (ServerMesage) object;
+                    jTextField3.setText(sm.mensaje);
+                } else if (object instanceof ListaRespaldos) {
+                    ListaRespaldos lr = (ListaRespaldos) object;
+                    Iterator ir = lr.respaldos.iterator();
+                    status_eh.getListRespaldos().clear();
+                    while (ir.hasNext()) {
+                        Network.Respaldo rr = (Network.Respaldo) ir.next();
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTimeInMillis(rr.fecha);
+                        StatusRespaldos sr = new StatusRespaldos(rr.isRespaldoByUsuario, cal);
+                        status_eh.getListRespaldos().add(sr); 
+                    }
+                    modelo_lista_rest.actualizarLista(status_eh.getListRespaldos());
+                    jList1.setModel(modelo_lista_rest);
+                    jList1.setCellRenderer(new RendererListaRestauracion());
+
+                } else if (object instanceof ServerErrorInfoToUser) {
+                    final ServerErrorInfoToUser seitu = (ServerErrorInfoToUser) object;
+                    new Thread(new Runnable() {
+
+                        public void run() {
+                            JOptionPane.showMessageDialog(rootPane, seitu.mensaje, "Mensaje desde el servidor", seitu.tipo_error);
+                        }
+                    }).start();
+
+                } else if(object instanceof Network.ListaEventos){
+                    ListaEventos listEvents = (ListaEventos) object;
+                    Iterator it = listEvents.eventos.iterator();
+                    List<LESCellObject> asd = new ArrayList<LESCellObject>();
+                    while(it.hasNext()){
+                        Evento evt = (Evento) it.next();
+                        LESString string = new LESString(evt.LesString,evt.LesHTMLString);
+                        LESCellObject lesco = new LESCellObject(string,evt.user);
+                        asd.add(lesco);
+                    }// luego manipular la wea
+                    ModeloTablaLES modelotabla = new ModeloTablaLES(asd);
+                    jTable1.setModel(modelotabla);
+                    int vColIndex = 0;
+                    TableColumn col = jTable1.getColumnModel().getColumn(vColIndex);
+                    col.setCellRenderer(new RendererTablaLES());
+                    col = jTable1.getColumnModel().getColumn(vColIndex+1);
+                    col.setCellRenderer(new RendererTablaLES());
+                    
+                } else if(object instanceof ActuadorInfoList){
+                    ActuadorInfoList actInfoList = (ActuadorInfoList) object;
+                    Iterator it = actInfoList.infoActuador.iterator();
+                    cbo_actuador.removeAllItems();
+                    while(it.hasNext()){
+                        InfoActuador info = (InfoActuador) it.next();
+                        ActuadorInfo clientInfo = new ActuadorInfo(info.id,info.nombre,info.numero);
+                        actuadorInfoList.add(clientInfo);
+                        cbo_actuador.addItem(clientInfo);
+                    }
+                    cbo_actuador.setRenderer(new RendererComboBoxLES());
+                }
+
+            }
+            private void setLabelSensorIcon(JLabel a, boolean b) {
+                if (b) {//activado
+                    a.setIcon(sen_pasivo);
+                } else {
+                    a.setIcon(sen_activo);
+                }
+            }
+        });
+    }
 
     /** This method is called from within the init() method to
      * initialize the form.
@@ -110,6 +387,29 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        jPanel14 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        cbo_actuador = new javax.swing.JComboBox();
+        jLabel28 = new javax.swing.JLabel();
+        jComboBox3 = new javax.swing.JComboBox();
+        jButton12 = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jComboBox4 = new javax.swing.JComboBox();
+        jButton10 = new javax.swing.JButton();
+        jLabel35 = new javax.swing.JLabel();
+        jButton11 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
+        jLabel31 = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         jToolBar1 = new javax.swing.JToolBar();
         jButton1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
@@ -178,9 +478,119 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jButton5 = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jButton6 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jTextField4 = new javax.swing.JTextField();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
         jToolBar2 = new javax.swing.JToolBar();
         jLabel26 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+
+        jDialog1.setAlwaysOnTop(true);
+        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 350, 300));
+        jDialog1.setMinimumSize(new java.awt.Dimension(350, 300));
+        jDialog1.setModal(true);
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Configuracion", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 9))); // NOI18N
+        jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 9));
+        jLabel2.setText("Actuador");
+        jPanel14.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        cbo_actuador.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        cbo_actuador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel14.add(cbo_actuador, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 170, -1));
+
+        jLabel28.setFont(new java.awt.Font("Verdana", 0, 9));
+        jLabel28.setText("Estado");
+        jPanel14.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
+
+        jComboBox3.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Encendido", "Apagado", "Cambio" }));
+        jPanel14.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 80, -1));
+
+        jButton12.setText("Guardar configuracion");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 43, 360, 30));
+
+        jDialog1.getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 380, 80));
+
+        jLabel29.setFont(new java.awt.Font("Verdana", 0, 9));
+        jLabel29.setText("Actuador Nº");
+        jDialog1.getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel32.setText("(");
+        jDialog1.getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jLabel33.setText(")");
+        jDialog1.getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 10, -1));
+
+        jLabel34.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel34.setText("Ejecutar Cada:");
+        jDialog1.getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 10));
+
+        jTextField5.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jDialog1.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 60, 20));
+
+        jComboBox4.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "millisegundos", "horas", "minutos", "segundos" }));
+        jDialog1.getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 100, 20));
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/add.png"))); // NOI18N
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 50));
+
+        jLabel35.setText("String resultante:");
+        jDialog1.getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, -1));
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/alarm.png"))); // NOI18N
+        jButton11.setText("Agregar Evento");
+        jDialog1.getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 360, 30));
+
+        jEditorPane1.setContentType("text/html");
+        jScrollPane4.setViewportView(jEditorPane1);
+
+        jDialog1.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 400, 80));
+
+        jLabel31.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel31.setText("Fecha:");
+        jDialog1.getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/dd/yyyy"))));
+        jDialog1.getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 80, 20));
+
+        jLabel30.setFont(new java.awt.Font("Verdana", 0, 9));
+        jLabel30.setText("Hora:");
+        jDialog1.getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
+
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance())));
+        jDialog1.getContentPane().add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 80, 20));
+
+        jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox1ItemStateChanged(evt);
+            }
+        });
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
 
         setForeground(new java.awt.Color(255, 255, 255));
 
@@ -432,7 +842,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         jLabel5.setText("0");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 20, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, 50, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 11));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/timeline_marker.png"))); // NOI18N
@@ -440,7 +850,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, -1, -1));
 
         jLabel7.setText("0");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 20, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 50, -1));
 
         jPanel4.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 220));
 
@@ -535,7 +945,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 0, 11));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/database.png"))); // NOI18N
         jButton5.setText("Restaurar respaldo Seleccionado");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -551,9 +961,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         jPanel12Layout.setVerticalGroup(
@@ -564,7 +974,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 250));
@@ -593,12 +1003,90 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 210, 250));
 
         jTabbedPane1.addTab("Gestion de Respaldos", jPanel11);
+
+        jTable1.setFont(new java.awt.Font("Verdana", 0, 11));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "LES", "User"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
+
+        jButton3.setText("Obtener Información");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton7.setText("enviar LES");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Eliminar Evento");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Crear LES");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton7)
+                .addContainerGap(160, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jButton9)
+                .addContainerGap(449, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton8))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton7))
+                .addGap(18, 18, 18)
+                .addComponent(jButton9)
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Gestion de eventos", jPanel3);
 
         jToolBar2.setFloatable(false);
 
@@ -837,6 +1325,89 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
        
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        client.sendTCP(new Network.EventoRequest());
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Network.CreacionEvento ce = new CreacionEvento();
+        ce.LES = jTextField4.getText();
+        client.sendTCP(ce);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        if(selectedRow != -1){
+                    System.err.println("row;"+selectedRow);
+            Object e = jTable1.getModel().getValueAt(selectedRow, 0);
+            if (e instanceof LESString) {
+                LESString lesString = (LESString) e;
+                String lesOriginal = lesString.getLESString();
+                EliminarEventoRequest eer = new Network.EliminarEventoRequest();
+                eer.lesString = lesOriginal;
+                client.sendTCP(eer);
+            } else {
+                System.err.println("error en la wea");
+            }
+        }
+
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        jDialog1.setVisible(true);
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        ActuadorInfo ainfo = (ActuadorInfo) cbo_actuador.getSelectedItem();
+        String fijar = (String) jComboBox3.getSelectedItem();
+
+        String les = "EN " + ainfo.getNombre()
+                + " NUMERO " + ainfo.getNumero()
+                + " FIJAR " + fijar;
+        les_client.setLES(les);
+        les_client.setIsConfiguracionReady(true);
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                jEditorPane1.setText(LESCompUtils.getHtmlLESString(les_client.getLES()));
+            }
+        });
+        cbo_actuador.setEnabled(false);
+        jComboBox3.setEnabled(false);
+
+        
+        System.out.println(ainfo.getNumero());
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        if(les_client.isIsConfiguracionReady()){
+            String tiempo1 = jFormattedTextField1.getText();
+            if(!tiempo1.isEmpty()){
+                
+            }else{
+                //error
+            }
+        }else{
+            //error
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
+        if(evt.getStateChange()==ItemEvent.SELECTED ){
+            les_client.setIsExtendedFechaSet(true);
+            jTextField5.setEnabled(true);
+            jComboBox4.setEnabled(true);
+        }else{
+            les_client.setIsExtendedFechaSet(false);
+            jTextField5.setEnabled(false);
+            jComboBox4.setEnabled(false);
+        }
+    }//GEN-LAST:event_jCheckBox1ItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_rele1_off;
     private javax.swing.JButton btn_rele1_on;
@@ -854,11 +1425,26 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JButton btn_rele7_on;
     private javax.swing.JButton btn_rele8_off;
     private javax.swing.JButton btn_rele8_on;
+    private javax.swing.JComboBox cbo_actuador;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox jComboBox3;
+    private javax.swing.JComboBox jComboBox4;
+    private javax.swing.JDialog jDialog1;
+    private javax.swing.JEditorPane jEditorPane1;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -870,6 +1456,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -878,6 +1465,14 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -890,7 +1485,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
@@ -899,13 +1496,18 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JTextField txt_usuarios;
@@ -913,297 +1515,5 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
     private void setButtonEnable(JButton boton, boolean estado) {
         boton.setEnabled(estado);
-    }
-    /*
-    private void setsButtonsRelayState() {
-    if (status_eh.getValorActuadorRelay(0) == 0) {
-    setButtonEnable(btn_rele1_off, false);
-    setButtonEnable(btn_rele1_on, true);
-    } else {
-    setButtonEnable(btn_rele1_off, true);
-    setButtonEnable(btn_rele1_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(1) == 0) {
-    setButtonEnable(btn_rele2_off, false);
-    setButtonEnable(btn_rele2_on, true);
-    } else {
-    setButtonEnable(btn_rele2_off, true);
-    setButtonEnable(btn_rele2_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(2) == 0) {
-    setButtonEnable(btn_rele3_off, false);
-    setButtonEnable(btn_rele3_on, true);
-    } else {
-    setButtonEnable(btn_rele3_off, true);
-    setButtonEnable(btn_rele3_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(3) == 0) {
-    setButtonEnable(btn_rele4_off, false);
-    setButtonEnable(btn_rele4_on, true);
-    } else {
-    setButtonEnable(btn_rele4_off, true);
-    setButtonEnable(btn_rele4_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(4) == 0) {
-    setButtonEnable(btn_rele5_off, false);
-    setButtonEnable(btn_rele5_on, true);
-    } else {
-    setButtonEnable(btn_rele5_off, true);
-    setButtonEnable(btn_rele5_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(5) == 0) {
-    setButtonEnable(btn_rele6_off, false);
-    setButtonEnable(btn_rele6_on, true);
-    } else {
-    setButtonEnable(btn_rele6_off, true);
-    setButtonEnable(btn_rele6_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(6) == 0) {
-    setButtonEnable(btn_rele7_off, false);
-    setButtonEnable(btn_rele7_on, true);
-    } else {
-    setButtonEnable(btn_rele7_off, true);
-    setButtonEnable(btn_rele7_on, false);
-    }
-    if (status_eh.getValorActuadorRelay(7) == 0) {
-    setButtonEnable(btn_rele8_off, false);
-    setButtonEnable(btn_rele8_on, true);
-    } else {
-    setButtonEnable(btn_rele8_off, true);
-    setButtonEnable(btn_rele8_on, false);
-    }
-    for(int i = 0; i < 8; i++){
-    System.out.println(i+"|||"+status_eh.getValorActuadorRelay(i));
-    }
-    
-    }*/
-
-    private void loadCliente() {
-        Log.set(Log.LEVEL_DEBUG);
-        client = new Client();
-        client.start();
-        Network.register(client);
-        client.addListener(new Listener() {
-
-            @Override
-            public void connected(Connection connection) {
-                ValidacionConnection vc = new ValidacionConnection();
-                if (!pruebaLocal) {
-                    vc.user = params.getUser();
-                    vc.client_ip = params.getIp_cliente();
-                } else {
-                    vc.user = "weon";
-                    vc.client_ip = "127.0.0.1";
-                }
-
-                client.sendTCP(vc); //validacion de connecion
-                client.sendTCP(new ServerStatusRequest()); //peticion del estado del servidor
-
-            }
-
-            @Override
-            public void disconnected(Connection connection) {
-                System.out.println("El servidor se ha caido:");
-                jTextField2.setText("DOWN");
-                jTextField2.setForeground(new java.awt.Color(255, 0, 0));
-            }
-
-            @Override
-            public void received(Connection connection, Object object) {
-                if (object instanceof Network.InvalidConnection) {
-                    jTextField2.setText("Rechazada");
-                } else if (object instanceof ArduinoOutput) {
-                    ArduinoOutput ao = (ArduinoOutput) object;
-                    String dispostv = ao.dispositivo;
-                    int numero = Integer.parseInt(ao.numero);
-                    int valor = (int) ao.valor;
-
-                    if (dispostv.equals(ClientArduinoSignal.TEMPERATURA_SIGNAL)) {
-                        status_eh.updateSensorTemperatura(numero, valor);
-
-                        jLabel7.setText(Integer.toString(status_eh.getValorSensorTemperatura(
-                                Integer.parseInt(ao.numero))));
-
-                    } else if (dispostv.equals(ClientArduinoSignal.LUZ_SIGNAL)) {
-                        status_eh.updateSensorLuminico(numero, valor);
-
-                        jLabel5.setText(Integer.toString(status_eh.getValorSensorLuminico(
-                                Integer.parseInt(ao.numero))));
-
-                    } else if (dispostv.equals(ClientArduinoSignal.RELEE_SIGNAL)) {
-                        status_eh.updateActuadorRelay(numero, valor);
-                        switch (numero) {
-                            case 0: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele1_off, false);
-                                    setButtonEnable(btn_rele1_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele1_off, true);
-                                    setButtonEnable(btn_rele1_on, false);
-                                }
-                                break;
-                            }
-                            case 1: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele2_off, false);
-                                    setButtonEnable(btn_rele2_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele2_off, true);
-                                    setButtonEnable(btn_rele2_on, false);
-                                }
-                                break;
-                            }
-                            case 2: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele3_off, false);
-                                    setButtonEnable(btn_rele3_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele3_off, true);
-                                    setButtonEnable(btn_rele3_on, false);
-                                }
-                                break;
-                            }
-                            case 3: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele4_off, false);
-                                    setButtonEnable(btn_rele4_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele4_off, true);
-                                    setButtonEnable(btn_rele4_on, false);
-                                }
-                                break;
-                            }
-                            case 4: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele5_off, false);
-                                    setButtonEnable(btn_rele5_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele5_off, true);
-                                    setButtonEnable(btn_rele5_on, false);
-                                }
-                                break;
-                            }
-                            case 5: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele6_off, false);
-                                    setButtonEnable(btn_rele6_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele6_off, true);
-                                    setButtonEnable(btn_rele6_on, false);
-                                }
-                                break;
-                            }
-                            case 6: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele7_off, false);
-                                    setButtonEnable(btn_rele7_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele7_off, true);
-                                    setButtonEnable(btn_rele7_on, false);
-                                }
-                                break;
-                            }
-                            case 7: {
-                                if (valor == 0) {
-                                    setButtonEnable(btn_rele8_off, false);
-                                    setButtonEnable(btn_rele8_on, true);
-                                } else {
-                                    setButtonEnable(btn_rele8_off, true);
-                                    setButtonEnable(btn_rele8_on, false);
-                                }
-                                break;
-                            }
-                        }
-
-                    } else if (dispostv.equals(ClientArduinoSignal.MOVIMIENTO_SIGNAL)) {
-                        status_eh.updateSensorMovimiento(numero, valor);
-                        if(status_eh.getValorSensorMovimiento(numero) == 1){
-                            setLabelSensorIcon(jLabel17, true);
-                        }else{
-                            setLabelSensorIcon(jLabel17, false);
-                        }
-
-
-
-                    } else if (dispostv.equals(ClientArduinoSignal.INTERRUPTOR_LENGUETA_SIGNAL)) {
-                        status_eh.updateSensorMagnetico(numero, valor);
-
-                        switch (numero) {
-                            case 0: {
-                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
-                                    setLabelSensorIcon(jLabel9, true);
-                                } else {
-                                    setLabelSensorIcon(jLabel9, false);
-                                }
-                                break;
-                            }
-                            case 1: {
-                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
-                                    setLabelSensorIcon(jLabel13, true);
-                                } else {
-                                    setLabelSensorIcon(jLabel13, false);
-                                }
-                                break;
-                            }
-                            case 2: {
-                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
-                                    setLabelSensorIcon(jLabel14, true);
-                                } else {
-                                    setLabelSensorIcon(jLabel14, false);
-                                }
-                                break;
-                            }
-                            case 3: {
-                                if (status_eh.getValorSensorMagnetico(numero) == 1) {
-                                    setLabelSensorIcon(jLabel15, true);
-                                } else {
-                                    setLabelSensorIcon(jLabel15, false);
-                                }
-                                break;
-                            }
-
-                        }
-                    }
-                } else if (object instanceof UsersOnline) {
-                    UsersOnline uo = (UsersOnline) object;
-                    txt_usuarios.setText(Integer.toString(uo.users));
-                } else if (object instanceof ServerMesage) {
-                    ServerMesage sm = (ServerMesage) object;
-                    jTextField3.setText(sm.mensaje);
-                } else if (object instanceof ListaRespaldos) {
-                    ListaRespaldos lr = (ListaRespaldos) object;
-                    Iterator ir = lr.respaldos.iterator();
-                    status_eh.getListRespaldos().clear();
-                    while (ir.hasNext()) {
-                        Network.Respaldo rr = (Network.Respaldo) ir.next();
-                        Calendar cal = Calendar.getInstance();
-                        cal.setTimeInMillis(rr.fecha);
-                        StatusRespaldos sr = new StatusRespaldos(rr.isRespaldoByUsuario, cal);
-                        status_eh.getListRespaldos().add(sr); 
-                    }
-                    modelo_lista_rest.actualizarLista(status_eh.getListRespaldos());
-                    jList1.setModel(modelo_lista_rest);
-                    jList1.setCellRenderer(new RendererListaRestauracion());
-
-                } else if (object instanceof ServerErrorInfoToUser) {
-                    final ServerErrorInfoToUser seitu = (ServerErrorInfoToUser) object;
-                    new Thread(new Runnable() {
-
-                        public void run() {
-                            JOptionPane.showMessageDialog(rootPane, seitu.mensaje, "Mensaje desde el servidor", seitu.tipo_error);
-                        }
-                    }).start();
-
-                }
-
-            }
-            private void setLabelSensorIcon(JLabel a, boolean b) {
-                if (b) {//activado
-                    a.setIcon(sen_pasivo);
-                } else {
-                    a.setIcon(sen_activo);
-                }
-            }
-        });
-    }
+    }    
 }

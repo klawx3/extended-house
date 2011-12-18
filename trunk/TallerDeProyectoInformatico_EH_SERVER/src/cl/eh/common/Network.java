@@ -50,6 +50,13 @@ public class Network {
         kryo.register(MakeDatabaseBackup.class);
         kryo.register(ServerErrorInfoToUser.class);
         kryo.register(PacketePrueba.class);
+        kryo.register(EventoRequest.class);
+        kryo.register(Evento.class);
+        kryo.register(CreacionEvento.class);
+        kryo.register(ListaEventos.class);
+        kryo.register(EliminarEventoRequest.class);
+        kryo.register(InfoActuador.class);
+        kryo.register(ActuadorInfoList.class);
         
     }
 
@@ -57,6 +64,33 @@ public class Network {
     public static class ServerStatusRequest{}
     public static class RespaldoRequest{}
     public static class InvalidConnection{}
+    /*---------------------MANIPULACION EVENTOS---------------------*/
+    public static class CreacionEvento{
+        public String LES;
+    }
+    public static class EventoRequest{}
+    public static class ListaEventos{
+        public ArrayList eventos;
+    }
+    public static class Evento{
+        public String LesString;
+        public String LesHTMLString;
+        public String user;
+    }
+    public static class EliminarEventoRequest{
+        public String lesString;
+    }
+    /*------------------------*/
+    public static class InfoActuador{
+        public int id;
+        public String nombre;
+        public int numero;
+    }
+    
+    public static class ActuadorInfoList{
+        public ArrayList infoActuador;
+    }
+    
     public static class PacketePrueba{
         public int numero_prueba;
     }
