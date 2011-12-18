@@ -12,14 +12,5 @@ import cl.eh.db.model.*;
  */
 public interface ExtendedHouseDatabaseModel {
     
-    public void addActuador(Actuador obj);
-    public void addEvento(Evento obj);
-    public void addHistorial(Historial obj);
-    public void addRol(Rol obj);
-    public void addSensor(Sensor obj);
-    public void addUsuario(Usuario obj);
-    
-    public int getIdOfActuador(Actuador obj);
-    public int getIdOfSensor(Sensor obj);
     
 }

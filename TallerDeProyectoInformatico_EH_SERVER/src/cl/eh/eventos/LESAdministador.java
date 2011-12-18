@@ -4,86 +4,141 @@
  */
 package cl.eh.eventos;
 
+import cl.eh.db.ConexionExtendedHouse;
+import cl.eh.db.model.Evento;
+import cl.eh.db.model.Usuario;
 import cl.eh.eventos.model.EventoListener;
+import cl.eh.exceptions.LESException;
 import cl.eh.properties.Guardable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * Lenguaje de Evento Simple
  * @author Usuario
  */
-public class LESAdministador implements Guardable{
+public class LESAdministador implements Guardable {
+
     private EventoListener show;
-    private ExecutorService exe;
     private List<HiloDeEventoLES> eventos;
-    private int sizeThreadPool;
-    private int currentsThreads;
-    
-    public LESAdministador(int sizeThreadPool){
+    private ConexionExtendedHouse con;
+
+    public LESAdministador(ConexionExtendedHouse con) throws LESException {
+        this.con = con;
         show = null;
-        exe = Executors.newFixedThreadPool(sizeThreadPool);
-        currentsThreads = 0;
-        eventos = new ArrayList<HiloDeEventoLES>();
+        eventos = Collections.synchronizedList(new ArrayList<HiloDeEventoLES>());
+        buscarEventos();
+    }
+
+    public void addEventoSimpleString(String eventoString) throws LESException {
+        addEventoSimpleConstructor(eventoString,ConexionExtendedHouse.EXTENDEDHOUSE_DEFAULT_USER);
+    }
+
+    public void addEventoSimpleString(String eventoString, String user) throws LESException {
+        addEventoSimpleConstructor(eventoString,user);
     }
     
-    public void addEventoSimpleString(String eventoString) throws Exception{
-        if(eventos.size() < sizeThreadPool){
-            HiloDeEventoLES aux = new HiloDeEventoLES(eventoString,show);
-            eventos.add(aux);
-            exe.execute(aux);
+    private void addEventoSimpleConstructor(String eventoString, String user) throws LESException{
+        Usuario usr = new Usuario();
+        usr.setUsuario(user);
+        Evento evnt = new Evento(eventoString, true, usr);
+        int v = con.addEvento(evnt);
+        if(v == ConexionExtendedHouse.QUERYSTATUS_OK){
+            buscarEventos();
         }else{
-            throw new Exception("Maximo de eventos permitidos exedido");
+            throw new LESException("Registro existente o relativo a error");
         }
-        
+    }
+
+    public boolean removeEventoSiemple(String eventoString) {
+        boolean existe = false;
+        for (HiloDeEventoLES hdeles : eventos) {
+            System.err.println(hdeles.getEventoString());
+            if (hdeles.getEventoString().equals(eventoString)) {
+                hdeles.interrupt();
+                hdeles.stopIt();
+                eventos.remove(hdeles);
+                hdeles = null;
+                existe = true;
+                break;
+            }
+        }
+        return existe;
     }
     
-    public void addEventoListener(EventoListener l){
+    private void startYAddEventoLES(String eventoString,String user) throws LESException{
+        HiloDeEventoLES aux = new HiloDeEventoLES(eventoString,user, this);
+        eventos.add(aux);
+        aux.start();
+    }
+    /**
+     * NOTA: Al recorrer esta lista deve estar con una condicion sycronized plz
+     * @return lista de eventos actuales en ejecucion
+     */
+    public synchronized  List<HiloDeEventoLES> getEventInExecutionList(){
+        return eventos;
+    }
+
+    public void addEventoListener(EventoListener l) {
         show = l;
     }
     
+    public EventoListener getEventoListener(){
+        return show;
+    }
+
     public void save() {
-        exe.shutdown();
+        for(HiloDeEventoLES les : eventos){
+            if(!les.isStop()){
+                les.interrupt();
+            }
+        }
+    }
+    public void sincronizarEventosEnRAMtoBD(){ // nose si esta bien >_<
+        for (Evento evtBd : con.getEventos()) {
+            String eventoStringBd = evtBd.getEvento_simple();
+            boolean existeEnRam = false;
+            for(HiloDeEventoLES eventoLesRam: eventos){
+                if(eventoLesRam.getEventoString().equals(eventoStringBd)){
+                    existeEnRam = true;
+                }
+            }
+            if(!existeEnRam){
+                con.removeEvento(eventoStringBd);
+            }
+        }
     }
 
-    
-    
-
-//    public static ScheduleInfo getScheduleInfo(String ssl) throws Exception{
-//        TreeMap<Integer,String> tm = new TreeMap<Integer,String>();
-//        StringTokenizer token = new StringTokenizer(ssl);
-//        int cont = 0;
-//        while(token.hasMoreTokens()){
-//            String palabla = token.nextToken();
-//            tm.put(cont, palabla);
-//            cont++;
-//        }
-//        analisis(tm);
-//        
-//        return null;
-//    }
-//
-//    private static void analisis(TreeMap<Integer, String> tm) {
-//        for (Map.Entry<Integer, String> entry : tm.entrySet()) {
-//            String value = entry.getValue();
-//            Integer key = entry.getKey();
-//            System.out.printf("%d\t\t%s\n",key,value);
-//        }
-//    }
-
-        
-        
-        //        Set<Integer> claves = tm.keySet();
-        //        TreeSet<Integer> clavesOrdenadas = new TreeSet<Integer>(claves);
-        //        for(Integer clave:clavesOrdenadas){
-        //            String valor = tm.get(clave);
-        //            System.out.printf("%d\t\t%s\n",clave,valor);
-        //        }
-
-
-
+    private void buscarEventos() throws LESException {
+        boolean existe = false;
+        for (Evento evt : con.getEventos()) {
+            if(evt.isActivo()){
+                String eventoString = evt.getEvento_simple();
+                System.err.println("databaseEvent:"+eventoString);
+                Iterator<HiloDeEventoLES> it = eventos.iterator();
+                existe = false;
+                while(it.hasNext()){
+                    HiloDeEventoLES les = it.next();
+                    if(les.getEventoString().equals(eventoString)){
+                        existe = true;
+                        break;
+                    }
+                }
+                if(!existe){
+                    try{
+                        startYAddEventoLES(eventoString,evt.getUsuario().getUsuario());
+                    }catch(LESException e){
+                        con.removeEvento(eventoString);
+                        throw e;
+                    }
+                }
+                
+            }
+        }
 
     }
 
+
+}

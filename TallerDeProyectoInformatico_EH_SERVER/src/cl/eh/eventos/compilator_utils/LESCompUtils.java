@@ -5,6 +5,7 @@
 package cl.eh.eventos.compilator_utils;
 
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -17,6 +18,26 @@ public class LESCompUtils {
     public static final String[] TIPOS_DE_FIJADOS =
     {"cambiar","encendido","apagado"};
 
+    public static String getHtmlLESString(String s){
+        StringTokenizer stToken = new StringTokenizer(s);
+        StringBuilder sb = new StringBuilder();
+        final String espacio = " ";
+        sb.append(espacio);
+        sb.append("<center>");
+        while(stToken.hasMoreTokens()){
+            String palabra = stToken.nextToken();
+            if(isAPablabraRecervada(palabra)){
+                sb.append("<b style='color:red'>");
+                sb.append(palabra);
+                sb.append("</b>");
+            }else{
+                sb.append(palabra.toLowerCase());
+            }
+            sb.append(espacio);
+        }
+        sb.append("</center>");
+        return sb.toString();
+    }
     public static boolean isAPablabraRecervada(String palabra){
         for(String a : PALABRAS_RECERVADAS){
             if(a.equalsIgnoreCase(palabra)){

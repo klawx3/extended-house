@@ -10,7 +10,10 @@ import cl.eh.db.model.Historial;
 import cl.eh.db.model.Rol;
 import cl.eh.db.model.Sensor;
 import cl.eh.db.model.Usuario;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,15 +22,42 @@ import java.util.logging.Logger;
  * @author Usuario
  */
 public final class ConexionExtendedHouse extends Conexion implements ExtendedHouseDatabaseModel {
+    
     public static final String DB_ADMIN = "ADMIN";
     public static final String DB_NORMAL_USER = "USER";
     public static final int NULL_ID = -1;
     public static final String EXTENDEDHOUSE_DEFAULT_USER = "extended_house";
     public static final String PORT = "3306";
+    
+    public static final int QUERYSTATUS_OK = 1;
+    public static final int QUERYSTATUS_DUPLICATE = 2;
+    public static final int QUERYSTATUS_CRITICAL_ERROR= 3;
+    
+    public static enum Tabla{
+       ACTUADOR("actuador"),
+       SENSOR("sensor"),
+       UBICACION("ubicacion"),
+       USUARIO("usuario"),
+       EVENTO("evento_simple"),
+       HISTORIAL("historial"),
+       ROL("rol");
+       
+       private final String nom_tabla;
+       Tabla(String nom_tabla){
+           this.nom_tabla = nom_tabla;
+       }
+       public String getDbName(){
+           return this.nom_tabla;
+       }
+    }
+    
+    
     private String ip_db;
     private String nom_db;
     private String user_db;
     private String pass_db;
+    
+    
 
     public ConexionExtendedHouse(String ip_db, String nom_db, String user_db, String pass_db) {
         super("jdbc:mysql://" + ip_db + "/" + nom_db, user_db, pass_db);
@@ -41,25 +71,33 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void addEvento(Evento obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int addEvento(Evento obj)  {
+        try {
+            addObjectToDatabase(obj);
+            return QUERYSTATUS_OK;
+        }catch(MySQLIntegrityConstraintViolationException ex){
+            return QUERYSTATUS_CRITICAL_ERROR;
+        }catch (SQLException ex) {
+            return QUERYSTATUS_DUPLICATE;
+        }
+    }
+    
+    public boolean removeEvento(String eventoSimpleString){
+        String query = "DELETE FROM "+Tabla.EVENTO.getDbName()+" "
+                + "WHERE evento_simple = '"+eventoSimpleString+"'";
+        return customQuery(query);
     }
 
-    public void addHistorial(Historial obj) {
-        if (isConnected()) {
-            try {
-                synchronized (con) {
-                    est = con.createStatement();
-                    est.execute(QueryGenerator.getQuery(obj));
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            System.err.println("No esta conectado.. imposible registar");
+    public int addHistorial(Historial obj) {
+        try {
+            addObjectToDatabase(obj);
+            return QUERYSTATUS_OK;
+        }catch(MySQLIntegrityConstraintViolationException ex){
+            return QUERYSTATUS_CRITICAL_ERROR;
+        }catch (SQLException ex) {
+            return QUERYSTATUS_DUPLICATE;
         }
-
-
+        
     }
 
     public void addRol(Rol obj) {
@@ -72,6 +110,70 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
 
     public void addUsuario(Usuario obj) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public List<Actuador> getActuadores() {
+        String query = "SELECT actuador.id,actuador.nombre,actuador.numero,ubicacion.nombre as ubicacion,actuador.caracteristicas "
+                + "FROM actuador,ubicacion "
+                + "WHERE actuador.ubicacion = ubicacion.id";
+        if (isConnected()) {
+            try {
+                List<Actuador> lista = new ArrayList<Actuador>();
+                synchronized (con) {
+                    est = con.createStatement();
+                    rs = est.executeQuery(query);
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String nombre = rs.getString("nombre");
+                        int numero = rs.getInt("numero");
+                        String ubicacion = rs.getString("ubicacion");
+                        String caracteristicas = rs.getString("caracteristicas");
+                        Actuador actuador = 
+                                new Actuador(id,nombre,numero,ubicacion
+                                ,caracteristicas,null,-1);
+                        lista.add(actuador);
+                    }
+                }
+                return lista;
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.err.println("No esta conectado.. imposible registar");
+        }
+        return null;
+    }
+
+    public List<Evento> getEventos() {
+        String query = "SELECT * FROM evento_simple";
+        if (isConnected()) {
+            try {
+                List<Evento> lista = new ArrayList<Evento>();
+                synchronized (con) {
+                    est = con.createStatement();
+                    rs = est.executeQuery(query);
+                    while (rs.next()) {
+                        String eventoSimple = rs.getString("evento_simple");
+                        boolean activo = rs.getInt("activo") == 1 ? true : false;
+                        String user = rs.getString("usuario");
+                        Evento evtoS = new Evento();
+                        Usuario usr = new Usuario();
+                        usr.setUsuario(user);
+                        evtoS.setUsuario(usr);
+                        evtoS.setActivo(activo);
+                        evtoS.setEvento_simple(eventoSimple);
+                        lista.add(evtoS);
+                    }
+                }
+                return lista;
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName())
+                        .log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.err.println("No esta conectado.. imposible registar");
+        }
+        return null;
     }
 
     public int getIdOfActuador(Actuador obj) {
@@ -172,19 +274,45 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         return borrado_ok;
     }
     
-    public boolean customQuery(String query){
+    public boolean customQuery(String query) {
         if (query != null) {
-            try {
-                synchronized (con) {
-                    est = con.createStatement();
-                    est.execute(query);
-                    return true;
+            if (isConnected()) {
+                try {
+                    synchronized (con) {
+                        est = con.createStatement();
+                        est.execute(query);
+                        return true;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            } catch (SQLException ex) {
-                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         }
         return false;
+    }
+    
+    public void addObjectToDatabase(Object obj) 
+            throws MySQLIntegrityConstraintViolationException, SQLException{
+        if (obj != null) {
+            if (isConnected()) {
+
+                    synchronized (con) {
+                        est = con.createStatement();
+                        String query = QueryGenerator.getQuery(obj);
+                        if(query != null){
+                            est.execute(query);
+                        }else{
+                            System.err.println("Error en el generador de consultas");
+                        }
+                    }
+
+            } else {
+                System.err.println("No esta conectado.. imposible registar");
+            }
+        }else{
+            System.err.println("Objeto es null");
+        }
     }
 
     public String getIp_db() {

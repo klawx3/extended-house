@@ -31,17 +31,10 @@ public class QueryGenerator {
         }else if(object instanceof Evento){
 
             Evento evnt = (Evento)object;
-            String v3, v4, v5, v6, v7;
-            v3 = Integer.toString(evnt.getId_actuador());
-            v4 = (evnt.getId_sensor() == 0)
-                    ? "NULL" : Integer.toString(evnt.getId_sensor());
-            v5 = (evnt.getId_sensor_sec() == 0)
-                    ? "NULL" : Integer.toString(evnt.getId_sensor_sec());
-            v6 = MysqlCalendar.getMysqlDateString(evnt.getTiempo());
-            v7 = evnt.isIncluyente() ? "1" : "0";
-            query = "INSERT INTO evento "
-                    + "VALUES(NULL,'" + evnt.getNombre_evento()
-                    + "'," + v3 + "," + v4 + "," + v5 + ",'" + v6 + "'," + v7 + ")";
+            String v1 = evnt.getEvento_simple();
+            String v2 = evnt.isActivo() ? "1" : "0";
+            String v3 = evnt.getUsuario().getUsuario();
+            query = "INSERT INTO evento_simple VALUES(NULL,'"+v1+"',"+v2+",'"+v3+"')";
         }
         //System.out.println("QGEN:"+query);
         return query;

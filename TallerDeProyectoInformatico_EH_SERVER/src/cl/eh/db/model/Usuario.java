@@ -21,6 +21,10 @@ public class Usuario {
         this.id_rol = id_rol;
     }
 
+    public Usuario() {
+        
+    }
+
     public String getContraseña() {
         return contraseña;
     }

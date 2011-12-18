@@ -4,10 +4,6 @@
  */
 package cl.eh.arduino;
 
-import cl.eh.exceptions.ArduinoIOException;
-import cl.eh.common.ArduinoHelp;
-import cl.eh.serial.SerialOutput;
-import cl.eh.arduino.model.ArduinoEvent;
 import cl.eh.arduino.model.ArduinoEventListener;
 import javax.swing.event.EventListenerList;
 import cl.eh.util.Log;
@@ -25,7 +21,7 @@ import static com.esotericsoftware.minlog.Log.*;
  *
  * @author Usuario
  */
-public final class SerialArduino {
+public final class SerialArduino_RESPALDO {
 
     public static final String SECTOR = SerialArduino.class.getSimpleName();
     protected EventListenerList listenerList = new EventListenerList();
@@ -36,10 +32,8 @@ public final class SerialArduino {
     public static OutputStream output;
     private SerialPort serialPort;
     private String puerto;
-    private SerialOutput serial_output;
 
-    public SerialArduino(String puerto) {
-        serial_output        = new SerialOutput(ArduinoHelp.ENDOFSTRING);
+    public SerialArduino_RESPALDO(String puerto) {
         this.puerto = puerto;
         connecionArduinoEstablecida = false;
         CommPortIdentifier portId = null;
@@ -76,46 +70,6 @@ public final class SerialArduino {
         } catch (Exception e) {
             error(e.toString());
         }
-        try {
-            serialPort.addEventListener(new SerialPortEventListener() {
-                public void serialEvent(SerialPortEvent evento) {
-                    if (evento.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
-                        try {
-                            int available = SerialArduino.input.available();
-                            byte chunk[] = new byte[available];
-                            SerialArduino.input.read(chunk, 0, available);
-                            serial_output.setChuck(chunk);
-                            while (serial_output.hasNext()) {
-                                String[] dispNumVal = serial_output.next().split(ArduinoHelp.SEPARADOR);
-                                if (dispNumVal.length != 3) {
-                                    throw new ArduinoIOException("Error al leer:" + serial_output.next());
-                                } else {
-                                    String nom = dispNumVal[ArduinoHelp.NOMBREDISPOSITIVO_SERIAL_PRINT_POS];
-                                    try{
-                                        int num = Integer.parseInt(
-                                                dispNumVal[
-                                                ArduinoHelp.NUMERODISPOSITIVO_SERIAL_PRINT_POS]);
-                                        float val = Float.parseFloat(
-                                                dispNumVal[
-                                                ArduinoHelp.VALORDISPOSITIVO_SERIAL_PRINT_POS]);
-
-                                        ArduinoEvent ardEvent = new ArduinoEvent(this,nom,num,val);
-                                        fireArduinoEvent(ardEvent);
-                                    }catch(NumberFormatException e){
-                                        error(SECTOR, e.toString());
-                                    }                               
-                                }
-                            }
-                        } catch (Exception e) {
-                            error(SECTOR, e.toString());
-                        }
-                    }
-                }
-            });
-        } catch (TooManyListenersException ex) {
-            Logger.getLogger(SerialArduino.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        serialPort.notifyOnDataAvailable(true);
     }
     public void addArduinoEventListener(ArduinoEventListener listener) {
         listenerList.add(ArduinoEventListener.class, listener);
@@ -124,20 +78,13 @@ public final class SerialArduino {
     public void removeMyEventListener(ArduinoEventListener listener) {
         listenerList.remove(ArduinoEventListener.class, listener);
     }
-    
-    protected void fireArduinoEvent(ArduinoEvent evt) {
-        Object[] listeners = listenerList.getListenerList();
-        for (int i = 0; i < listeners.length; i += 2) {
-            if (listeners[i] == ArduinoEventListener.class) {
-                ((ArduinoEventListener) listeners[i + 1])
-                        .ArduinoEventListener(evt);
-            }
-        }
+
+    public void addEventListener(SerialPortEventListener evento)
+            throws TooManyListenersException {
+        serialPort.addEventListener(evento);
+        serialPort.notifyOnDataAvailable(true);
     }
-    
-    public boolean isConnecionArduinoEstablecida() {
-        return connecionArduinoEstablecida;
-    }
+
     public void close() {
         if (serialPort != null) {
             serialPort.removeEventListener();
@@ -173,6 +120,8 @@ public final class SerialArduino {
         }
     }
 
-
+    public boolean isConnecionArduinoEstablecida() {
+        return connecionArduinoEstablecida;
+    }
 
 }

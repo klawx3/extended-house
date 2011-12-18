@@ -9,6 +9,7 @@ import cl.eh.eventos.compilator_utils.LESCompUtils;
 import cl.eh.eventos.model.LESCondition;
 import cl.eh.eventos.model.LESDateCondition;
 import cl.eh.exceptions.LESException;
+import cl.eh.util.Arreglos;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.StringTokenizer;
@@ -55,6 +56,11 @@ public class LESObject {
     public EventoEvent getEventoObject() {
         return datos;
     }
+    
+    @Override
+    public String toString(){
+        return eventoString;
+    }
 
     /**
      * uso: el arraylist deve hacer casting
@@ -68,8 +74,6 @@ public class LESObject {
         String actuador = null;
         int formaActivacion = -1;
         int numero = -1;
-
-
         boolean isInConfig = true;
         int configStepts = 0;
         for (int i = 0; i < arrOfTokens.size(); i++) {
@@ -240,36 +244,70 @@ public class LESObject {
             //</editor-fold>
             () {
         int i = 0;
-        long tiempoActual = Calendar.getInstance().getTimeInMillis();
+        
         int TAMAÑO = condiciones.size();
-        long[] tiempo = new long[TAMAÑO];
+        long[] fecha = new long[TAMAÑO];
         long[] tiempoSiguienteEjecucion = new long[TAMAÑO];
+        long tiempoActual = Calendar.getInstance().getTimeInMillis();
         for(LESDateCondition con :condiciones){
-            tiempo[i] = con.getFecha().getTimeInMillis();
-            long t = con.getTiempo();
-            System.out.println("tiempoFecha:"+tiempo[i]);
-            if (t != LESDateCondition.NULL) {
+            fecha[i] = con.getFecha().getTimeInMillis();
+            long tiempoDespuesFecha = con.getTiempo();
+            if (tiempoDespuesFecha != LESDateCondition.NULL) {
                 int tipoTiempo = con.getUnidadTiempo();
                 switch (tipoTiempo) { // to2 se  deja en funcion de millisegundos
                     case LESDateCondition.TIEMPO_HORAS:
-                        t *= (60 * 60 * 1000) + (tiempoActual >= tiempo[i] ? 0 : tiempo[i]);
+                        tiempoDespuesFecha =
+                                (tiempoDespuesFecha * (60 * 60 * 1000))
+                                + ((tiempoActual >= fecha[i]) ? tiempoActual : fecha[i]);
+
                         break;
                     case LESDateCondition.TIEMPO_MINUTOS:
-                        t *= (60 * 1000) + (tiempoActual >= tiempo[i] ? 0 : tiempo[i]);
+                        tiempoDespuesFecha =
+                                (tiempoDespuesFecha * (60 * 1000))
+                                + ((tiempoActual >= fecha[i]) ? tiempoActual : fecha[i]);
                         break;
                     case LESDateCondition.TIEMPO_SEGUNDOS:
-                        t *= (1000) + (tiempoActual >= tiempo[i] ? 0 : tiempo[i]);
+                        tiempoDespuesFecha =
+                                (tiempoDespuesFecha * (1000))
+                                + ((tiempoActual >= fecha[i]) ? tiempoActual : fecha[i]);
                         break;
                     case LESDateCondition.TIEMPO_MILLISEGUNDOS:
+                        tiempoDespuesFecha =
+                                tiempoDespuesFecha
+                                + ((tiempoActual >= fecha[i]) ? tiempoActual : fecha[i]);
                         break;
                 }
-                tiempoSiguienteEjecucion[i] = t;
+                tiempoSiguienteEjecucion[i] = tiempoDespuesFecha;
             } else {
-                tiempoSiguienteEjecucion[i] = tiempo[i];
+                tiempoSiguienteEjecucion[i] = fecha[i];
             }
-            System.out.println("tiempoFechaMOD:"+tiempoSiguienteEjecucion[i]);
+
             i++;
         }
+        /*-------------------------------------*/
+        long _min = -1;
+        int _posMin = -1;
+        for(int h = 0 ; h < TAMAÑO ; h++ ){
+            long diff = tiempoSiguienteEjecucion[h] - tiempoActual;
+            if(h == 0 && diff > 0){
+                _min = tiempoSiguienteEjecucion[h];
+                _posMin = h;
+            }else{
+                if(tiempoSiguienteEjecucion[h] < _min && diff > 0){
+                    _min = tiempoSiguienteEjecucion[h];
+                    _posMin = h;
+                }
+            }
+
+        }
+        if (_posMin != -1) {
+            hasMoreThinksToDo = true;
+            millisecondsToActivate = tiempoSiguienteEjecucion[_posMin] - tiempoActual;
+        } else {
+            hasMoreThinksToDo = false;
+            millisecondsToActivate = -1;
+        }
+        
     }
 
 
