@@ -13,16 +13,38 @@ public class LESClientAdmin {
 
     private boolean isConfiguracionReady;
     private boolean isExtendedFechaSet;
+    private boolean isExtendedFechaSetBeffore;
+    private boolean correctSentence;
 
+    public boolean isCorrectSentence() {
+        return correctSentence;
+    }
+
+    public void setCorrectSentence(boolean correctSentence) {
+        this.correctSentence = correctSentence;
+    }
+
+    public boolean isIsExtendedFechaSetBeffore() {
+        return isExtendedFechaSetBeffore;
+    }
+
+    public void setIsExtendedFechaSetBeffore(boolean isExtendedFechaSetBeffore) {
+        this.isExtendedFechaSetBeffore = isExtendedFechaSetBeffore;
+    }
 
     private String LES;
 
     public LESClientAdmin() {
-        isConfiguracionReady = isExtendedFechaSet = false;
+        isConfiguracionReady = isExtendedFechaSetBeffore = isExtendedFechaSet = correctSentence = false;
+        LES = null;
+    }
+    
+    public void resetAllValues(){
+        isConfiguracionReady = isExtendedFechaSetBeffore = isExtendedFechaSet = correctSentence = false;
         LES = null;
     }
 
-    public String getLES() {
+    public final String getLES() {
         return LES;
     }
 

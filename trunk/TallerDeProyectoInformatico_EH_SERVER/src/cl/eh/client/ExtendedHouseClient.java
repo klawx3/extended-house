@@ -45,6 +45,7 @@ import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -81,10 +82,15 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         actuadorInfoList = new ArrayList<ActuadorInfo>();
         status_eh = new StatusExtendedHouse();
         modelo_lista_rest = new ModeloListaRestauracion();
-        params = new Parametros(
-                super.getParameter(Parametros.PARAM_SERVERIP),
-                super.getParameter(Parametros.PARAM_CLIENTIP),
-                super.getParameter(Parametros.PARAM_USER));
+        if (pruebaLocal) {
+            params = new Parametros("localhost", "localhost", "extended_house");
+        } else {
+            params = new Parametros(
+                    super.getParameter(Parametros.PARAM_SERVERIP),
+                    super.getParameter(Parametros.PARAM_CLIENTIP),
+                    super.getParameter(Parametros.PARAM_USER));
+        }
+
         loadCliente();
         try {
             java.awt.EventQueue.invokeAndWait(new Runnable() {
@@ -106,8 +112,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                     initComponents();
                     sen_pasivo = new ImageIcon(getClass().getResource("/cl/eh/images/selection.png"));
                     sen_activo = new ImageIcon(getClass().getResource("/cl/eh/images/sensor_pasivo.png"));
-                    jTextField5.setEnabled(false);
+                    jFormattedTextField3.setEnabled(false);
                     jComboBox4.setEnabled(false);
+                    jMenuBar1.setVisible(true);
                     
                 }
             });
@@ -134,7 +141,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                     vc.user = params.getUser();
                     vc.client_ip = params.getIp_cliente();
                 } else {
-                    vc.user = "weon";
+                    vc.user = "extended_house";
                     vc.client_ip = "127.0.0.1";
                 }
 
@@ -145,8 +152,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
             @Override
             public void disconnected(Connection connection) {
-                System.out.println("El servidor se ha caido:");
-                jTextField2.setText("DOWN");
+                jTextField2.setText("Desconectado");
                 jTextField2.setForeground(new java.awt.Color(255, 0, 0));
             }
 
@@ -395,24 +401,27 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jComboBox3 = new javax.swing.JComboBox();
         jButton12 = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jPanel15 = new javax.swing.JPanel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
         jComboBox4 = new javax.swing.JComboBox();
         jButton10 = new javax.swing.JButton();
-        jLabel35 = new javax.swing.JLabel();
-        jButton11 = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
         jLabel31 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
         jLabel30 = new javax.swing.JLabel();
         jFormattedTextField2 = new javax.swing.JFormattedTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
+        jFormattedTextField3 = new javax.swing.JFormattedTextField();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jPanel16 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jEditorPane1 = new javax.swing.JEditorPane();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JToolBar.Separator();
         jLabel1 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -482,13 +491,23 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jTextField4 = new javax.swing.JTextField();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jPanel17 = new javax.swing.JPanel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jButton16 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jToolBar2 = new javax.swing.JToolBar();
         jLabel26 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         jDialog1.setAlwaysOnTop(true);
         jDialog1.setBounds(new java.awt.Rectangle(0, 0, 350, 300));
@@ -503,7 +522,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel2.setText("Actuador");
         jPanel14.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
-        cbo_actuador.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        cbo_actuador.setFont(new java.awt.Font("Verdana", 0, 9));
         cbo_actuador.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel14.add(cbo_actuador, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 170, -1));
 
@@ -511,8 +530,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel28.setText("Estado");
         jPanel14.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
-        jComboBox3.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Encendido", "Apagado", "Cambio" }));
+        jComboBox3.setFont(new java.awt.Font("Verdana", 0, 9));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Encendido", "Apagado", "Cambiar" }));
         jPanel14.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 80, -1));
 
         jButton12.setText("Guardar configuracion");
@@ -529,22 +548,44 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jLabel29.setText("Actuador Nº");
         jDialog1.getContentPane().add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
 
+        jButton13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/book_open.png"))); // NOI18N
+        jButton13.setText("Limpiar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 100, -1));
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/book_add.png"))); // NOI18N
+        jButton14.setText("Aceptar");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jButton14, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 110, -1));
+
+        jButton15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/book_previous.png"))); // NOI18N
+        jButton15.setText("Salir");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
+        jDialog1.getContentPane().add(jButton15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 100, -1));
+
+        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Deficion de fecha/tiempo del evento", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 9))); // NOI18N
+
         jLabel32.setText("(");
-        jDialog1.getContentPane().add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
         jLabel33.setText(")");
-        jDialog1.getContentPane().add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 10, -1));
 
-        jLabel34.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel34.setFont(new java.awt.Font("Verdana", 0, 9));
         jLabel34.setText("Ejecutar Cada:");
-        jDialog1.getContentPane().add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 10));
 
-        jTextField5.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
-        jDialog1.getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 60, 20));
-
-        jComboBox4.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jComboBox4.setFont(new java.awt.Font("Verdana", 0, 9));
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "millisegundos", "horas", "minutos", "segundos" }));
-        jDialog1.getContentPane().add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 130, 100, 20));
 
         jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/add.png"))); // NOI18N
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -552,33 +593,16 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 jButton10ActionPerformed(evt);
             }
         });
-        jDialog1.getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 100, 50, 50));
 
-        jLabel35.setText("String resultante:");
-        jDialog1.getContentPane().add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 130, -1));
-
-        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/alarm.png"))); // NOI18N
-        jButton11.setText("Agregar Evento");
-        jDialog1.getContentPane().add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 360, 30));
-
-        jEditorPane1.setContentType("text/html");
-        jScrollPane4.setViewportView(jEditorPane1);
-
-        jDialog1.getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 400, 80));
-
-        jLabel31.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Verdana", 0, 9));
         jLabel31.setText("Fecha:");
-        jDialog1.getContentPane().add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/dd/yyyy"))));
-        jDialog1.getContentPane().add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 80, 20));
+        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("d-MM-yyyy"))));
 
         jLabel30.setFont(new java.awt.Font("Verdana", 0, 9));
         jLabel30.setText("Hora:");
-        jDialog1.getContentPane().add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 100, -1, -1));
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance())));
-        jDialog1.getContentPane().add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, 80, 20));
+        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getTimeInstance(java.text.DateFormat.MEDIUM))));
 
         jCheckBox1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -590,37 +614,128 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        jDialog1.getContentPane().add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+
+        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        jLabel36.setText("(");
+
+        jLabel37.setText(")");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addComponent(jLabel32)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel31)
+                        .addGap(6, 6, 6)
+                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel34)
+                        .addGap(5, 5, 5)
+                        .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel30)
+                        .addGap(12, 12, 12)
+                        .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckBox1))
+                .addGap(9, 9, 9)
+                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel32))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel31)
+                            .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel36))
+                        .addGap(10, 10, 10)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel30)
+                            .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(10, 10, 10)
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(jLabel33)
+                        .addGap(16, 16, 16)
+                        .addComponent(jCheckBox1))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel37))
+                    .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
+
+        jDialog1.getContentPane().add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 380, 100));
+
+        jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Cadena Resultante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 0, 9))); // NOI18N
+
+        jEditorPane1.setContentType("text/html");
+        jEditorPane1.setFont(new java.awt.Font("Verdana", 0, 10));
+        jScrollPane4.setViewportView(jEditorPane1);
+
+        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
+        jPanel16.setLayout(jPanel16Layout);
+        jPanel16Layout.setHorizontalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+        );
+        jPanel16Layout.setVerticalGroup(
+            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jDialog1.getContentPane().add(jPanel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 380, 130));
 
         setForeground(new java.awt.Color(255, 255, 255));
 
         jToolBar1.setFloatable(false);
 
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 11));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/lightning.png"))); // NOI18N
-        jButton1.setText("Conectar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jToolBar1.add(jButton1);
-        jToolBar1.add(jSeparator1);
-
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         jLabel1.setText("Server status:");
         jToolBar1.add(jLabel1);
 
         jTextField2.setEditable(false);
+        jTextField2.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         jToolBar1.add(jTextField2);
         jToolBar1.add(jSeparator2);
 
+        jLabel27.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         jLabel27.setText("Usuarios Conectados:");
         jToolBar1.add(jLabel27);
 
         txt_usuarios.setEditable(false);
+        txt_usuarios.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
         jToolBar1.add(txt_usuarios);
 
-        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 11));
+        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -961,9 +1076,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         jPanel12Layout.setVerticalGroup(
@@ -974,7 +1089,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 250));
@@ -1003,12 +1118,14 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(185, Short.MAX_VALUE))
+                .addContainerGap(187, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 210, 250));
 
         jTabbedPane1.addTab("Gestion de Respaldos", jPanel11);
+
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setFont(new java.awt.Font("Verdana", 0, 11));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -1021,12 +1138,17 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         ));
         jScrollPane3.setViewportView(jTable1);
 
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 586, 113));
+
+        jButton3.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/find.png"))); // NOI18N
         jButton3.setText("Obtener Información");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 170, 30));
 
         jButton7.setText("enviar LES");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -1034,57 +1156,86 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 jButton7ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
 
+        jButton8.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/delete.png"))); // NOI18N
         jButton8.setText("Eliminar Evento");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 158, 30));
 
+        jButton9.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/add.png"))); // NOI18N
         jButton9.setText("Crear LES");
+        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton9MouseClicked(evt);
+            }
+        });
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton9ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 150, 30));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
-                .addContainerGap(160, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButton9)
-                .addContainerGap(449, Short.MAX_VALUE))
+        jButton11.setText("jButton11");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 91, -1));
+
+        jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Creacion de Evento"));
+
+        jTextPane1.setContentType("text/html");
+        jTextPane1.setEditable(false);
+        jTextPane1.setFont(new java.awt.Font("Verdana", 0, 11));
+        jScrollPane5.setViewportView(jTextPane1);
+
+        jButton16.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/alarm.png"))); // NOI18N
+        jButton16.setText("Comenzar Ejcucion de evento");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Verdana", 0, 11));
+        jLabel3.setText("ES Actual:");
+
+        javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
+        jPanel17.setLayout(jPanel17Layout);
+        jPanel17Layout.setHorizontalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addComponent(jLabel3)
+                .addGap(11, 11, 11)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButton16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton8))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7))
-                .addGap(18, 18, 18)
-                .addComponent(jButton9)
-                .addContainerGap(48, Short.MAX_VALUE))
+        jPanel17Layout.setVerticalGroup(
+            jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel17Layout.createSequentialGroup()
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel3))
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(2, 2, 2)
+                .addComponent(jButton16)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jPanel3.add(jPanel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, -1, 90));
 
         jTabbedPane1.addTab("Gestion de eventos", jPanel3);
 
@@ -1096,13 +1247,43 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jTextField3.setEditable(false);
         jToolBar2.add(jTextField3);
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/user.png"))); // NOI18N
+        jMenu1.setText("Menu");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/connect.png"))); // NOI18N
+        jMenuItem1.setText("Conectar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/disconnect.png"))); // NOI18N
+        jMenuItem2.setText("Desconectar");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
-            .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+            .addComponent(jToolBar2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1114,30 +1295,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 .addComponent(jToolBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        new Thread("Conectar a servidor") {
-
-            @Override
-            public void run() {
-                try {
-                    if (pruebaLocal) {
-                        client.connect(5000, "127.0.0.1", Network.getNetworkPort());
-                    } else {
-                        client.connect(5000, params.getIp_server(), Network.getNetworkPort());
-                    }
-                    jTextField2.setText("UP");
-                    jTextField2.setForeground(new java.awt.Color(0, 255, 0));
-                    jButton1.setEnabled(false);
-                    /*VALIDO ALTOKE ^^*/
-                } catch (IOException ex) {
-                    jTextField2.setText(ex.getMessage());
-                    jTextField2.setForeground(new java.awt.Color(255, 0, 0));
-                }
-            }
-        }.start();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btn_rele1_onActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_rele1_onActionPerformed
         int señal = 0;
@@ -1314,7 +1471,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             MakeDatabaseRestore mdr = new MakeDatabaseRestore();
             mdr.fecha = sr.getFecha_res().getTimeInMillis();
             mdr.restaurarYEliminarDatosHastaLaFecha = true;
-            System.out.println(Fecha2.getHora(sr.getFecha_res(), '-'));
             client.sendTCP(mdr);
         }else{
             JOptionPane.showMessageDialog(rootPane
@@ -1331,14 +1487,13 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         Network.CreacionEvento ce = new CreacionEvento();
-        ce.LES = jTextField4.getText();
+//        ce.LES = jTextField4.getText();
         client.sendTCP(ce);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
-        if(selectedRow != -1){
-                    System.err.println("row;"+selectedRow);
+        if (selectedRow != -1) {
             Object e = jTable1.getModel().getValueAt(selectedRow, 0);
             if (e instanceof LESString) {
                 LESString lesString = (LESString) e;
@@ -1354,41 +1509,84 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        jDialog1.setVisible(true);
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        ActuadorInfo ainfo = (ActuadorInfo) cbo_actuador.getSelectedItem();
-        String fijar = (String) jComboBox3.getSelectedItem();
+        if (!les_client.isIsConfiguracionReady()) {
+            ActuadorInfo ainfo = (ActuadorInfo) cbo_actuador.getSelectedItem();
+            String fijar = (String) jComboBox3.getSelectedItem();
 
-        String les = "EN " + ainfo.getNombre()
-                + " NUMERO " + ainfo.getNumero()
-                + " FIJAR " + fijar;
-        les_client.setLES(les);
-        les_client.setIsConfiguracionReady(true);
-        SwingUtilities.invokeLater(new Runnable() {
+            String les = "EN " + ainfo.getNombre()
+                    + " NUMERO " + ainfo.getNumero()
+                    + " FIJAR " + fijar;
+            les_client.setLES(les);
+            les_client.setIsConfiguracionReady(true);
+            SwingUtilities.invokeLater(new Runnable() {
 
-            public void run() {
-                jEditorPane1.setText(LESCompUtils.getHtmlLESString(les_client.getLES()));
-            }
-        });
-        cbo_actuador.setEnabled(false);
-        jComboBox3.setEnabled(false);
+                public void run() {
+                    jEditorPane1.setText(LESCompUtils.getHtmlLESString(les_client.getLES()));
+                    cbo_actuador.setEnabled(false);
+                    jComboBox3.setEnabled(false);
+                }
+            });
+            
 
-        
-        System.out.println(ainfo.getNumero());
+        }
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        final String NBS = " ";
         if(les_client.isIsConfiguracionReady()){
-            String tiempo1 = jFormattedTextField1.getText();
-            if(!tiempo1.isEmpty()){
-                
-            }else{
-                //error
+            StringBuilder sb = new StringBuilder();
+            sb.append(NBS);
+            if (les_client.isIsExtendedFechaSetBeffore()) {
+                sb.append("y");
+            } else {
+                les_client.setIsExtendedFechaSetBeffore(true);
             }
-        }else{
-            //error
+            sb.append(NBS);
+            String fecha = jFormattedTextField1.getText().trim();
+            String hora = jFormattedTextField2.getText().trim();
+            if (!fecha.isEmpty()) {
+                String lesAnterior = les_client.getLES();
+                sb.append("PARA");
+                sb.append(NBS);
+                sb.append(fecha);
+                if(!hora.isEmpty()){
+                    sb.append("_");
+                    sb.append(hora);
+                }
+                sb.append(NBS);
+                String tiempo222 = "";
+                if (les_client.isIsExtendedFechaSet()) {
+                    int valor = Integer.parseInt(jFormattedTextField3.getText().trim());
+                    String unidad = (String) jComboBox4.getSelectedItem();
+                    tiempo222 += ("CADA " + valor + " " + unidad);
+                }
+                
+                sb.append(tiempo222);
+                sb.insert(0, lesAnterior);
+                les_client.setLES(sb.toString());
+                SwingUtilities.invokeLater(new Runnable() {
+
+                    public void run() {
+                        jEditorPane1.setText(LESCompUtils.getHtmlLESString(les_client.getLES()));
+                        jFormattedTextField1.setValue(null);
+                        jFormattedTextField2.setValue(null);
+                        jFormattedTextField3.setValue(null);
+                        les_client.setIsExtendedFechaSet(false);
+                        jFormattedTextField3.setEnabled(false);
+                        jComboBox4.setEnabled(false);
+                        jCheckBox1.getModel().setSelected(false);
+                    }
+                });
+                les_client.setCorrectSentence(true);
+            } else {
+                sw(jDialog1.getRootPane(),"Fecha vacia",1);
+            }
+        } else {
+            sw(jDialog1.getRootPane(),"Debe primero establecer configuracion",1);
         }
     }//GEN-LAST:event_jButton10ActionPerformed
 
@@ -1399,15 +1597,122 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private void jCheckBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox1ItemStateChanged
         if(evt.getStateChange()==ItemEvent.SELECTED ){
             les_client.setIsExtendedFechaSet(true);
-            jTextField5.setEnabled(true);
+            jFormattedTextField3.setEnabled(true);
             jComboBox4.setEnabled(true);
         }else{
             les_client.setIsExtendedFechaSet(false);
-            jTextField5.setEnabled(false);
+            jFormattedTextField3.setEnabled(false);
             jComboBox4.setEnabled(false);
         }
     }//GEN-LAST:event_jCheckBox1ItemStateChanged
 
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        limpiarFormularioYRestablecerLES();
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        if (!les_client.isCorrectSentence()) {
+            sw(jDialog1.getRootPane(), "No ha formulado todabia un evento", 1);
+        } else {
+            SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    jDialog1.setVisible(false);
+
+                }
+            });
+            jTextPane1.setText(LESCompUtils.getHtmlLESString(les_client.getLES()));
+        }
+
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+
+        limpiarFormularioYRestablecerLES();
+        jDialog1.setVisible(false);
+        
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        if (les_client.isCorrectSentence()) {
+            sw(rootPane, "wea correcta", 2);
+            Network.CreacionEvento ce = new CreacionEvento();
+            ce.LES = les_client.getLES();
+            client.sendTCP(ce);
+            jTextPane1.setText(null);
+
+            les_client.resetAllValues();
+            
+        } else {
+            sw(rootPane, "No ha creado un evento todabia", 1);
+        }
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+        limpiarFormularioYRestablecerLES();
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                jDialog1.setVisible(true);
+                
+
+            }
+        });
+
+    }//GEN-LAST:event_jButton9MouseClicked
+
+private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+}//GEN-LAST:event_jMenu1ActionPerformed
+
+private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+
+        new Thread("Conectar a servidor") {
+
+            @Override
+            public void run() {
+                try {
+                    if (pruebaLocal) {
+                        client.connect(5000, "127.0.0.1", Network.getNetworkPort());
+                    } else {
+                        client.connect(5000, params.getIp_server(), Network.getNetworkPort());
+                    }
+                    jTextField2.setText("UP");
+                    jTextField2.setForeground(new java.awt.Color(50, 255, 50));
+                   // jButton1.setEnabled(false);
+                    /*VALIDO ALTOKE ^^*/
+                } catch (IOException ex) {
+                    jTextField2.setText(ex.getMessage());
+                    jTextField2.setForeground(new java.awt.Color(255, 0, 0));
+                }
+            }
+        }.start();
+}//GEN-LAST:event_jMenuItem1ActionPerformed
+    
+    private void sw(JComponent com,String mensaje,int tipo){
+        String titulo;
+        switch(tipo){
+            case JOptionPane.ERROR_MESSAGE:
+                titulo = "Error";
+                break;
+            case JOptionPane.INFORMATION_MESSAGE:
+                titulo = "Informacion";
+                break;
+            case JOptionPane.PLAIN_MESSAGE:
+                titulo = "Debug";
+                break;
+            case JOptionPane.QUESTION_MESSAGE:
+                titulo = "¿Pregunta?";
+                break;
+            default:
+                titulo = "mensaje";
+
+        }
+        JOptionPane.showMessageDialog(com, mensaje, titulo, tipo);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_rele1_off;
     private javax.swing.JButton btn_rele1_on;
@@ -1426,10 +1731,13 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JButton btn_rele8_off;
     private javax.swing.JButton btn_rele8_on;
     private javax.swing.JComboBox cbo_actuador;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -1445,6 +1753,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1467,12 +1776,14 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1480,12 +1791,20 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1498,7 +1817,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
@@ -1506,8 +1825,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextPane jTextPane1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JToolBar jToolBar2;
     private javax.swing.JTextField txt_usuarios;
@@ -1515,5 +1833,32 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
     private void setButtonEnable(JButton boton, boolean estado) {
         boton.setEnabled(estado);
-    }    
+    }
+
+    private void limpiarFormularioYRestablecerLES() {
+
+        les_client.setIsConfiguracionReady(false);
+        les_client.setIsExtendedFechaSet(false);
+        les_client.setIsExtendedFechaSetBeffore(false);
+        les_client.setCorrectSentence(false);
+        SwingUtilities.invokeLater(new Runnable() {
+
+            public void run() {
+                jEditorPane1.setText(null);
+                setFormularioEnabled(cbo_actuador, true);
+                setFormularioEnabled(jComboBox3, true);
+                setFormularioEnabled(jFormattedTextField3, false);
+                setFormularioEnabled(jComboBox4, false);
+            }
+        });
+
+        jCheckBox1.getModel().setEnabled(true);
+
+
+    }
+
+    private void setFormularioEnabled(JComponent jcomp,boolean enabled){
+        jcomp.setEnabled(enabled);
+    }
+    
 }

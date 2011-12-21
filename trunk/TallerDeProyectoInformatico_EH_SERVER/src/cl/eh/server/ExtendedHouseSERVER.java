@@ -129,7 +129,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                         if (conexion_basedatos.isaValidUser(val_con.user)) {
                             ex_con.isValidConnection = true;
                             info(SECTOR, "Coneccion [" + val_con.user
-                                    + "] Aceptada (" + ex_con.ip + ")");
+                                    + "] Aceptada ip[" + ex_con.ip + "]");
                             ex_con.ip = val_con.client_ip;
                             ex_con.user = val_con.user;
                             ex_con.isAnAdministrador = conexion_basedatos.isaAdministrador(val_con.user);
@@ -138,7 +138,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                         } else {
                             ex_con.isValidConnection = false;
                             info(SECTOR, "Coneccion [" + val_con.user
-                                    + "] rechasada (" + ex_con.ip + ")");
+                                    + "] rechasada ip[" + ex_con.ip + "]");
                             server.sendToTCP(ex_con.getID(), new InvalidConnection());
                             ex_con.isInvalidConnectionRequestSended = true;
                             ex_con.close();
@@ -271,7 +271,6 @@ public final class ExtendedHouseSERVER implements Runnable {
                                 sendMessage(ex_con.getID(), "Mensaje de prueba", JOptionPane.ERROR_MESSAGE);
                                 break;
                             }
-
                         }
                     } else if(object instanceof EventoRequest){
                         Network.ListaEventos listE = new ListaEventos();
@@ -289,8 +288,12 @@ public final class ExtendedHouseSERVER implements Runnable {
                         CreacionEvento cEvt = (CreacionEvento) object;
                         try {
                             lesAdm.addEventoSimpleString(cEvt.LES, ex_con.user);
+                            sendMessage(ex_con.getID()
+                                    , "Evento creado exitosamente"
+                                    , JOptionPane.INFORMATION_MESSAGE);
                         } catch (LESException ex) {
                             error(SECTOR,ex.toString());
+                            ex.printStackTrace();
                             sendMessage(ex_con.getID(),ex.toString(),JOptionPane.ERROR_MESSAGE);
                         }
                     } else if (object instanceof EliminarEventoRequest) {
@@ -386,29 +389,78 @@ public final class ExtendedHouseSERVER implements Runnable {
         if(conexion_basedatos.isConnected()){
             try {
                 lesAdm = new LESAdministador(conexion_basedatos);
+                
                 lesAdm.addEventoListener(new EventoListener() {
-
+                    private boolean eventoHaEfecuandoAlgunaOperacion;
+                    private int valor;
                     public void eventoPerformed(EventoEvent e) {
-                        //eventos....
+                        eventoHaEfecuandoAlgunaOperacion = false;
+                        info(SECTOR, e.getActuador());
+                        info(SECTOR, Integer.toString(e.getAccion()));
+                        info(SECTOR, Integer.toString(e.getNumero_actuador()));
+                        if (e.getActuador().equalsIgnoreCase("rl")) {
+                            switch (e.getAccion()) {
+                                case EventoEvent.ACCI_APAGAR:
+                                    relee_sh.powerOffRelee(e.getNumero_actuador());
+                                    eventoHaEfecuandoAlgunaOperacion = true;
+                                    valor = 0;
+                                    break;
+                                case EventoEvent.ACCI_CAMBIAR:
+                                    if (relee_sh.isReleePowerOn(e.getNumero_actuador())) {
+                                        relee_sh.powerOffRelee(e.getNumero_actuador());
+                                        valor = 0;
+                                    } else {
+                                        relee_sh.powerOnRelee(e.getNumero_actuador());
+                                        valor = 1;
+                                    }
+                                    eventoHaEfecuandoAlgunaOperacion = true;
+                                    //info(SECTOR,"Paso por cambiar");
+                                    break;
+                                case EventoEvent.ACCI_ENCENDER:
+                                    eventoHaEfecuandoAlgunaOperacion = true;
+                                    relee_sh.powerOnRelee(e.getNumero_actuador());
+                                    valor = 1;
+                                    break;
+                                default:
+                                    error(SECTOR, "Operacion Inesperada; accion:[" + e.getAccion() + "]");
+                            }
+                            if(eventoHaEfecuandoAlgunaOperacion){
+                                ArduinoOutput ao = new ArduinoOutput();
+                                ao.dispositivo = e.getActuador();
+                                ao.numero = Integer.toString(e.getNumero_actuador());
+                                ao.valor = valor;
+                                server.sendToAllTCP(ao);
+                                Actuador ef = new Actuador();
+                                ef.setNombre(e.getActuador());//RL
+                                ef.setNumero(e.getNumero_actuador()); // ej: 0
+                                ef.setId(conexion_basedatos.getIdOfActuador(ef));
+                                if (ef.getId() != ConexionExtendedHouse.NULL_ID) { // se registra en bd
+                                    Historial his = new Historial(0, ef, null,
+                                            Calendar.getInstance(),
+                                            ConexionExtendedHouse.EXTENDEDHOUSE_DEFAULT_USER,
+                                            "Localhost",
+                                            (valor == 0) ? "Apagado" : "Encendido");
+                                    conexion_basedatos.addHistorial(his);
+                                } else {
+                                    try {
+                                        throw new Nivel8Exception("weon te dio -1 el id");
+                                    } catch (Nivel8Exception ex) {
+                                        java.util.logging.Logger.getLogger(ExtendedHouseSERVER.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                }
+                            }
+                        } else {
+                            error(SECTOR,"Nombre actuador distinto de [rl]");
+                        }
                     }
                 });
+                lesAdm.start();
                 info(SECTOR,"Administrador de Eventos Simple [INICIADO]");
             } catch (LESException ex) {
                 java.util.logging.Logger
                         .getLogger(ExtendedHouseSERVER.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-//        net_interfaces = new NetworksInterfaces();
-//        List<Interface> interfaces = net_interfaces.getInterfaces();
-//        for(Interface inter: interfaces){
-//            if(inter.isActive()){
-//                info(SECTOR,"[Dispositivo]:"+ inter.getNombreDispositivo()
-//                        +"\n\t\t\t[Interface]:"+inter.getNombreInterface() );
-//                for(Ip ip : inter.getIps()){
-//                        System.out.println("\t\t\t"+ip.getIpString()+"\\"+ip.getMask());     
-//                }
-//            }
-//        }
         info(SECTOR, "Ingresos a la BD en ([ "
                 + ((double) propiedades_server.getDatabase_millisencods_insert()) / (double) (60 * 1000)
                 + " ]min)");

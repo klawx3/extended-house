@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 public class LESCompUtils {
 
     public static final String[] PALABRAS_RECERVADAS = 
-    {"en", "para", "numero", "fijar", "cada", "desde", "millisegundos","horas","minutos","segundos"};
+    {"en", "para", "numero", "fijar", "cada", "desde", "millisegundos","horas","minutos","segundos","y"};
     public static final String[] TIPOS_DE_FIJADOS =
     {"cambiar","encendido","apagado"};
 
@@ -23,15 +23,21 @@ public class LESCompUtils {
         StringBuilder sb = new StringBuilder();
         final String espacio = " ";
         sb.append(espacio);
-        sb.append("<center>");
-        while(stToken.hasMoreTokens()){
+        sb.append("<center style='font:Verdana;font-size:11'>");
+        while (stToken.hasMoreTokens()) {
             String palabra = stToken.nextToken();
-            if(isAPablabraRecervada(palabra)){
+            if (isAPablabraRecervada(palabra)) {
                 sb.append("<b style='color:red'>");
                 sb.append(palabra);
                 sb.append("</b>");
-            }else{
-                sb.append(palabra.toLowerCase());
+            } else {
+                if (palabra.equalsIgnoreCase("y")) {
+                    sb.append("<b style='color:blue'>");
+                    sb.append(palabra.toUpperCase());
+                    sb.append("</b>");
+                } else {
+                    sb.append(palabra.toLowerCase());
+                }
             }
             sb.append(espacio);
         }

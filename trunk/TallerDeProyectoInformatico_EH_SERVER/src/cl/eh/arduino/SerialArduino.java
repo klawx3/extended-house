@@ -114,6 +114,8 @@ public final class SerialArduino {
             });
         } catch (TooManyListenersException ex) {
             Logger.getLogger(SerialArduino.class.getName()).log(Level.SEVERE, null, ex);
+        } catch(java.lang.NullPointerException ex){
+            error(SECTOR,"Probable utilizacion del puerto en otra aplicacion");
         }
         serialPort.notifyOnDataAvailable(true);
     }

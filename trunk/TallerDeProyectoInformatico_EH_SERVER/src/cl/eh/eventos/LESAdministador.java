@@ -31,6 +31,12 @@ public class LESAdministador implements Guardable {
         eventos = Collections.synchronizedList(new ArrayList<HiloDeEventoLES>());
         buscarEventos();
     }
+    
+    public void start() {
+        for (HiloDeEventoLES hilo : eventos) {
+            hilo.start();
+        }
+    }
 
     public void addEventoSimpleString(String eventoString) throws LESException {
         addEventoSimpleConstructor(eventoString,ConexionExtendedHouse.EXTENDEDHOUSE_DEFAULT_USER);
@@ -116,7 +122,6 @@ public class LESAdministador implements Guardable {
         for (Evento evt : con.getEventos()) {
             if(evt.isActivo()){
                 String eventoString = evt.getEvento_simple();
-                System.err.println("databaseEvent:"+eventoString);
                 Iterator<HiloDeEventoLES> it = eventos.iterator();
                 existe = false;
                 while(it.hasNext()){
