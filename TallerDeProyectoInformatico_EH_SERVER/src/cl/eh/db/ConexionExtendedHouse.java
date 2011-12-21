@@ -76,8 +76,10 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             addObjectToDatabase(obj);
             return QUERYSTATUS_OK;
         }catch(MySQLIntegrityConstraintViolationException ex){
+            ex.printStackTrace();
             return QUERYSTATUS_CRITICAL_ERROR;
         }catch (SQLException ex) {
+            ex.printStackTrace();
             return QUERYSTATUS_DUPLICATE;
         }
     }

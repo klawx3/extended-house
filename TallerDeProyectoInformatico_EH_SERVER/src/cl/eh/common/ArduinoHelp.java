@@ -11,7 +11,7 @@ package cl.eh.common;
 public class ArduinoHelp implements ClientArduinoSignal {
     public static final int ACTUADOR = 0;
     public static final int SENSOR   = 1;
-    public static final String SEPARADOR = "-";
+    public static final String SEPARADOR = "!";
     public static final char ENDOFSTRING = ';';
     public static final int NOMBREDISPOSITIVO_SERIAL_PRINT_POS = 0;
     public static final int NUMERODISPOSITIVO_SERIAL_PRINT_POS = 1;
