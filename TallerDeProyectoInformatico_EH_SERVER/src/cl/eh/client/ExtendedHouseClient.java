@@ -491,10 +491,8 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -507,10 +505,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
 
         jDialog1.setAlwaysOnTop(true);
-        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 350, 300));
+        jDialog1.setBounds(new java.awt.Rectangle(0, 0, 400, 420));
         jDialog1.setMinimumSize(new java.awt.Dimension(350, 300));
         jDialog1.setModal(true);
         jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -718,24 +715,24 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
         jToolBar1.setFloatable(false);
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 9));
         jLabel1.setText("Server status:");
         jToolBar1.add(jLabel1);
 
         jTextField2.setEditable(false);
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jTextField2.setFont(new java.awt.Font("Verdana", 0, 9));
         jToolBar1.add(jTextField2);
         jToolBar1.add(jSeparator2);
 
-        jLabel27.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Verdana", 0, 9));
         jLabel27.setText("Usuarios Conectados:");
         jToolBar1.add(jLabel27);
 
         txt_usuarios.setEditable(false);
-        txt_usuarios.setFont(new java.awt.Font("Verdana", 0, 9)); // NOI18N
+        txt_usuarios.setFont(new java.awt.Font("Verdana", 0, 9));
         jToolBar1.add(txt_usuarios);
 
-        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jTabbedPane1.setFont(new java.awt.Font("Verdana", 0, 11));
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1076,9 +1073,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 279, Short.MAX_VALUE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE)
+                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 277, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
         jPanel12Layout.setVerticalGroup(
@@ -1089,7 +1086,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 330, 250));
@@ -1118,7 +1115,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel13Layout.createSequentialGroup()
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(187, Short.MAX_VALUE))
+                .addContainerGap(185, Short.MAX_VALUE))
         );
 
         jPanel11.add(jPanel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, 210, 250));
@@ -1150,14 +1147,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         });
         jPanel3.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 170, 30));
 
-        jButton7.setText("enviar LES");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, -1));
-
         jButton8.setFont(new java.awt.Font("Verdana", 0, 11));
         jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/delete.png"))); // NOI18N
         jButton8.setText("Eliminar Evento");
@@ -1168,7 +1157,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         });
         jPanel3.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, 158, 30));
 
-        jButton9.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton9.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/add.png"))); // NOI18N
         jButton9.setText("Crear LES");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1183,14 +1172,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         });
         jPanel3.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 150, 30));
 
-        jButton11.setText("jButton11");
-        jButton11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton11ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 91, -1));
-
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder("Creacion de Evento"));
 
         jTextPane1.setContentType("text/html");
@@ -1198,7 +1179,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         jTextPane1.setFont(new java.awt.Font("Verdana", 0, 11));
         jScrollPane5.setViewportView(jTextPane1);
 
-        jButton16.setFont(new java.awt.Font("Verdana", 0, 11));
+        jButton16.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
         jButton16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/alarm.png"))); // NOI18N
         jButton16.setText("Comenzar Ejcucion de evento");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -1255,7 +1236,7 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             }
         });
 
-        jMenuItem1.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jMenuItem1.setFont(new java.awt.Font("Verdana", 0, 11));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/connect.png"))); // NOI18N
         jMenuItem1.setText("Conectar");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -1265,15 +1246,12 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem2.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        jMenuItem2.setFont(new java.awt.Font("Verdana", 0, 11));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cl/eh/images/disconnect.png"))); // NOI18N
         jMenuItem2.setText("Desconectar");
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
 
@@ -1485,12 +1463,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
         client.sendTCP(new Network.EventoRequest());
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Network.CreacionEvento ce = new CreacionEvento();
-//        ce.LES = jTextField4.getText();
-        client.sendTCP(ce);
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         if (selectedRow != -1) {
@@ -1560,7 +1532,9 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
                 sb.append(NBS);
                 String tiempo222 = "";
                 if (les_client.isIsExtendedFechaSet()) {
+                   
                     int valor = Integer.parseInt(jFormattedTextField3.getText().trim());
+
                     String unidad = (String) jComboBox4.getSelectedItem();
                     tiempo222 += ("CADA " + valor + " " + unidad);
                 }
@@ -1634,7 +1608,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         if (les_client.isCorrectSentence()) {
-            sw(rootPane, "wea correcta", 2);
             Network.CreacionEvento ce = new CreacionEvento();
             ce.LES = les_client.getLES();
             client.sendTCP(ce);
@@ -1646,10 +1619,6 @@ public class ExtendedHouseClient extends javax.swing.JApplet {
             sw(rootPane, "No ha creado un evento todabia", 1);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
-
-    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
-    }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         limpiarFormularioYRestablecerLES();
@@ -1732,7 +1701,6 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton btn_rele8_on;
     private javax.swing.JComboBox cbo_actuador;
     private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -1743,7 +1711,6 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBox jCheckBox1;
@@ -1792,7 +1759,6 @@ private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JLabel jLabel9;
     private javax.swing.JList jList1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;

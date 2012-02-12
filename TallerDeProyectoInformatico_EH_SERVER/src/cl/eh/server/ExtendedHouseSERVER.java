@@ -4,24 +4,17 @@
  */
 package cl.eh.server;
 
-import cl.eh.arduino.ArduinoCommands;
-import cl.eh.arduino.model.ArduinoEvent;
-import cl.eh.eventos.model.EventoEvent;
-import cl.eh.exceptions.LESException;
-import cl.eh.exceptions.Nivel8Exception;
-import cl.eh.db.model.Actuador;
-import cl.eh.db.model.Historial;
-import cl.eh.db.model.Sensor;
-import cl.eh.common.ArduinoSignal;
+import cl.eh.arduino.*;
+import cl.eh.arduino.model.*;
+import cl.eh.exceptions.*;
+import cl.eh.db.model.*;
 import cl.eh.arduino.ReleeShield;
 import cl.eh.util.NetworksInterfaces;
 import cl.eh.server.ExtendedHouseSERVER.ExtendedHouseConnection;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.arduino.SerialArduino;
 import cl.eh.arduino.model.ArduinoEventListener;
-import cl.eh.common.ArduinoHelp;
-import cl.eh.common.ClientArduinoSignal;
-import cl.eh.common.Network;
+import cl.eh.common.*;
 import cl.eh.common.Network.*;
 import cl.eh.db.AutomaticDatabaseMaintenance;
 import cl.eh.db.ConexionExtendedHouse;
@@ -29,13 +22,15 @@ import cl.eh.db.RespaldoBd;
 import cl.eh.eventos.HiloDeEventoLES;
 import cl.eh.eventos.LESAdministador;
 import cl.eh.eventos.compilator_utils.LESCompUtils;
+import cl.eh.eventos.model.EventoEvent;
 import cl.eh.eventos.model.EventoListener;
 import cl.eh.exceptions.ArduinoIOException;
 import cl.eh.properties.ConfiguracionServidor;
 import cl.eh.properties.PropiedadesServer;
+import cl.eh.scripts.EHJavaScriptAdministrator;
+import cl.eh.scripts.God;
 import cl.eh.serial.SerialOutput;
 import cl.eh.util.ArchivoObjectosJava;
-import cl.eh.util.Fecha;
 import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -58,10 +53,11 @@ import javax.swing.JOptionPane;
  */
 public final class ExtendedHouseSERVER implements Runnable {
 
-    private static final String VERSION = "0.3.3a";
+    private static final String VERSION = "0.5.0";
     private static final String SECTOR = ExtendedHouseSERVER.class.getSimpleName();
     private static final String NOM_ARCH_CONF_SERV = "conf.eh";
-    private static final String WELCOME = "------>>>>Bienvenid@ a EXTENDED HOUSE v" + VERSION + "<<<<<------";
+    private static final String WELCOME = "##########>>>>}Bienvenid@ a EXTENDED HOUSE v" + VERSION + "{<<<<<##########";
+    private static final String SEPARADOR = "=============================================";
     private static final int segundosIntervaloDeEnvioInfoUsuarios = 2;
     private static int numero_de_usuarios_conectados;
     private static SerialArduino serial_arduino;
@@ -69,6 +65,7 @@ public final class ExtendedHouseSERVER implements Runnable {
     private static ReleeShield relee_sh;
     private static ArduinoCommands arduinoComandosEh;
     private static ConfiguracionServidor conf_server_interno;
+    private EHJavaScriptAdministrator scripts;
     private ThreadFrecuente thread_sen_tmp, thread_sen_luz;
     private PropiedadesServer propiedades_server;
     private BufferedReader leer;
@@ -78,6 +75,7 @@ public final class ExtendedHouseSERVER implements Runnable {
     private AutomaticDatabaseMaintenance auto_db;
     private SerialOutput serial_output;
     private LESAdministador lesAdm;
+    private God god;
 
     public ExtendedHouseSERVER() {
         numero_de_usuarios_conectados = 0;
@@ -276,7 +274,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                         Network.ListaEventos listE = new ListaEventos();
                         listE.eventos = new ArrayList();
                         for(HiloDeEventoLES les : lesAdm.getEventInExecutionList()){
-                            Network.Evento evt = new Evento();
+                            Network.Evento evt = new Network.Evento();
                             evt.LesString = les.getEventoString();
                             evt.LesHTMLString = LESCompUtils.getHtmlLESString(les.getEventoString());
                             evt.user = les.getUser();
@@ -343,8 +341,8 @@ public final class ExtendedHouseSERVER implements Runnable {
             server.bind(Network.getNetworkPort());
         } catch (IOException ex) {
             error(SECTOR, ex.getMessage());
-            error(SECTOR, "Verifique que el puerto '"
-                    + Network.getNetworkPort() + "'que no este en uso...");
+            error(SECTOR, "Verifique que el puerto ["
+                    + Network.getNetworkPort() + "]que no este en uso...");
             System.exit(1);
         }
         server.start();
@@ -354,6 +352,9 @@ public final class ExtendedHouseSERVER implements Runnable {
             serial_arduino.addArduinoEventListener(new ArduinoEventListener() {
 
                 public void ArduinoEventListener(ArduinoEvent evt) {
+                    if(god != null){ // se actualiza la informacion de god
+                        god.updateSensorValor(evt);
+                    }
                     ArduinoOutput arduino_output = new ArduinoOutput();
                     arduino_output.dispositivo = evt.getNombreDisositivo();
                     arduino_output.numero = Integer.toString(evt.getNumeroDispositovo());
@@ -395,9 +396,6 @@ public final class ExtendedHouseSERVER implements Runnable {
                     private int valor;
                     public void eventoPerformed(EventoEvent e) {
                         eventoHaEfecuandoAlgunaOperacion = false;
-                        info(SECTOR, e.getActuador());
-                        info(SECTOR, Integer.toString(e.getAccion()));
-                        info(SECTOR, Integer.toString(e.getNumero_actuador()));
                         if (e.getActuador().equalsIgnoreCase("rl")) {
                             switch (e.getAccion()) {
                                 case EventoEvent.ACCI_APAGAR:
@@ -465,8 +463,30 @@ public final class ExtendedHouseSERVER implements Runnable {
                 + ((double) propiedades_server.getDatabase_millisencods_insert()) / (double) (60 * 1000)
                 + " ]min)");
 
-        System.out.println("=========================================");
-        info(SECTOR, Fecha.getFecha(false, false));
+        System.out.println(SEPARADOR);
+        if (conexion_basedatos.isConnected()) {
+            god = new God(conexion_basedatos, serial_arduino, server, relee_sh);
+            info(SECTOR, "Administrador God [INICIADO]");
+        } else {
+            info(SECTOR, "Administrador God [ERROR->NO HAY CONECCION A BD]");
+        }
+        System.out.println(SEPARADOR);
+        try {
+            info(SECTOR, "Iniciando modulo de Scripting de EH.");
+            if (god != null) {
+                scripts = new EHJavaScriptAdministrator(
+                        EHJavaScriptAdministrator.SCRIPT_DEFAULT_DIRECTORY,
+                        god);
+                scripts.startTasks();
+                info(SECTOR, "Modulo de Scripting [INICIANDO]");
+            } else {
+                info(SECTOR, "Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR GOD]");
+            }
+
+        } catch (Exception ex) {
+            error(SECTOR, "Modulo de Scripting [ERROR->" + ex.getMessage() + "]");
+        }
+        System.out.println(SEPARADOR);
 
 
     }

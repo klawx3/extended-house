@@ -120,8 +120,8 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                 + "WHERE actuador.ubicacion = ubicacion.id";
         if (isConnected()) {
             try {
-                List<Actuador> lista = new ArrayList<Actuador>();
-                synchronized (con) {
+                List<Actuador> lista = new ArrayList<>();
+                synchronized (this) {
                     est = con.createStatement();
                     rs = est.executeQuery(query);
                     while (rs.next()) {
@@ -145,13 +145,42 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         }
         return null;
     }
+    public List<Sensor> getSensores(){
+        String query = "SELECT sensor.id,sensor.nombre,sensor.numero,ubicacion.nombre as ubicacion,sensor.caracteristicas "
+                + "FROM sensor,ubicacion "
+                + "WHERE sensor.ubicacion = ubicacion.id";
+        if (isConnected()) {
+            try {
+                List<Sensor> lista = new ArrayList<>();
+                synchronized (this) {
+                    est = con.createStatement();
+                    rs = est.executeQuery(query);
+                    while (rs.next()) {
+                        int id = rs.getInt("id");
+                        String nombre = rs.getString("nombre");
+                        int numero = rs.getInt("numero");
+                        String ubicacion = rs.getString("ubicacion");
+                        String caracteristicas = rs.getString("caracteristicas");
+                        Sensor sen = new Sensor(id,nombre,numero,ubicacion,caracteristicas,-1);
+                        lista.add(sen);
+                    }
+                }
+                return lista;
+            } catch (SQLException ex) {
+                Logger.getLogger(ConexionExtendedHouse.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.err.println("No esta conectado.. imposible registar");
+        }
+        return null;
+    }
 
     public List<Evento> getEventos() {
         String query = "SELECT * FROM evento_simple";
         if (isConnected()) {
             try {
-                List<Evento> lista = new ArrayList<Evento>();
-                synchronized (con) {
+                List<Evento> lista = new ArrayList<>();
+                synchronized (this) {
                     est = con.createStatement();
                     rs = est.executeQuery(query);
                     while (rs.next()) {
@@ -186,7 +215,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                     + "and numero = '" + obj.getNumero() + "'";
 
             try {
-                synchronized (con) {
+                synchronized (this) {
                     est = con.createStatement();
                     rs = est.executeQuery(query);
                     if (rs.next()) {
@@ -207,7 +236,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
             if (!user.isEmpty()) {
                 String query = "SELECT * FROM usuario WHERE usuario = '" + user + "'";
                 try {
-                    synchronized (con) {
+                    synchronized (this) {
                         est = con.createStatement();
                         rs = est.executeQuery(query);
                         if (rs.next()) {
@@ -229,7 +258,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                         + "WHERE usuario.rol = rol.id and rol.nombre = '"+DB_ADMIN+"'"
                         + " and usuario.usuario = '"+user+"' ";
                 try {
-                    synchronized (con) {
+                    synchronized (this) {
                         est = con.createStatement();
                         rs = est.executeQuery(query);
                         if (rs.next()) {
@@ -252,7 +281,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
                     + "and numero = '" + obj.getNumero() + "'";
             //System.err.println("-->String sql:"+query);
             try {
-                synchronized (con) {
+                synchronized (this) {
                     est = con.createStatement();
                     rs = est.executeQuery(query);
                     if (rs.next()) {
@@ -280,7 +309,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         if (query != null) {
             if (isConnected()) {
                 try {
-                    synchronized (con) {
+                    synchronized (this) {
                         est = con.createStatement();
                         est.execute(query);
                         return true;
@@ -299,7 +328,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
         if (obj != null) {
             if (isConnected()) {
 
-                    synchronized (con) {
+                    synchronized (this) {
                         est = con.createStatement();
                         String query = QueryGenerator.getQuery(obj);
                         if(query != null){

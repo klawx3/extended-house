@@ -147,6 +147,24 @@ public final class SerialArduino {
         }
         info(SECTOR,"Serial port comunication closed");
     }
+    
+    public synchronized void enviarSeñal(String s) {
+        if (isConnecionArduinoEstablecida()) {
+            for (int i = 0; i < s.length(); i++) {
+                int _char = s.charAt(i);
+                try {
+                    output.write(_char);
+                    output.flush();
+                } catch (IOException ex) {
+                    Logger.getLogger(SerialArduino.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        } else {
+            info(SECTOR, "No se ha podido enviar señal [" + s + "] a [" + puerto + "], ya que no hay coneccion");
+        }
+
+    }
 
     public synchronized void enviarSeñal(int s) {
         if (isConnecionArduinoEstablecida()) {

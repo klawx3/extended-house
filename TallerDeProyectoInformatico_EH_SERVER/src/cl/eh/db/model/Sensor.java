@@ -18,9 +18,9 @@ public class Sensor {
     private String caracteristicas;
 
     
-    private String puntero;
+    private int puntero;
 
-    public Sensor(int id, String nombre,int numero, String ubicacion,String caracteristicas, String puntero) {
+    public Sensor(int id, String nombre,int numero, String ubicacion,String caracteristicas, int puntero) {
         this.id = id;
         this.nombre = nombre;
         this.numero = numero;
@@ -49,11 +49,11 @@ public class Sensor {
         this.nombre = nombre;
     }
 
-    public String getPuntero() {
+    public int getPuntero() {
         return puntero;
     }
 
-    public void setPuntero(String puntero) {
+    public void setPuntero(int puntero) {
         this.puntero = puntero;
     }
 
