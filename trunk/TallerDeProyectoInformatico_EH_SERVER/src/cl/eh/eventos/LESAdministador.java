@@ -33,9 +33,9 @@ public class LESAdministador implements Guardable {
     }
     
     public void start() {
-        for (HiloDeEventoLES hilo : eventos) {
-            hilo.start();
-        }
+//        for (HiloDeEventoLES hilo : eventos) {
+//            hilo.start();
+//        }
     }
 
     public void addEventoSimpleString(String eventoString) throws LESException {
