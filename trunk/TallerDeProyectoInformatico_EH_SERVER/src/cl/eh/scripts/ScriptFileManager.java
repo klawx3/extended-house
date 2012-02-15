@@ -19,7 +19,7 @@ import javax.swing.event.EventListenerList;
  * @author Administrador
  */
 public class ScriptFileManager extends TimerTask implements FileFilter {
-
+    public static final String FILE_EXTENCION = ".js";
     private String path;
     private List<File> scripts;
 
@@ -46,7 +46,7 @@ public class ScriptFileManager extends TimerTask implements FileFilter {
 
     @Override
     public boolean accept(File pathname) {
-        if (pathname.getName().endsWith("js")) {
+        if (pathname.getName().endsWith(FILE_EXTENCION)) {
             return true;
         }
         return false;

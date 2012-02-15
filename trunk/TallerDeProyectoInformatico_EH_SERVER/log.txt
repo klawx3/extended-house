@@ -1,0 +1,26 @@
+14/02/12 19:11:39 DEBUG: [ExtendedHouseSERVER] Archivo conf.eh Abierto Exitosamente!
+14/02/12 19:11:40  INFO: [ExtendedHouseSERVER] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+14/02/12 19:11:40  INFO: [Conexion] Database Connection open
+14/02/12 19:11:40  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+14/02/12 19:11:41 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+14/02/12 19:11:41  INFO: [kryonet] Server opened.
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Ingresos a la BD en ([ 2.0 ]min)
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+14/02/12 19:11:41  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+14/02/12 19:11:41  INFO: [EHJavaScriptAdministrator] Script [hola] ejecutandose
+14/02/12 19:11:41 DEBUG: [God] Sensor [TMP,0] Encontrado
+15/02/12 5:52:04 DEBUG: [ExtendedHouseSERVER] Archivo conf.eh Abierto Exitosamente!
+15/02/12 5:52:04  INFO: [ExtendedHouseSERVER] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+15/02/12 5:52:05  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+15/02/12 5:52:06  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+15/02/12 5:52:06 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+15/02/12 5:52:06  INFO: [kryonet] Server opened.
+15/02/12 5:52:06  INFO: [ExtendedHouseSERVER] Ingresos a la BD en ([ 2.0 ]min)
+15/02/12 5:52:06  INFO: [ExtendedHouseSERVER] Administrador God [ERROR->NO HAY CONECCION A BD]
+15/02/12 5:52:06  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+15/02/12 5:52:06  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR GOD]
+15/02/12 5:52:06  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+15/02/12 5:53:14  INFO: [ExtendedHouseSERVER] Comando 'hola' no reconocido

@@ -12,7 +12,6 @@ import cl.eh.db.model.Sensor;
 import com.esotericsoftware.kryonet.Server;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import static com.esotericsoftware.minlog.Log.*;
@@ -21,6 +20,7 @@ import static com.esotericsoftware.minlog.Log.*;
  * @author Administrador
  */
 public class God { //falta el de actuador
+    private static final String SECTOR = God.class.getSimpleName();
     public static final String SCRIPT_PARAMETER_NAME = "god";
     private ConexionExtendedHouse con_ex;
     private SerialArduino sa;
@@ -35,40 +35,39 @@ public class God { //falta el de actuador
         this.rs = rs;
         sensores = new HashMap<>();
         updateSensoresKey();
-        
-        
     }
-    private void updateSensoresKey() {
+    
+    private void updateSensoresKey() { // solo 1 llamada desde el contruc.
         Iterator<Sensor> it_sen = con_ex.getSensores().iterator();
         while (it_sen.hasNext()) {
             sensores.put(it_sen.next(), Float.NaN);
         }
     }
-    public void print(String string){
-        debug("GOD",string);
+    
+    public synchronized void print(String string){
+        info(SECTOR,string);
     }
     public void updateSensorValor(ArduinoEvent ardEvt){ // puede sobrecargarse
         Set set = sensores.entrySet();
         Iterator it = set.iterator();
         boolean actualizado = false;
-        while(it.hasNext()){
-            Map.Entry me = (Map.Entry) it.next();
-            Sensor key = (Sensor) me.getKey();
-            if(key.getNombre().equalsIgnoreCase(ardEvt.getNombreDisositivo())){
-                if(key.getNumero() == ardEvt.getNumeroDispositovo()){
+        while (it.hasNext()) {
+            Sensor key = (Sensor) ((Map.Entry) it.next()).getKey();
+            if (key.getNombre().equalsIgnoreCase(ardEvt.getNombreDisositivo())) {
+                if (key.getNumero() == ardEvt.getNumeroDispositovo()) {
                     sensores.put(key, ardEvt.getValorDispositivo());
                     actualizado = true;
                     break;
                 }
             }
-            
+
         }
         if(actualizado){
-            debug("God",
+            trace("God",
                     "Dispositivo ["+ardEvt.getNombreDisositivo()
                     +","+ardEvt.getNumeroDispositovo()+"] Actualizado (valor actualizado)");
         }else{
-            debug("God","No se encontro el dispositivo ["+ardEvt.getNombreDisositivo()
+            trace("God","No se encontro el dispositivo ["+ardEvt.getNombreDisositivo()
                     +","+ardEvt.getNumeroDispositovo()+"] en el cache de la BD.. Imposible actualizar valor");
         }
     }
@@ -82,9 +81,11 @@ public class God { //falta el de actuador
             Float value = (Float) me.getValue();
             if(key.getNombre().equalsIgnoreCase(sensor) 
                     && key.getNumero() == number){
+                trace(SECTOR,"Sensor ["+key.getNombre()+","+key.getNumero()+"] Encontrado");
                 return value;
             }
         }
+        trace(SECTOR,"Sensor ["+sensor+","+number+"] NO Encontrado");
         return null;
     }
     

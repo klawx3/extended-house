@@ -4,9 +4,12 @@
  */
 package cl.eh.scripts;
 
-
+import java.io.Writer;
+import javax.script.Bindings;
+import javax.script.ScriptContext;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -21,62 +24,60 @@ import java.util.logging.Logger;
 import javax.script.Invocable;
 import javax.script.ScriptException;
 import static com.esotericsoftware.minlog.Log.*;
+
 /**
  *
  * @author Administrador
  */
-public class EHJavaScriptAdministrator extends ScriptFileManager{
+public class EHJavaScriptAdministrator extends ScriptFileManager {
+    private static final String SECTOR = "EHJavaScriptAdministrator";
+    private static final String STANDAR_SLEEP_TIME_VAR_NAME = "refresh";
     public static final String SCRIPT_DEFAULT_DIRECTORY = "scripts";
+    private static final long STANDAR_SLEEP_TIME = 10000;
     private final int SCRIPT_MAX_POOL = 20;
     private final long REFRESH_FILE_MILLISECONDS = 10000;
     private JavaScriptModule js;
     private ScriptFileManager script_fm;
-    private List<ScriptInfo> scripts_info;
+    private List<RunnableScript> scripts_info;
     private Timer timer;
     private boolean tasksStarted;
     private ExecutorService pool;
     public God god;
 
-    public EHJavaScriptAdministrator(String directoryName,God god) throws Exception {
+    public EHJavaScriptAdministrator(String directoryName, God god) throws Exception {
         super(directoryName);
         pool = Executors.newFixedThreadPool(SCRIPT_MAX_POOL);
         scripts_info = new ArrayList<>();
         js = new JavaScriptModule();
         tasksStarted = false;
         this.god = god;
-        js.getSE().put(God.SCRIPT_PARAMETER_NAME, god);
+        js.getScriptEngine().put(God.SCRIPT_PARAMETER_NAME, god);
         addNewAddonEventEventListener(new NewScriptEventListener() {
-
             @Override
             public void newScriptEventListener(NewScriptEvent evt) {
                 try {
-                    boolean existeScript = false;
-                    String nomArchivo = evt.getScriptFile().getName();
-                    for(ScriptInfo s_info : scripts_info){
-                        if(s_info.getFileName().equals(nomArchivo)){
-                            existeScript = true;
-                            break;
-                        }
-                    }
-                    if (!existeScript) {
-                        InputStream is = new FileInputStream(evt.getScriptFile());
+                    InputStream is = null;
+                    try {
+                        is = new FileInputStream(evt.getScriptFile());
                         Reader reader = new InputStreamReader(is);
                         if (reader != null) {
-                            RunnableScript rs = getRunnableScript(reader);
+                            String fileName = evt.getScriptFile().getName().replaceAll(FILE_EXTENCION, "");
+                            RunnableScript rs = getRunnableScript(reader, fileName);
                             if (rs != null) { // si existe metodo run
-                                pool.submit(rs); // ejecuto el script
-                                ScriptInfo si = new ScriptInfo(rs,
-                                        evt.getScriptFile().getName());
-                                scripts_info.add(si); // lo agrego a una lista
-                                
-                            }else{
-                                debug("ehjAVAcRIPTaDMIN","NO EXISTE METODO RUN");
+                                pool.submit(rs); // ejecuto el wea
+                                info(SECTOR,"Script ["+fileName+"] ejecutandose");
+                                scripts_info.add(rs); // lo agrego a una lista
+                            } else {
+                                error(SECTOR, "No existe el metodo run en ["+fileName+"]");
                             }
                         }
+                    } catch (FileNotFoundException ex) {
+                        ex.printStackTrace();
                     }
-
-                } catch (FileNotFoundException | ScriptException ex) {
-                    Logger.getLogger(JavaScriptModule.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ScriptException ex) {
+                    error(SECTOR, "Error en el archivo ["
+                            + evt.getScriptFile() + "]:"
+                            + ex.getMessage());
                 }
             }
         });
@@ -109,28 +110,37 @@ public class EHJavaScriptAdministrator extends ScriptFileManager{
         tasksStarted = true;
     }
 
-    private RunnableScript getRunnableScript(Reader si) throws ScriptException {
-        
-        js.getSE().eval(si);
-        Object obj = js.getSE().get("refresh");
-        long refreshTime = 1000;
-        if(obj != null){
-            if(obj instanceof Number){
-                refreshTime = ((Number)obj).longValue();
+    private RunnableScript getRunnableScript(Reader si, String fileName) throws ScriptException {
+        Invocable invocableEngine = (Invocable) js.getScriptEngine();
+        js.getScriptEngine().eval(si);
+        Object sleep_time_millis = js.getScriptEngine().get(STANDAR_SLEEP_TIME_VAR_NAME);
+        long refreshTime = STANDAR_SLEEP_TIME;
+        if (sleep_time_millis != null) {
+            if (sleep_time_millis instanceof Number) {
+                refreshTime = ((Number) sleep_time_millis).longValue();
             }
         }
-        Invocable invocableEngine = (Invocable) js.getSE();
-        Runnable r = invocableEngine.getInterface(Runnable.class);
-        if (r != null) {
-            RunnableScript runnableScript = new RunnableScript(r, refreshTime);
-            return runnableScript;
+        Object runnableJSClass = js.getScriptEngine().get(fileName);
+        if (runnableJSClass != null) {
+            Runnable run = invocableEngine.getInterface(runnableJSClass,
+                    Runnable.class);
+            if (run != null) {
+                RunnableScript runnableScript = new RunnableScript(run,
+                        fileName,
+                        refreshTime);
+                return runnableScript;
+            } else {
+                error(SECTOR, "NO EXISTE el [metodo run] en el objeto [identificador de archivo] en ["+fileName+"]");
+            }
+        } else {
+            error(SECTOR, "NO EXISTE el objeto [identificador de archivo] en ["+fileName+"]");
         }
         return null;
     }
     private boolean stopScriptExecution(String name){
-        for(ScriptInfo si : scripts_info){
-            if(si.getFileName().equals(name)){
-                si.getRunableScript().stopScript();
+        for(RunnableScript si : scripts_info){
+            if(si.getClassName().equals(name)){
+                si.stopScript();
                 scripts_info.remove(si);
                 return true;
             }

@@ -84,7 +84,7 @@ public final class SerialArduino {
                             int available = SerialArduino.input.available();
                             byte chunk[] = new byte[available];
                             SerialArduino.input.read(chunk, 0, available);
-                            serial_output.setChuck(chunk);
+                            serial_output.setChuck(chunk); // LA WEA CACHERA
                             while (serial_output.hasNext()) {
                                 String[] dispNumVal = serial_output.next().split(ArduinoHelp.SEPARADOR);
                                 if (dispNumVal.length != 3) {

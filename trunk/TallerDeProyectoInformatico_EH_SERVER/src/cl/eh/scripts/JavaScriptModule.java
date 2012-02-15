@@ -16,6 +16,7 @@ import javax.script.ScriptEngineManager;
 public class JavaScriptModule {
     
     private ScriptEngine se;
+    private ScriptEngine se2;
     public final String ENGINE_NAME = "JavaScript";
     
     public JavaScriptModule() throws Exception{
@@ -26,6 +27,7 @@ public class JavaScriptModule {
             for (String name : engNames) {
                 if(name.equals(ENGINE_NAME)){
                     se = factory.getScriptEngine();
+                    se2 = factory.getScriptEngine();
                 }
             }
             if(se == null){
@@ -33,9 +35,10 @@ public class JavaScriptModule {
             }
         }
     }
-    public ScriptEngine getSE() {
+    public ScriptEngine getScriptEngine() {
         return se;
     }
+
     
     
 }

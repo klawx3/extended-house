@@ -9,7 +9,6 @@ import cl.eh.arduino.model.*;
 import cl.eh.exceptions.*;
 import cl.eh.db.model.*;
 import cl.eh.arduino.ReleeShield;
-import cl.eh.util.NetworksInterfaces;
 import cl.eh.server.ExtendedHouseSERVER.ExtendedHouseConnection;
 import cl.eh.common.Network.ValidacionConnection;
 import cl.eh.arduino.SerialArduino;
@@ -29,7 +28,6 @@ import cl.eh.properties.ConfiguracionServidor;
 import cl.eh.properties.PropiedadesServer;
 import cl.eh.scripts.EHJavaScriptAdministrator;
 import cl.eh.scripts.God;
-import cl.eh.serial.SerialOutput;
 import cl.eh.util.ArchivoObjectosJava;
 import cl.eh.util.ThreadFrecuente;
 import com.esotericsoftware.kryonet.Connection;
@@ -51,33 +49,31 @@ import javax.swing.JOptionPane;
  *
  * @author Usuario
  */
-public final class ExtendedHouseSERVER implements Runnable {
+public final class ExtendedHouseSERVER {
 
-    private static final String VERSION = "0.5.0";
+    private static final String VERSION = "0.5.3";
     private static final String SECTOR = ExtendedHouseSERVER.class.getSimpleName();
     private static final String NOM_ARCH_CONF_SERV = "conf.eh";
     private static final String WELCOME = "##########>>>>}Bienvenid@ a EXTENDED HOUSE v" + VERSION + "{<<<<<##########";
     private static final String SEPARADOR = "=============================================";
-    private static final int segundosIntervaloDeEnvioInfoUsuarios = 2;
     private static int numero_de_usuarios_conectados;
     private static SerialArduino serial_arduino;
     private static Server server;
     private static ReleeShield relee_sh;
     private static ArduinoCommands arduinoComandosEh;
     private static ConfiguracionServidor conf_server_interno;
+    private static ServerCommandAdministrator serverCommandAdministrator;
     private EHJavaScriptAdministrator scripts;
     private ThreadFrecuente thread_sen_tmp, thread_sen_luz;
     private PropiedadesServer propiedades_server;
-    private BufferedReader leer;
-    private ConexionExtendedHouse conexion_basedatos;
-    private NetworksInterfaces net_interfaces;
+    private static ConexionExtendedHouse conexion_basedatos;
     private ExecutorService exService;
-    private AutomaticDatabaseMaintenance auto_db;
-    private SerialOutput serial_output;
+    private static AutomaticDatabaseMaintenance auto_db;
     private LESAdministador lesAdm;
     private God god;
 
     public ExtendedHouseSERVER() {
+        serverCommandAdministrator = new ServerCommandAdministrator();
         numero_de_usuarios_conectados = 0;
         propiedades_server = new PropiedadesServer();
         propiedades_server.getAllServerPropiedadesOfFile();
@@ -96,14 +92,12 @@ public final class ExtendedHouseSERVER implements Runnable {
             debug(SECTOR, "Archivo " + NOM_ARCH_CONF_SERV + " Abierto Exitosamente!");
         }
         info(SECTOR, conf_server_interno.tiempoRestanteNuevoRespaldo + " MILLISEGUNDOS para nuevo respaldo de BD.");
-
-        serial_output = new SerialOutput(ArduinoHelp.ENDOFSTRING);
         conexion_basedatos = new ConexionExtendedHouse(
                 propiedades_server.getDatabase_ip(),
                 propiedades_server.getDatabase_name(),
                 propiedades_server.getDatabase_user(),
                 propiedades_server.getDatabase_pass());
-        leer = new BufferedReader(new InputStreamReader(System.in));
+        
         serial_arduino = new SerialArduino(propiedades_server.getArduino_port());
         relee_sh = new ReleeShield(serial_arduino);
         thread_sen_tmp = thread_sen_luz = new ThreadFrecuente(propiedades_server.getDatabase_millisencods_insert());
@@ -116,7 +110,7 @@ public final class ExtendedHouseSERVER implements Runnable {
         };
         Network.register(server);
         /*------------------------START SERVER LISTENER----------------------*/
-        server.addListener(new Listener() {
+        Listener serverListener = new Listener() {
 
             @Override
             public void received(Connection c, Object object) {
@@ -197,7 +191,8 @@ public final class ExtendedHouseSERVER implements Runnable {
                     } else if (object instanceof DatabaseQuery) {
                         DatabaseQuery dq = (DatabaseQuery) object;
                     } else if (object instanceof AdvanceCommand) {
-                        verificarComando(((AdvanceCommand) object).commando);
+                        AdvanceCommand ac = (AdvanceCommand)object;
+                        serverCommandAdministrator.checkCommand(ac.commando);
                     } else if (object instanceof ServerStatusRequest) { // status de to2 el server
                         for (int i = 0; i < ReleeShield.MAX_RELES; i++) {
                             ArduinoOutput ao = new ArduinoOutput();
@@ -334,7 +329,8 @@ public final class ExtendedHouseSERVER implements Runnable {
                             ? 48 : numero_de_usuarios_conectados);
                 }
             }
-        });
+        };
+        server.addListener(serverListener);
         /*------------------------END SERVER LISTENER-------------------------*/
 
         try {
@@ -352,7 +348,7 @@ public final class ExtendedHouseSERVER implements Runnable {
             serial_arduino.addArduinoEventListener(new ArduinoEventListener() {
 
                 public void ArduinoEventListener(ArduinoEvent evt) {
-                    if(god != null){ // se actualiza la informacion de god
+                    if (god != null) { // se actualiza la informacion de god
                         god.updateSensorValor(evt);
                     }
                     ArduinoOutput arduino_output = new ArduinoOutput();
@@ -371,17 +367,31 @@ public final class ExtendedHouseSERVER implements Runnable {
                                 if (thread_sen_tmp.isThreadFinishWork()
                                         && ArduinoHelp.TEMPERATURA_SIGNAL.equals(sen.getNombre())) {
                                     addSensorToDatabase(sen, val);
-                                    thread_sen_tmp.startThreadAgain();
+                                    thread_sen_tmp.startThreadAgain(); // ojoooo .. esto esta mal
                                 }
                                 if (thread_sen_luz.isThreadFinishWork()
                                         && ArduinoHelp.LUZ_SIGNAL.equals(sen.getNombre())) {
                                     addSensorToDatabase(sen, val);
-                                    thread_sen_luz.startThreadAgain();
+                                    thread_sen_luz.startThreadAgain();// ojoooo .. esto esta mal
                                 }
                             } else {
                                 addSensorToDatabase(sen, val);
                             }
                         }
+                    }
+                }
+
+                public void addSensorToDatabase(Sensor sen, String valor) {
+                    int id = conexion_basedatos.getIdOfSensor(
+                            sen);
+                    sen.setId(id);
+                    if (id != ConexionExtendedHouse.NULL_ID) {
+                        conexion_basedatos.addHistorial(
+                                new Historial(0, null, sen,
+                                Calendar.getInstance(),
+                                ConexionExtendedHouse.EXTENDEDHOUSE_DEFAULT_USER,
+                                "localhost",
+                                valor));
                     }
                 }
             });
@@ -391,7 +401,7 @@ public final class ExtendedHouseSERVER implements Runnable {
             try {
                 lesAdm = new LESAdministador(conexion_basedatos);
                 
-                lesAdm.addEventoListener(new EventoListener() {
+                lesAdm.addEventoListener(new EventoListener() { // solo funcional para rl.. creo
                     private boolean eventoHaEfecuandoAlgunaOperacion;
                     private int valor;
                     public void eventoPerformed(EventoEvent e) {
@@ -487,8 +497,121 @@ public final class ExtendedHouseSERVER implements Runnable {
             error(SECTOR, "Modulo de Scripting [ERROR->" + ex.getMessage() + "]");
         }
         System.out.println(SEPARADOR);
+    }
 
+    public void serverThreadsStarts() {
+        exService = Executors.newCachedThreadPool();
+        exService.execute(serverCommandAdministrator);
+        exService.execute(thread_sen_tmp);
+        exService.execute(thread_sen_luz);
+        if (conexion_basedatos.isConnected()) {
+            auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos, conf_server_interno);
+            auto_db.start();
+        }
+        thread_sen_tmp.startThreadAgain();
+        thread_sen_luz.startThreadAgain();
+        exService.shutdown();
+    }
 
+    public void serverSafetyClose() {
+        info(SECTOR,"Saving settings...");
+        saveServerConfigurations();
+        info(SECTOR,"Closing services...");
+        Connection[] connections = server.getConnections();
+        for (int i = 0; i < connections.length; i++) {
+            connections[i].close();
+        }
+        if (server != null) {
+            server.getUpdateThread().stop();
+            server.stop();
+            server.close();
+        }
+        if (serial_arduino != null) {
+            serial_arduino.close();
+        }
+        if (conexion_basedatos != null) {
+            conexion_basedatos.close();
+        }
+        if (auto_db != null) {
+            auto_db.stop();
+        }
+        System.exit(0);
+    }
+
+    public void saveServerConfigurations() {
+        if (conexion_basedatos.isConnected()) {
+            auto_db.save();
+        }
+        ArchivoObjectosJava.guardarObjecto(conf_server_interno, NOM_ARCH_CONF_SERV);
+    }
+
+    /**
+     * Clase que administra el servidor via shell
+     */
+    public class ServerCommandAdministrator implements Runnable {
+        private BufferedReader leer;
+        private boolean stopInputConsole;
+        
+        public ServerCommandAdministrator() {
+            leer = new BufferedReader(new InputStreamReader(System.in));
+            stopInputConsole = false;
+        }
+        
+        @Override
+        public void run() {
+            try {
+                info(SECTOR, "Comandos Disponibles para digitar"
+                        + ":'exit','restart','send <arg>',ard <arg[n]>");
+                System.out.println(WELCOME);
+                while (!stopInputConsole) {
+                    String line = leer.readLine().trim();
+                    checkCommand(line);
+                }
+            } catch (IOException ex) {
+                warn(SECTOR, "Error al Leer comando ingresado");
+            }
+        }
+        private void stopInputConsole(){
+            stopInputConsole = false;
+        }
+        
+        public boolean isStopInputConsole(){
+            return stopInputConsole;
+        }
+
+        public void checkCommand(String line) {
+            if (line.startsWith("exit")) {
+                serverSafetyClose();
+            } else if (line.startsWith("restart")) {
+                /*FALTA COMO HACER EL RESTART*/
+            } else if (line.startsWith("send")) {
+                try {
+                    String mensaje = line.trim().split(" ", 2)[1];
+                    ServerMesage sm = new ServerMesage();
+                    sm.mensaje = mensaje;
+                    server.sendToAllTCP(sm);
+                    info(SECTOR, "Mensaje [" + mensaje + "] enviado");
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    error(SECTOR, "El comando [send] requiere argumento");
+                }
+
+            } else if (line.startsWith("ard")) {
+                try {
+                    String mensaje = line.trim().split(" ", 2)[1];
+                    try {
+                        arduinoComandosEh.sendCommand(mensaje, true);
+                    } catch (ArduinoIOException ex) {
+                        error(SECTOR, ex.getMessage());
+                        ex.printStackTrace();
+                    }
+                } catch (java.lang.ArrayIndexOutOfBoundsException e) {
+                    error(SECTOR, "El comando [ard] requiere argumento");
+
+                }
+            } else {
+                info(SECTOR, "Comando '" + line + "' no reconocido");
+            }
+        }
     }
 
     static class ExtendedHouseConnection extends Connection {
@@ -498,108 +621,5 @@ public final class ExtendedHouseSERVER implements Runnable {
         public boolean isAnAdministrador;
         public String user;
         public String ip;
-    }
-
-    public void addSensorToDatabase(Sensor sen, String valor) {
-        int id = conexion_basedatos.getIdOfSensor(
-                sen);
-        sen.setId(id);
-        if (id != ConexionExtendedHouse.NULL_ID) {
-            conexion_basedatos.addHistorial(
-                    new Historial(0, null, sen,
-                    Calendar.getInstance(),
-                    ConexionExtendedHouse.EXTENDEDHOUSE_DEFAULT_USER,
-                    "localhost",
-                    valor));
-        }
-    }
-
-    public void serverThreadsStarts() {
-        Thread s1 = new Thread(this, "Server Sniffer");
-        Thread s3 = new Thread(thread_sen_tmp);
-        Thread s4 = new Thread(thread_sen_luz);
-        exService = Executors.newCachedThreadPool();
-        exService.execute(s1);
-        exService.execute(s3);
-        exService.execute(s4);
-        if (conexion_basedatos.isConnected()) {
-            auto_db = new AutomaticDatabaseMaintenance(conexion_basedatos, conf_server_interno);
-            auto_db.start();
-        }
-        exService.shutdown();
-        thread_sen_tmp.startThreadAgain();
-        thread_sen_luz.startThreadAgain();
-    }
-
-    public void run() {
-        try {
-            info(SECTOR, "Comandos Disponibles para digitar"
-                    + ":'exit','restart','send <arg>',ard <arg[n]>");
-            System.out.println(WELCOME);
-            while (true) {
-                String line = leer.readLine().trim();
-                verificarComando(line);
-            }
-        } catch (IOException ex) {
-            warn(SECTOR, "Error al Leer comando ingresado");
-        }
-    }
-
-    private void verificarComando(String line) {
-        if (line.startsWith("exit")) {
-            cerrarServicios();
-        } else if (line.startsWith("restart")) {
-            /*FALTA COMO HACER EL RESTART*/
-        } else if (line.startsWith("send")) {
-            try {
-                String mensaje = line.trim().split(" ", 2)[1];
-                ServerMesage sm = new ServerMesage();
-                sm.mensaje = mensaje;
-                server.sendToAllTCP(sm);
-                info(SECTOR, "Mensaje [" + mensaje + "] enviado");
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                error(SECTOR, "El comando [send] requiere argumento");
-            }
-
-        } else if (line.startsWith("ard")) {
-            try {
-                String mensaje = line.trim().split(" ", 2)[1];
-                try {
-                    arduinoComandosEh.sendCommand(mensaje, true);
-                } catch (ArduinoIOException ex) {
-                    error(SECTOR, ex.getMessage());
-                    ex.printStackTrace();
-                }
-            } catch (java.lang.ArrayIndexOutOfBoundsException e) {
-                error(SECTOR, "El comando [ard] requiere argumento");
-
-            }
-        } else {
-            info(SECTOR, "Comando '" + line + "' no reconocido");
-        }
-    }
-
-    private void guardarConfServer() {
-        if (conexion_basedatos.isConnected()) {
-            auto_db.save();
-        }
-        ArchivoObjectosJava.guardarObjecto(conf_server_interno, NOM_ARCH_CONF_SERV);
-    }
-
-    private void cerrarServicios() {
-        info("Saving settings...");
-        guardarConfServer();
-        info("Closing services...");
-        Connection[] connections = server.getConnections();
-        for (int i = 0; i < connections.length; i++) {
-            connections[i].close();
-        }
-        server.getUpdateThread().stop();
-        server.stop();
-        server.close();
-        serial_arduino.close();
-        conexion_basedatos.close();
-        auto_db.stop();
-        System.exit(0);
     }
 }
