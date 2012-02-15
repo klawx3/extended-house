@@ -1,0 +1,34 @@
+15/02/12 6:53:31 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+15/02/12 6:53:31 DEBUG: [ExtendedHouseSERVER] Archivo conf.eh Abierto Exitosamente!
+15/02/12 6:53:31  INFO: [ExtendedHouseSERVER] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+15/02/12 6:53:32  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+15/02/12 6:53:33  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+15/02/12 6:53:33 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+15/02/12 6:53:33  INFO: [kryonet] Server opened.
+15/02/12 6:53:33  INFO: [ExtendedHouseSERVER] Ingresos a la BD en ([ 2.0 ]min)
+15/02/12 6:53:33  INFO: [ExtendedHouseSERVER] Administrador God [ERROR->NO HAY CONECCION A BD]
+15/02/12 6:53:33  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+15/02/12 6:53:33  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR GOD]
+15/02/12 6:53:33  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+15/02/12 6:53:42  INFO: [null] Saving settings...
+15/02/12 6:53:42  INFO: [null] Closing services...
+15/02/12 6:53:42  INFO: [kryonet] Server closed.
+15/02/12 6:53:43  INFO: [SerialArduino] Serial port comunication closed
+15/02/12 6:53:43  INFO: [Conexion] Database conecction close
+15/02/12 6:55:48 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+15/02/12 6:55:49 DEBUG: [ExtendedHouseSERVER] Archivo conf.eh Abierto Exitosamente!
+15/02/12 6:55:49  INFO: [ExtendedHouseSERVER] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+15/02/12 6:55:50  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+15/02/12 6:55:50  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+15/02/12 6:55:51 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+15/02/12 6:55:51  INFO: [kryonet] Server opened.
+15/02/12 6:55:51  INFO: [ExtendedHouseSERVER] Ingresos a la BD en ([ 2.0 ]min)
+15/02/12 6:55:51  INFO: [ExtendedHouseSERVER] Administrador God [ERROR->NO HAY CONECCION A BD]
+15/02/12 6:55:51  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+15/02/12 6:55:51  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR GOD]
+15/02/12 6:55:51  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+15/02/12 6:55:55  INFO: [null] Saving settings...
+15/02/12 6:55:55  INFO: [null] Closing services...
+15/02/12 6:55:55  INFO: [kryonet] Server closed.
+15/02/12 6:55:55  INFO: [SerialArduino] Serial port comunication closed
+15/02/12 6:55:55  INFO: [Conexion] Database conecction close

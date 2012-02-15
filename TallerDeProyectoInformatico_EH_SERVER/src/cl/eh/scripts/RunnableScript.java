@@ -14,10 +14,14 @@ public class RunnableScript implements Runnable {
     private Runnable run;
     private boolean stop;
     private long refreshTime;
+    private String className;
+
+
     
-    public RunnableScript(Runnable run,long refreshTime){
+    public RunnableScript(Runnable run,String className,long refreshTime){
         this.run = run;
         this.refreshTime = refreshTime;
+        this.className = className;
         stop = false;
     }
     
@@ -32,15 +36,17 @@ public class RunnableScript implements Runnable {
                 break;
             }
         }
-        System.err.println("Se salio de run !!!!!!!!!");
     }
     
     public void stopScript(){
         stop = true;
     }
-    
-    public Runnable getRunnable(){
+
+    public Runnable getRunnable() {
         return run;
     }
-    
+
+    public String getClassName() {
+        return className;
+    }
 }

@@ -15,9 +15,11 @@ import static com.esotericsoftware.minlog.Log.*;
  * @author Usuario
  */
 public final class PropiedadesServer extends Propiedades {
+    private static final String NOTA_AL_USUARIO 
+            = "Deve estar mysql y mysqldump en la path";
     public static final String NOM_ARCHIVO    = "server_properties.ini";
-    private static final String CARAC_ARCHIVO = "Propiedades del Servidor"
-            + "\n Nota:Deve estar mysql y mysqldump en la path";
+    public static final String LOGGING_DEFAULT_NAME = "ExtendedHouseLogging.log";
+    private static final String CARAC_ARCHIVO = "Propiedades del Servidor\nNota:"+NOTA_AL_USUARIO;
     private static final String ARDUINO_PORT  = "arduino.port";
     private static final String DATABASE_IP   = "database.ip";
     private static final String DATABASE_NOM  = "database.name";

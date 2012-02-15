@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class StatusExtendedHouse {
+public class StatusExtendedHouse { // ojo esto lo tiene q determinar el servidor de todas maneras....
     //esto varia segun la cantidad de sensores "reales" que esten conectados
     public static final int MAX_RELAY       = 8;
     public static final int MAX_TEMPERATURA = 1;
