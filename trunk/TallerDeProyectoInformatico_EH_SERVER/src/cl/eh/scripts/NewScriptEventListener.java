@@ -12,5 +12,6 @@ import java.util.EventListener;
  */
 public interface NewScriptEventListener extends EventListener {
 
-    public void newScriptEventListener(NewScriptEvent evt);
+    public void newScriptEventListener(ScriptEvent evt);
+    public void removedScriptEvent(ScriptEvent evt);
 }

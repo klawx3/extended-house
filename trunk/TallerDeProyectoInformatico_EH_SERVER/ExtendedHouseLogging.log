@@ -32,3 +32,128 @@
 15/02/12 6:55:55  INFO: [kryonet] Server closed.
 15/02/12 6:55:55  INFO: [SerialArduino] Serial port comunication closed
 15/02/12 6:55:55  INFO: [Conexion] Database conecction close
+15/02/12 23:36:25 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+15/02/12 23:36:26 DEBUG: [ExtendedHouseSERVER] Archivo conf.eh Abierto Exitosamente!
+15/02/12 23:36:26  INFO: [ExtendedHouseSERVER] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+15/02/12 23:36:27  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+15/02/12 23:36:28  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+15/02/12 23:36:28 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+15/02/12 23:36:28  INFO: [kryonet] Server opened.
+15/02/12 23:36:28  INFO: [ExtendedHouseSERVER] Ingresos a la BD en ([ 2.0 ]min)
+15/02/12 23:36:28  INFO: [ExtendedHouseSERVER] Administrador God [ERROR->NO HAY CONECCION A BD]
+15/02/12 23:36:29  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+15/02/12 23:36:29  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR GOD]
+15/02/12 23:36:29  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+15/02/12 23:36:46 ERROR: [ExtendedHouseSERVER] El comando [send] requiere argumento
+19/02/12 19:33:51 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/02/12 19:33:51  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/02/12 19:33:53  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/02/12 19:33:53  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+19/02/12 19:33:54  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/02/12 19:33:54 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/02/12 19:33:54  INFO: [kryonet] Server opened.
+19/02/12 19:33:54  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/02/12 19:33:54  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/02/12 19:33:54  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+19/02/12 19:33:54  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/02/12 19:36:06 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/02/12 19:36:06  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/02/12 19:36:08  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/02/12 19:36:08  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+19/02/12 19:36:08  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/02/12 19:36:08 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/02/12 19:36:08  INFO: [kryonet] Server opened.
+19/02/12 19:36:08  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/02/12 19:36:08  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/02/12 19:36:08  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+19/02/12 19:36:08  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/02/12 19:36:08  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/02/12 19:36:13  INFO: [ExtendedHouseSERVER] Comando 'wa' no reconocido
+19/02/12 19:36:14  INFO: [ExtendedHouseSERVER] Comando 'asd' no reconocido
+19/02/12 19:48:58 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/02/12 19:48:58  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/02/12 19:48:59  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/02/12 19:48:59  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+19/02/12 19:49:00  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/02/12 19:49:00 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/02/12 19:49:00  INFO: [kryonet] Server opened.
+19/02/12 19:49:00  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/02/12 19:49:00  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/02/12 19:49:00  INFO: [ExtendedHouseSERVER] Iniciando modulo de Scripting de EH.
+19/02/12 19:49:00  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/02/12 19:49:00  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/02/12 19:52:48 DEBUG: [kryonet] Port 54555/TCP connected to: /127.0.0.1:1188
+19/02/12 19:52:48  INFO: [kryonet] Connection 1 connected: /127.0.0.1
+19/02/12 19:52:48 DEBUG: [kryonet] Connection 1 received TCP: ValidacionConnection
+19/02/12 19:52:48 DEBUG: [kryonet] Connection 1 sent TCP: InvalidConnection (2)
+19/02/12 19:52:48  INFO: [kryonet] Connection 1 disconnected.
+19/02/12 19:52:48  WARN: [ExtendedHouseSERVER] Coneccion nueva RECHAZADA, ya que, NO EXISTE CONECCION A BD
+19/02/12 19:52:48 DEBUG: [kryonet] Connection 1 update: Connection is closed.
+19/02/12 19:59:48 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/02/12 19:59:48  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/02/12 19:59:50  INFO: [Conexion] Database Connection open
+19/02/12 19:59:50  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+19/02/12 19:59:50  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/02/12 19:59:50 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/02/12 19:59:50  INFO: [kryonet] Server opened.
+19/02/12 19:59:52  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/02/12 20:00:32 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/02/12 20:00:32  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/02/12 20:00:33  INFO: [Conexion] Database Connection open
+19/02/12 20:00:34  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+19/02/12 20:00:34  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/02/12 20:00:34 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/02/12 20:00:34  INFO: [kryonet] Server opened.
+19/02/12 20:00:35  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/02/12 20:00:35  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/02/12 20:00:36  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/02/12 20:00:36  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/02/12 20:00:36  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/02/12 20:00:36  INFO: [EHJavaScriptAdministrator] Script [hola] ejecutandose
+19/02/12 20:00:36  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+19/02/12 20:00:41  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+19/02/12 20:00:46  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+19/02/12 20:00:51  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+19/02/12 20:00:56  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+19/02/12 20:01:01  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor)
+21/02/12 16:41:32 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+21/02/12 16:41:32  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+21/02/12 16:41:34  INFO: [Conexion] Database Connection open
+21/02/12 16:41:34  WARN: [SerialArduino] No se encontro el puerto 'COM4'
+21/02/12 16:41:35  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+21/02/12 16:41:35 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+21/02/12 16:41:35  INFO: [kryonet] Server opened.
+21/02/12 16:41:37  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+21/02/12 16:41:37  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+21/02/12 16:41:37  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+21/02/12 16:41:37  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+21/02/12 16:41:37  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+21/02/12 16:42:37  INFO: [EHJavaScriptAdministrator] Script [hola] ejecutandose
+21/02/12 16:42:37  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:39  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:41  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:43  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:45  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:47  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:49  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:51  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:53  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:55  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:57  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:42:59  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:01  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:03  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:05  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:07  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:09  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:11  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:13  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:15  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:17  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:19  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:21  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:23  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:25  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:27  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:29  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
+21/02/12 16:43:31  INFO: [ExtendedHouseGeneralAdministrator] El valor es NaN (pero existe el sensor) caca....mierda
