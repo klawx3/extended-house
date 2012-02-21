@@ -60,11 +60,16 @@ public class ScriptFileManager extends TimerTask implements FileFilter {
         listenerList.remove(NewScriptEventListener.class, listener);
     }
 
-    protected void fireEvent(NewScriptEvent evt) {
+    protected void fireEvent(ScriptEvent evt,boolean newScriptFile) {
         Object[] listeners = listenerList.getListenerList();
         for (int i = 0; i < listeners.length; i += 2) {
             if (listeners[i] == NewScriptEventListener.class) {
-                ((NewScriptEventListener) listeners[i + 1]).newScriptEventListener(evt);
+                if(newScriptFile){
+                    ((NewScriptEventListener) listeners[i + 1]).newScriptEventListener(evt);
+                }else{
+                    ((NewScriptEventListener) listeners[i + 1]).removedScriptEvent(evt);
+                }
+                
             }
         }
     }
@@ -76,7 +81,7 @@ public class ScriptFileManager extends TimerTask implements FileFilter {
             for (File n : listFiles) {
                 if (!scripts.contains(n)) {
                     scripts.add(n);
-                    fireEvent(new NewScriptEvent(this, n));
+                    fireEvent(new ScriptEvent(this, n),true);
                 }
             }
         }

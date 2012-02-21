@@ -4,6 +4,7 @@
  */
 package cl.eh.scripts;
 
+import cl.eh.server.ExtendedHouseSERVER.ExtendedHouseGeneralAdministrator;
 import java.io.Writer;
 import javax.script.Bindings;
 import javax.script.ScriptContext;
@@ -42,19 +43,19 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
     private Timer timer;
     private boolean tasksStarted;
     private ExecutorService pool;
-    public God god;
+    public ExtendedHouseGeneralAdministrator god;
 
-    public EHJavaScriptAdministrator(String directoryName, God god) throws Exception {
+    public EHJavaScriptAdministrator(String directoryName, ExtendedHouseGeneralAdministrator god) throws Exception {
         super(directoryName);
         pool = Executors.newFixedThreadPool(SCRIPT_MAX_POOL);
         scripts_info = new ArrayList<>();
         js = new JavaScriptModule();
         tasksStarted = false;
         this.god = god;
-        js.getScriptEngine().put(God.SCRIPT_PARAMETER_NAME, god);
+        js.getScriptEngine().put(ExtendedHouseGeneralAdministrator.SCRIPT_PARAMETER_NAME, god);
         addNewAddonEventEventListener(new NewScriptEventListener() {
             @Override
-            public void newScriptEventListener(NewScriptEvent evt) {
+            public void newScriptEventListener(ScriptEvent evt) {
                 try {
                     InputStream is = null;
                     try {
@@ -79,6 +80,11 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
                             + evt.getScriptFile() + "]:"
                             + ex.getMessage());
                 }
+            }
+
+            @Override
+            public void removedScriptEvent(ScriptEvent evt) {
+                throw new UnsupportedOperationException("Not supported yet.");
             }
         });
     }

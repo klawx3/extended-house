@@ -10,7 +10,6 @@ import cl.eh.serial.SerialOutput;
 import cl.eh.arduino.model.ArduinoEvent;
 import cl.eh.arduino.model.ArduinoEventListener;
 import javax.swing.event.EventListenerList;
-import cl.eh.util.Log;
 import gnu.io.*;
 import gnu.io.SerialPortEventListener;
 import java.io.IOException;
@@ -73,8 +72,8 @@ public final class SerialArduino {
             output = serialPort.getOutputStream();
             connecionArduinoEstablecida = true;
             info(SECTOR,"Arduino ["+puerto+"] Connection open");
-        } catch (Exception e) {
-            error(e.toString());
+        } catch (PortInUseException | UnsupportedCommOperationException | IOException e) {
+            error(SECTOR,e);
         }
         try {
             serialPort.addEventListener(new SerialPortEventListener() {
@@ -106,7 +105,7 @@ public final class SerialArduino {
                                     }                               
                                 }
                             }
-                        } catch (Exception e) {
+                        } catch (IOException | ArduinoIOException e) {
                             error(SECTOR, e.toString());
                         }
                     }
@@ -115,7 +114,7 @@ public final class SerialArduino {
         } catch (TooManyListenersException ex) {
             Logger.getLogger(SerialArduino.class.getName()).log(Level.SEVERE, null, ex);
         } catch(java.lang.NullPointerException ex){
-            error(SECTOR,"Probable utilizacion del puerto en otra aplicacion");
+            error(SECTOR,"Probable utilizacion del puerto ["+puerto+"] en otra aplicacion");
         }
         serialPort.notifyOnDataAvailable(true);
     }

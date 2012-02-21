@@ -30,11 +30,16 @@ public class ReleeShield implements ArduinoSignal {
         }
     }
 
-    public boolean isReleePowerOn(int rele) {
-        return estado_rele_s[rele];
+    public boolean isReleePowerOn(int rele) throws RelayException {
+        if (rele >= 0 && rele <= MAX_RELES -1) {
+            return estado_rele_s[rele];
+        }else{
+            throw new RelayException("Numero (" + rele + ") fuera de rango");
+        }
+        
     }
 
-    public void powerOnRelee(int rele) {
+    public void powerOnRelee(int rele) throws RelayException {
         if (rele >= 0 && rele <= MAX_RELES -1) {
             if (estado_rele_s[rele] == false) {
                 synchronized (serialArduino) {
@@ -44,16 +49,14 @@ public class ReleeShield implements ArduinoSignal {
                 estado_rele_s[rele] = true;
             }
         } else {
-            try {
-                throw new RelayException("Numero (" + rele + ") fuera de rango");
-            } catch (RelayException ex) {
-                Logger.getLogger(ReleeShield.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+            throw new RelayException("Numero (" + rele + ") fuera de rango");
+
         }
 
     }
 
-    public void powerOffRelee(int rele) {
+    public void powerOffRelee(int rele) throws RelayException {
         if (rele >= 0 && rele <= MAX_RELES -1) {
             if (estado_rele_s[rele] == true) {
                 synchronized (serialArduino) {
@@ -61,14 +64,10 @@ public class ReleeShield implements ArduinoSignal {
                     serialArduino.enviarSeñal((rele == 0) ? 48 : rele);
                 }
                 estado_rele_s[rele] = false;
-                
+
             }
         } else {
-            try {
                 throw new RelayException("Numero (" + rele + ") fuera de rango");
-            } catch (RelayException ex) {
-                Logger.getLogger(ReleeShield.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
 
     }

@@ -11,11 +11,11 @@ import java.util.EventObject;
  *
  * @author Administrador
  */
-    public class NewScriptEvent extends EventObject {
+    public class ScriptEvent extends EventObject {
 
         private File scriptFile;
 
-        public NewScriptEvent(Object source, File f) {
+        public ScriptEvent(Object source, File f) {
             super(source);
             scriptFile = f;
         }

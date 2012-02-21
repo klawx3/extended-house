@@ -7,7 +7,7 @@ hola.run = function(){
         if(!isNaN(val_sen_tmp)){ // tiene algun valor conosido ?
             god.print("El valor es:"+val_sen_tmp);
         }else{
-            god.print("El valor es NaN (pero existe el sensor) caca....mierda mierda culia");   
+            god.print("El valor es NaN (pero existe el sensor) caca....mierda");   
         }
     }else{
         god.print("No existe el Sensor");
