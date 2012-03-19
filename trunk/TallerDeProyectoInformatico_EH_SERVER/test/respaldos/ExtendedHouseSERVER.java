@@ -162,9 +162,9 @@ public final class ExtendedHouseSERVER implements Runnable {
                                 assert (ai.dispositivo >= 0 && ai.dispositivo <= 7);
                                 assert (ai.valor == 0 || ai.valor == 1);
                                 if (ai.valor == 1) {
-                                    relee_sh.powerOnRelee(ai.dispositivo);
+//                                    relee_sh.powerOnRelee(ai.dispositivo);
                                 } else {
-                                    relee_sh.powerOffRelee(ai.dispositivo);
+//                                    relee_sh.powerOffRelee(ai.dispositivo);
                                 }
                                 ArduinoOutput ao = new ArduinoOutput();
                                 ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
@@ -207,7 +207,7 @@ public final class ExtendedHouseSERVER implements Runnable {
                             ArduinoOutput ao = new ArduinoOutput();
                             ao.dispositivo = ClientArduinoSignal.RELEE_SIGNAL;
                             ao.numero = Integer.toString(i);
-                            ao.valor = (relee_sh.isReleePowerOn(i)) ? 1 : 0;
+//                            ao.valor = (relee_sh.isReleePowerOn(i)) ? 1 : 0;
                             server.sendToTCP(ex_con.getID(), ao);
                         }
                         UsersOnline users = new UsersOnline();

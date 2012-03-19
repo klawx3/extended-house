@@ -4,10 +4,8 @@
  */
 package cl.eh.scripts;
 
+import java.io.File;
 import cl.eh.server.ExtendedHouseSERVER.ExtendedHouseGeneralAdministrator;
-import java.io.Writer;
-import javax.script.Bindings;
-import javax.script.ScriptContext;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -20,8 +18,6 @@ import java.util.Timer;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.script.Invocable;
 import javax.script.ScriptException;
 import static com.esotericsoftware.minlog.Log.*;
@@ -34,11 +30,10 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
     private static final String SECTOR = "EHJavaScriptAdministrator";
     private static final String STANDAR_SLEEP_TIME_VAR_NAME = "refresh";
     public static final String SCRIPT_DEFAULT_DIRECTORY = "scripts";
-    private static final long STANDAR_SLEEP_TIME = 10000;
+    private static final long STANDAR_SCRIPT_SLEEP_TIME = 10000;
     private final int SCRIPT_MAX_POOL = 20;
-    private final long REFRESH_FILE_MILLISECONDS = 10000;
+    private final long REFRESH_FILE_MILLISECONDS = 5000;
     private JavaScriptModule js;
-    private ScriptFileManager script_fm;
     private List<RunnableScript> scripts_info;
     private Timer timer;
     private boolean tasksStarted;
@@ -52,8 +47,10 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
         js = new JavaScriptModule();
         tasksStarted = false;
         this.god = god;
-        js.getScriptEngine().put(ExtendedHouseGeneralAdministrator.SCRIPT_PARAMETER_NAME, god);
-        addNewAddonEventEventListener(new NewScriptEventListener() {
+        js.getScriptEngine().put(
+                ExtendedHouseGeneralAdministrator.SCRIPT_PARAMETER_NAME,
+                god);
+        addNewAddonEventEventListener(new ScriptEventListenerClass() {
             @Override
             public void newScriptEventListener(ScriptEvent evt) {
                 try {
@@ -62,7 +59,7 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
                         is = new FileInputStream(evt.getScriptFile());
                         Reader reader = new InputStreamReader(is);
                         if (reader != null) {
-                            String fileName = evt.getScriptFile().getName().replaceAll(FILE_EXTENCION, "");
+                            String fileName = getNameOfScript(evt.getScriptFile());
                             RunnableScript rs = getRunnableScript(reader, fileName);
                             if (rs != null) { // si existe metodo run
                                 pool.submit(rs); // ejecuto el wea
@@ -70,7 +67,10 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
                                 scripts_info.add(rs); // lo agrego a una lista
                             } else {
                                 error(SECTOR, "No existe el metodo run en ["+fileName+"]");
+                                removeFileScript(evt.getScriptFile());
                             }
+                        }else{
+                            removeFileScript(evt.getScriptFile());
                         }
                     } catch (FileNotFoundException ex) {
                         ex.printStackTrace();
@@ -79,14 +79,26 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
                     error(SECTOR, "Error en el archivo ["
                             + evt.getScriptFile() + "]:"
                             + ex.getMessage());
+                    removeFileScript(evt.getScriptFile());
                 }
             }
 
             @Override
             public void removedScriptEvent(ScriptEvent evt) {
-                throw new UnsupportedOperationException("Not supported yet.");
+                String name = getNameOfScript(evt.getScriptFile());
+                if (!stopScriptExecution(name)) {
+                    error(SECTOR, new Exception("No se ha podido remover "
+                            + name + "de la lista"));
+                } else {
+                    info(SECTOR, "Script [" + name + "] Removido");
+                }
+
             }
         });
+    }
+    
+    private String getNameOfScript(File file){
+        return file.getName().replaceAll(FILE_EXTENCION, "");
     }
 
     public void startTasks() {
@@ -120,11 +132,16 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
         Invocable invocableEngine = (Invocable) js.getScriptEngine();
         js.getScriptEngine().eval(si);
         Object sleep_time_millis = js.getScriptEngine().get(STANDAR_SLEEP_TIME_VAR_NAME);
-        long refreshTime = STANDAR_SLEEP_TIME;
+        long refreshTime = STANDAR_SCRIPT_SLEEP_TIME;
         if (sleep_time_millis != null) {
             if (sleep_time_millis instanceof Number) {
                 refreshTime = ((Number) sleep_time_millis).longValue();
             }
+        }
+        try {
+            si.close();
+        } catch (IOException ex) {
+            error(SECTOR,ex);
         }
         Object runnableJSClass = js.getScriptEngine().get(fileName);
         if (runnableJSClass != null) {
@@ -143,6 +160,7 @@ public class EHJavaScriptAdministrator extends ScriptFileManager {
         }
         return null;
     }
+    
     private boolean stopScriptExecution(String name){
         for(RunnableScript si : scripts_info){
             if(si.getClassName().equals(name)){

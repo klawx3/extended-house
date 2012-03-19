@@ -227,6 +227,7 @@ public final class ExtendedHouseSERVER extends MyServer implements ServerInfo {
         public ExtendedHouseGeneralAdministrator(){
             sensores = new HashMap<>();
             updateSensoresMap();
+            arduinoGetAllStatus();
         }
         
         private void updateSensoresMap() { // solo 1 llamada desde el contruc.
@@ -256,11 +257,11 @@ public final class ExtendedHouseSERVER extends MyServer implements ServerInfo {
 
             }
             if (actualizado) {
-                trace(SECTOR,
+                info(SECTOR,
                         "Dispositivo [" + ardEvt.getNombreDisositivo()
                         + "," + ardEvt.getNumeroDispositovo() + "] Actualizado (valor actualizado)");
             } else {
-                trace(SECTOR, "No se encontro el dispositivo [" + ardEvt.getNombreDisositivo()
+                info(SECTOR, "No se encontro el dispositivo [" + ardEvt.getNombreDisositivo()
                         + "," + ardEvt.getNumeroDispositovo() + "] en el cache de la BD.. Imposible actualizar valor");
             }
         }
@@ -282,17 +283,19 @@ public final class ExtendedHouseSERVER extends MyServer implements ServerInfo {
             return null;
         }
         
-        public boolean acctionActuador(String actuador,int number,boolean activar){ // TRABAJAR ACA
+        public boolean accionar(String actuador,int number,boolean activar){ // TRABAJAR ACA
             actuador = actuador.toUpperCase();
             switch (actuador) {
                 case RELEE_SIGNAL: {
                     try {
                         if (activar) {
                             _relee_sh.powerOnRelee(number);
+                            
                         } else {
                             _relee_sh.powerOffRelee(number);
                         }
                         _EHActionActuador(actuador,number,activar);
+                        info(SECTOR,"Se ha prendido ["+actuador+","+number+","+activar+"]");
                         return true;
                     } catch (RelayException ex) {
                         error(SECTOR,ex);
@@ -339,6 +342,10 @@ public final class ExtendedHouseSERVER extends MyServer implements ServerInfo {
                     error(SECTOR, new Nivel8Exception("No existe el ID en la Base de datos"));
                 }
             }
+        }
+
+        private void arduinoGetAllStatus() {
+            _serial_arduino.enviarSeñal("da");
         }
     }
 
