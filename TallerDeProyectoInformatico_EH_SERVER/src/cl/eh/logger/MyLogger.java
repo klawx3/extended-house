@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 package cl.eh.logger;
+import javax.swing.event.EventListenerList;
 import java.text.DateFormat;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import static com.esotericsoftware.minlog.Log.*;
 public class MyLogger extends Logger{
     private java.io.BufferedWriter escritor = null;
     private cl.eh.db.ConexionExtendedHouse conexion = null;
+    protected static EventListenerList listenerList = new EventListenerList();
     @Override
     public void log(int level, String category, String message, Throwable ex) {
         StringBuilder builder = new StringBuilder(256);
@@ -52,13 +54,24 @@ public class MyLogger extends Logger{
         /*-----------------------------*/
         System.out.println(builder);
         escribirToFile(builder);
-        
+        if(listenerList.getListenerCount() > 0){
+            fireEvent(new LogginLine(this,builder));
+        }
     }
+    
+    public static void addEventListener(LogEventListener listener) {
+        listenerList.add(LogEventListener.class, listener);
+    }
+
+    public static void removeEventListener(LogEventListener listener) {
+        listenerList.remove(LogEventListener.class, listener);
+    }
+    
     public void setLoggingFileName(String fileName) throws java.io.IOException{
         escritor = new java.io.BufferedWriter(new java.io.FileWriter(fileName,true));
     }
     public void setDatabaseLogging(cl.eh.db.ConexionExtendedHouse conexion){
-        conexion = conexion;
+        this.conexion = conexion;
     }
 
     public void removeLoggingFileName() {
@@ -84,6 +97,14 @@ public class MyLogger extends Logger{
                 escritor.flush();
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+        }
+    }
+    private void fireEvent(LogginLine evt) {
+        Object[] listeners = listenerList.getListenerList();
+        for (int i = 0; i < listeners.length; i += 2) {
+            if (listeners[i] == LogEventListener.class) {
+                ((LogEventListener) listeners[i + 1]).logginPerformed(evt);
             }
         }
     }

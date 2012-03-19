@@ -6,6 +6,7 @@ package cl.eh.arduino;
 
 import cl.eh.common.ArduinoSignal;
 import cl.eh.exceptions.ArduinoIOException;
+import cl.eh.exceptions.RelayException;
 
 /**
  *
@@ -125,9 +126,17 @@ public class ArduinoCommands implements ArduinoSignal{
             
             if (c[COMMANDO].equalsIgnoreCase("relay")) {
                 if(valor_dispositivo == 1){
-                    rs.powerOnRelee(numero_dispositivo);
+                    try {
+                        rs.powerOnRelee(numero_dispositivo);
+                    } catch (RelayException ex) {
+                        ex.printStackTrace();
+                    }
                 }else{
-                    rs.powerOffRelee(numero_dispositivo);
+                    try {
+                        rs.powerOffRelee(numero_dispositivo);
+                    } catch (RelayException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             } else {
                 throw new ArduinoIOException("comando '" + c[COMMANDO] + "' Inesperado");

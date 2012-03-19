@@ -25,7 +25,10 @@ public class SerialOutput {
         list_chunk = new ArrayList<Byte>();
         this.caracterDeCorte = caracterDeCorte;
     }
-    
+    /**
+     * 
+     * @return true si encuentra alguna linea 
+     */
     public boolean hasNext(){
         if(cadenas.isEmpty()){
             return false;
@@ -41,7 +44,10 @@ public class SerialOutput {
         return cadenas.get(0);
     }
     
-    
+    /**
+     * 
+     * @param chunk bytes de arduino
+     */
     public void setChuck(byte[] chunk){
         primera_llamada = true;
         chuckToList(chunk);

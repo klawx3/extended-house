@@ -10,7 +10,7 @@ import java.util.EventListener;
  *
  * @author Administrador
  */
-public interface NewScriptEventListener extends EventListener {
+public interface ScriptEventListenerClass extends EventListener {
 
     public void newScriptEventListener(ScriptEvent evt);
     public void removedScriptEvent(ScriptEvent evt);

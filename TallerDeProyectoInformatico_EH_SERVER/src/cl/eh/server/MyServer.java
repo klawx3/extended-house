@@ -19,6 +19,7 @@ import cl.eh.properties.ConfiguracionServidor;
 import cl.eh.arduino.ArduinoCommands;
 import cl.eh.arduino.ReleeShield;
 import cl.eh.arduino.SerialArduino;
+import cl.eh.util.SODetector;
 import static com.esotericsoftware.minlog.Log.*;
 /**
  *
@@ -78,6 +79,7 @@ public class MyServer {
         info(SECTOR, "Ingresos a la BD en ([ "
                 + ((double) _propiedades_server.getDatabase_millisencods_insert()) / (double) (60 * 1000)
                 + " ]min)");
+        info(SECTOR,"SO Detectado ["+SODetector.soInfo()+"]");
 
     }
     protected void addServerListener(Listener listener){
