@@ -1403,3 +1403,1939 @@
 17/03/12 23:33:32  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
 17/03/12 23:33:33  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
 17/03/12 23:33:33  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 3:36:06 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 3:36:06  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 3:36:06  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 12:55:41 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 12:55:41  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 12:55:41  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 12:55:41  WARN: [SerialArduino] No se encontro el puerto 'COM6'
+19/03/12 12:55:42  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 12:55:42  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 12:55:42 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 12:55:42  INFO: [kryonet] Server opened.
+19/03/12 12:55:42  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 12:55:42  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 12:55:42  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 12:55:42  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:01:34 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:01:34  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:01:35  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:01:35  WARN: [SerialArduino] No se encontro el puerto 'COM6'
+19/03/12 13:01:35  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:01:35  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:01:35  INFO: [kryonet] Server closed.
+19/03/12 13:01:35 ERROR: [MyServer] La dirección ya se está usando
+19/03/12 13:01:35 ERROR: [MyServer] Verifique que el puerto [54555]que no este en uso...
+19/03/12 13:01:48 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:01:48  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:01:48  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:01:48  WARN: [SerialArduino] No se encontro el puerto 'COM6'
+19/03/12 13:01:48  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:01:48  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:01:48 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:01:48  INFO: [kryonet] Server opened.
+19/03/12 13:01:48  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:01:48  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:01:48  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:01:49  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:02:25 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:02:26  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:02:26  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:02:26  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:02:26  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:02:26  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:02:26  INFO: [kryonet] Server closed.
+19/03/12 13:02:26 ERROR: [MyServer] La dirección ya se está usando
+19/03/12 13:02:26 ERROR: [MyServer] Verifique que el puerto [54555]que no este en uso...
+19/03/12 13:03:50 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:03:50  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:03:51  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:03:51  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:03:51  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:03:51  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:03:51 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:03:51  INFO: [kryonet] Server opened.
+19/03/12 13:03:51  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:03:51  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:03:51  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:03:51  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:13:31 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:13:31  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:13:31  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:13:31  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:13:32  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:13:32  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:13:32 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:13:32  INFO: [kryonet] Server opened.
+19/03/12 13:13:32  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:13:32  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:13:32  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:13:32  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:16:59 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:16:59  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:16:59  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:17:00  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:17:00  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:17:00  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:17:00 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:17:00  INFO: [kryonet] Server opened.
+19/03/12 13:17:00  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:17:00  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:17:00  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:17:00  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:18:39 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:18:39  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:18:39  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:18:39  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:18:39  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:18:39  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:18:39 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:18:39  INFO: [kryonet] Server opened.
+19/03/12 13:18:39  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:18:39  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:18:39  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:18:39  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:25:30 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:25:30  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:25:30  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:25:30  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:25:31  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:25:31  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:25:31 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:25:31  INFO: [kryonet] Server opened.
+19/03/12 13:25:31  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:25:31  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:25:31  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:25:31  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:31:12 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:31:12  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:31:12  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:31:12  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:31:12  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:31:12  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:31:12 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:31:12  INFO: [kryonet] Server opened.
+19/03/12 13:31:12  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:31:12  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:31:12  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:31:12  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:36:35 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:36:35  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:36:36  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:36:36  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 13:36:36  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:36:36  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:36:36 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 13:36:36  INFO: [kryonet] Server opened.
+19/03/12 13:36:36  INFO: [ExtendedHouseSERVER] Administrador God [ERROR-> NO HAY CONEXION A BD]
+19/03/12 13:36:36  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [ERROR -> NO HAY CONEXION A BD]
+19/03/12 13:36:36  INFO: [ExtendedHouseSERVER] Modulo de Scripting [ERROR->NO ESTA EL ADMINISTRADOR 'GOD']
+19/03/12 13:36:36  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 13:54:12 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 13:54:12  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 13:54:12  WARN: [Conexion] No se ha podido conectar a la db[jdbc:mysql://localhost/ih_db,root,]
+19/03/12 13:54:13  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+19/03/12 13:54:13  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 13:54:13  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 13:54:13  INFO: [kryonet] Server closed.
+19/03/12 13:54:13 ERROR: [MyServer] La dirección ya se está usando
+19/03/12 13:54:13 ERROR: [MyServer] Verifique que el puerto [54555]que no este en uso...
+19/03/12 22:48:10 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 22:48:11  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 22:48:11  INFO: [Conexion] Database Connection open
+19/03/12 22:48:11  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 22:48:12  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 22:48:12  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 22:48:12 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 22:48:12  INFO: [kryonet] Server opened.
+19/03/12 22:48:13  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 22:48:13  INFO: [SerialArduino] No se ha podido enviar señal [da] a [/dev/ttyACM0], ya que no hay coneccion
+19/03/12 22:48:13  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 22:52:00 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 22:52:00  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 22:52:00  INFO: [Conexion] Database Connection open
+19/03/12 22:52:00  WARN: [SerialArduino] No se encontro el puerto '/dev/ttyACM0'
+19/03/12 22:52:00  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 22:52:00  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 22:52:00 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 22:52:00  INFO: [kryonet] Server opened.
+19/03/12 22:52:01  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 22:52:01  INFO: [SerialArduino] No se ha podido enviar señal [da] a [/dev/ttyACM0], ya que no hay coneccion
+19/03/12 22:52:01  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 22:52:02  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/03/12 22:52:02  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/03/12 22:52:02  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 22:52:02  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+19/03/12 22:52:48 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 22:52:49  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 22:52:49  INFO: [Conexion] Database Connection open
+19/03/12 22:52:49  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+19/03/12 22:52:49  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 22:52:49  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 22:52:49 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 22:52:49  INFO: [kryonet] Server opened.
+19/03/12 22:52:50  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 22:52:50  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 22:52:50  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/03/12 22:52:50  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/03/12 22:52:50  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 22:52:50  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+19/03/12 22:53:09 DEBUG: [kryonet] Port 54555/TCP connected to: /127.0.0.1:35781
+19/03/12 22:53:09  INFO: [kryonet] Connection 1 connected: /127.0.0.1
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 received TCP: ValidacionConnection
+19/03/12 22:53:09  INFO: [ExtendedHouseSERVER] Coneccion [extended_house] Aceptada ip[null]
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 received TCP: ServerStatusRequest
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+19/03/12 22:53:09 DEBUG: [kryonet] Connection 1 sent TCP: ActuadorInfoList (49)
+19/03/12 22:53:37 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 22:53:37 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:37 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 22:53:37 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:38 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 22:53:38 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:39 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 22:53:39 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 22:53:49 DEBUG: [kryonet] Connection 1 update: Connection is closed.
+19/03/12 22:53:49  INFO: [kryonet] Connection 1 disconnected.
+19/03/12 22:55:56 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 22:55:56  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 22:55:57  INFO: [Conexion] Database Connection open
+19/03/12 22:55:57  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+19/03/12 22:55:57  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 22:55:57  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 22:55:57 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 22:55:57  INFO: [kryonet] Server opened.
+19/03/12 22:55:58  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 22:55:58  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 22:55:58  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [DDM,0] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/03/12 22:55:58  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,0] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,1] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,2] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,3] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:55:58  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:55:59  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:55:59  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:00  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 22:56:00  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:56:01  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:01  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:02  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 22:56:02  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:56:02  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:02  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:04  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:04  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:04  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 22:56:04  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:56:06  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:06  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:06  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 22:56:06  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:56:07  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:07  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:56:08  INFO: [ExtendedHouseGeneralAdministrator] El valor es:97.0
+19/03/12 22:56:08  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+19/03/12 22:56:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:56:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:07 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 22:58:07  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 22:58:08  INFO: [Conexion] Database Connection open
+19/03/12 22:58:08  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+19/03/12 22:58:08  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 22:58:08  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 22:58:08 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 22:58:08  INFO: [kryonet] Server opened.
+19/03/12 22:58:09  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 22:58:09  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 22:58:09  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [DDM,0] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/03/12 22:58:09  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 22:58:09  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,0] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,1] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,2] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [ILG,3] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:09  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:10  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:10  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:11  INFO: [ExtendedHouseGeneralAdministrator] El valor es:123.0
+19/03/12 22:58:11  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:12  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:12  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:13  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+19/03/12 22:58:13  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:14  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:14  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:15  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:15  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:15  INFO: [ExtendedHouseGeneralAdministrator] El valor es:96.0
+19/03/12 22:58:16  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+19/03/12 22:58:17  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:17  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:18  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 22:58:18  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:18  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:18  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:20  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 22:58:20  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:20  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:20  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:21  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:21  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:22  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 22:58:22  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:23  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:23  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 22:58:24  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 22:58:24  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 22:58:25  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [TMP,0] Actualizado (valor actualizado)
+19/03/12 22:58:25  INFO: [ExtendedHouseGeneralAdministrator] Dispositivo [LUZ,0] Actualizado (valor actualizado)
+19/03/12 23:00:30 DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+19/03/12 23:00:30  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+19/03/12 23:00:30  INFO: [Conexion] Database Connection open
+19/03/12 23:00:30  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+19/03/12 23:00:30  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+19/03/12 23:00:30  INFO: [MyServer] SO Detectado [Linux]
+19/03/12 23:00:30 DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+19/03/12 23:00:30  INFO: [kryonet] Server opened.
+19/03/12 23:00:31  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+19/03/12 23:00:31  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+19/03/12 23:00:32  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+19/03/12 23:00:32  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+19/03/12 23:00:32  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+19/03/12 23:00:32  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+19/03/12 23:00:34  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+19/03/12 23:00:34  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:36  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:00:36  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:38  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:00:38  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:40  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:00:40  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:42  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:00:42  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:44  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:00:44  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:46  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:00:47  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:49  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:00:49  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:51  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:00:51  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:53  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:00:53  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:55  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:00:55  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:57  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:00:57  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:00:59  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:00:59  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:01  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:01:01  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:03 DEBUG: [kryonet] Port 54555/TCP connected to: /127.0.0.1:35826
+19/03/12 23:01:03  INFO: [kryonet] Connection 1 connected: /127.0.0.1
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 received TCP: ValidacionConnection
+19/03/12 23:01:03  INFO: [ExtendedHouseSERVER] Coneccion [extended_house] Aceptada ip[null]
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 received TCP: ServerStatusRequest
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ActuadorInfoList (49)
+19/03/12 23:01:03  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:01:03 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:03  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:04 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:04 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:05  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:01:05 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:06  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:06 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:06 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:07 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:07 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:08  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:01:08 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:08  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:09 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:10  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:01:10 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:10  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:11 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:11 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:12  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:01:12 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:12  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:12 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:12 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:14 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:14 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:14  INFO: [ExtendedHouseGeneralAdministrator] El valor es:96.0
+19/03/12 23:01:14 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:14  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+19/03/12 23:01:15 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:15 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:16  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:01:16 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:16  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:17 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:17 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:18  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:01:18 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:18 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:18 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:18  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:19 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:19 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:20  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:20 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:21  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:21 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:21 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:22 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:23  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:23  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:23 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:25  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:01:25 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:25  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:25 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:25 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:26 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:26 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:27  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:01:27 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:27  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:28 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:28 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:29  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:01:29 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:29  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:29 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:29 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:31  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:01:31 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:31 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:31 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:31  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:33 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:33 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:33  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:01:33 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:33  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:34 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:34 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:35  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:01:35 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+19/03/12 23:01:35  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:36 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:36 DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+19/03/12 23:01:37 DEBUG: [kryonet] Connection 1 update: Connection is closed.
+19/03/12 23:01:37  INFO: [kryonet] Connection 1 disconnected.
+19/03/12 23:01:37  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:01:37  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:39  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:01:40  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:42  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:01:42  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:44  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:01:44  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:46  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:01:46  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:48  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:01:48  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:50  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:01:50  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:52  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:01:52  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:54  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+19/03/12 23:01:54  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:56  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:01:56  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:01:58  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:01:58  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:00  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:02:01  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:03  INFO: [ExtendedHouseGeneralAdministrator] El valor es:97.0
+19/03/12 23:02:03  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+19/03/12 23:02:05  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+19/03/12 23:02:05  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:07  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:02:07  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:09  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:02:09  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:11  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:02:11  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:13  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:13  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:15  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:02:15  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:17  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:02:18  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:20  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:20  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:22  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:02:22  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:24  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:02:24  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:26  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:02:26  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:28  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:02:28  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:30  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:02:30  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:32  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:02:33  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:35  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:02:35  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:37  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:02:37  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:39  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:39  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:41  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:02:41  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:43  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:43  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:45  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:45  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:47  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:02:47  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:49  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:02:49  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:51  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+19/03/12 23:02:51  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:53  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:02:53  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:55  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:02:55  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:02:57  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:02:58  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:00  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:03:00  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:02  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:03:02  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:04  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:03:04  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:06  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:03:06  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:08  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:03:08  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:10  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:03:10  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:12  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:03:12  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:14  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:03:14  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:16  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+19/03/12 23:03:16  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:18  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+19/03/12 23:03:18  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:20  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:03:20  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:22  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:03:22  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:24  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+19/03/12 23:03:24  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:26  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+19/03/12 23:03:26  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:28  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:03:29  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:31  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:03:31  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:33  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:03:33  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:35  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:03:35  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:37  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:03:37  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:39  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:03:39  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:41  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:03:41  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:43  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:03:43  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:45  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:03:45  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:47  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:03:47  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:49  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:03:49  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:51  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:03:52  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:54  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:03:54  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:56  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:03:56  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:03:58  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:03:58  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:00  INFO: [ExtendedHouseGeneralAdministrator] El valor es:98.0
+19/03/12 23:04:00  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:02  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:04:02  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:04  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:04:04  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:06  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:04:06  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:08  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:08  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:10  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:10  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:12  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+19/03/12 23:04:12  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:14  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:14  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:16  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+19/03/12 23:04:16  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:18  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:04:19  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:21  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:04:21  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:23  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+19/03/12 23:04:23  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:25  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:04:25  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:27  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:04:27  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:29  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:29  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:31  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+19/03/12 23:04:31  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:33  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+19/03/12 23:04:33  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:35  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:04:35  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:37  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:04:37  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:39  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:04:39  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:41  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+19/03/12 23:04:41  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:43  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:04:43  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:45  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+19/03/12 23:04:46  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:48  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+19/03/12 23:04:48  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:50  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:50  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:52  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+19/03/12 23:04:52  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:54  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:54  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+19/03/12 23:04:56  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+19/03/12 23:04:56  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:16 PM DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+3/20/12 3:39:16 PM  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+3/20/12 3:39:17 PM  INFO: [Conexion] Database Connection open
+3/20/12 3:39:17 PM  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+3/20/12 3:39:17 PM  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+3/20/12 3:39:17 PM  INFO: [MyServer] SO Detectado [Linux]
+3/20/12 3:39:17 PM DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+3/20/12 3:39:17 PM  INFO: [kryonet] Server opened.
+3/20/12 3:39:19 PM  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+3/20/12 3:39:19 PM  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+3/20/12 3:39:19 PM  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+3/20/12 3:39:20 PM  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+3/20/12 3:39:20 PM  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+3/20/12 3:39:20 PM  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+3/20/12 3:39:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:39:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:39:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:39:24 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:26 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:39:26 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:28 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:39:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:32 PM DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+3/20/12 3:39:32 PM  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+3/20/12 3:39:32 PM  INFO: [Conexion] Database Connection open
+3/20/12 3:39:33 PM  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+3/20/12 3:39:33 PM  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+3/20/12 3:39:33 PM  INFO: [MyServer] SO Detectado [Linux]
+3/20/12 3:39:33 PM DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+3/20/12 3:39:33 PM  INFO: [kryonet] Server opened.
+3/20/12 3:39:34 PM  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+3/20/12 3:39:34 PM  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+3/20/12 3:39:34 PM  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+3/20/12 3:39:34 PM  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+3/20/12 3:39:34 PM  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+3/20/12 3:39:34 PM  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+3/20/12 3:39:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:181.0
+3/20/12 3:39:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:39:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:39:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:39:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:39:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:46 PM DEBUG: [kryonet] Port 54555/TCP connected to: /127.0.0.1:51425
+3/20/12 3:39:46 PM  INFO: [kryonet] Connection 1 connected: /127.0.0.1
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 received TCP: ValidacionConnection
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:46 PM  INFO: [ExtendedHouseSERVER] Coneccion [extended_house] Aceptada ip[null]
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 received TCP: ServerStatusRequest
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ActuadorInfoList (49)
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:39:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:39:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:48 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:50 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:39:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:53 PM DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+3/20/12 3:39:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:39:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:53 PM DEBUG: [kryonet] Connection 1 received TCP: ArduinoInput
+3/20/12 3:39:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:39:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:39:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:39:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:39:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:39:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:39:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:40:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:40:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:40:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:40:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:40:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:12 PM DEBUG: [kryonet] Connection 1 received TCP: RespaldoRequest
+3/20/12 3:40:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:40:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ListaRespaldos (295)
+3/20/12 3:40:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:40:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:40:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:40:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:40:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:40:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:40:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:40:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:27 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:29 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:40:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:31 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:40:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:31 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:33 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:40:33 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:33 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:33 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:33 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:35 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:40:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:35 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:37 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:40:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:37 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:39 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:40:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:39 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:41 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:40:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:41 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:43 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:40:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:40:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:40:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:40:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:40:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:48:49 PM DEBUG: [MainDispatcher] LEVEL_DEBUG ON
+3/20/12 3:48:49 PM  INFO: [MyServer] 2368000 MILLISEGUNDOS para nuevo respaldo de BD.
+3/20/12 3:48:49 PM  INFO: [Conexion] Database Connection open
+3/20/12 3:48:49 PM  INFO: [SerialArduino] Arduino [/dev/ttyACM0] Connection open
+3/20/12 3:48:49 PM  INFO: [MyServer] Ingresos a la BD en ([ 2.0 ]min)
+3/20/12 3:48:49 PM  INFO: [MyServer] SO Detectado [Linux]
+3/20/12 3:48:49 PM DEBUG: [kryonet] Accepting connections on port: 54555/TCP
+3/20/12 3:48:49 PM  INFO: [kryonet] Server opened.
+3/20/12 3:48:51 PM  INFO: [ExtendedHouseSERVER] AutomaticDatabaseMaintenance [INICIADO]
+3/20/12 3:48:51 PM  INFO: [ExtendedHouseSERVER] Administrador God [INICIADO]
+3/20/12 3:48:51 PM  INFO: [ExtendedHouseSERVER] Administrador de Eventos Simple [INICIADO]
+3/20/12 3:48:51 PM  INFO: [ExtendedHouseSERVER] Modulo de Scripting [INICIANDO]
+3/20/12 3:48:51 PM  INFO: [ExtendedHouseSERVER] Comandos Disponibles para digitar:'exit','restart','send <arg>',ard <arg[n]>
+3/20/12 3:48:51 PM  INFO: [EHJavaScriptAdministrator] Script [HelpScript] ejecutandose
+3/20/12 3:48:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:48:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:48:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:48:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:48:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:48:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:48:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:48:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:49:02 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:04 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:49:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:49:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:49:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:49:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:49:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:49:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:49:17 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:19 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:49:19 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:21 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:49:21 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:23 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:49:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:49:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:49:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:49:30 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:32 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:49:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:49:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:49:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:49:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:49:41 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:43 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:49:43 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:44 PM DEBUG: [kryonet] Port 54555/TCP connected to: /127.0.0.1:51427
+3/20/12 3:49:44 PM  INFO: [kryonet] Connection 1 connected: /127.0.0.1
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 received TCP: ValidacionConnection
+3/20/12 3:49:44 PM  INFO: [ExtendedHouseSERVER] Coneccion [extended_house] Aceptada ip[null]
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 received TCP: ServerStatusRequest
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: UsersOnline (3)
+3/20/12 3:49:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ActuadorInfoList (49)
+3/20/12 3:49:45 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:49:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:45 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:47 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:49:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:47 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:49 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:49:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:49:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:49:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:49:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:56 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:49:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:58 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:49:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:49:58 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:49:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:49:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:00 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:50:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:00 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:02 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:50:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:02 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:04 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:122.0
+3/20/12 3:50:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:06 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:06 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:50:06 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:50:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:09 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:11 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:11 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:13 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:50:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:13 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:15 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:15 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:17 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:17 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:17 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:50:17 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:17 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:19 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:50:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:50:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:24 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:26 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:50:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:26 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:28 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:28 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:28 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:50:28 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:50:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:31 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:33 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:50:33 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:33 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:35 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:50:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:35 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:37 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:50:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:37 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:39 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:50:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:39 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:41 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:50:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:50:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:50:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:50:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:48 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:50 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:50 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:52 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:50:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:52 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:54 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:50:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:50:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:50:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:50:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:50:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:50:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:51:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+3/20/12 3:51:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:51:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:06 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:51:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:07 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:09 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:81.0
+3/20/12 3:51:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:51:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:51:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:51:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:17 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:51:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:51:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:21 PM DEBUG: [kryonet] Connection 1 received TCP: RespaldoRequest
+3/20/12 3:51:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ListaRespaldos (295)
+3/20/12 3:51:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:51:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:51:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:51:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:27 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:28 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:29 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:51:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:31 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:122.0
+3/20/12 3:51:31 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:31 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:33 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:51:33 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:51:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:51:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:51:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:51:42 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:51:44 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:51:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:51:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:48 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:50 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:51:50 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:51:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:53 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:51:55 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:51:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:51:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:51:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:51:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:51:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:51:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:52:01 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:52:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:04 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:52:06 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:52:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:52:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:52:12 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:52:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:52:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:52:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:19 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:21 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:52:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:21 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:23 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:52:23 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:52:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:26 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:52:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:52:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:30 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:32 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:52:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:32 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:52:34 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:35 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:52:36 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:37 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:37 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:38 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:39 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:52:39 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:39 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:40 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:41 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:52:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:41 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:41 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:43 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:52:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:43 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:43 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:45 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:52:45 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:45 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:46 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:47 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:52:47 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:47 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:48 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:49 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:52:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:49 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:52:51 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:52 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:52 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:54 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:52:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:54 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:52:54 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:56 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:52:56 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:56 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:57 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:58 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:52:58 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:52:58 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:52:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:52:59 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:00 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:89.0
+3/20/12 3:53:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:00 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:02 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:53:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:03 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:53:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:05 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:53:07 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:07 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:08 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:09 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:53:09 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:09 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:10 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:11 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:53:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:11 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:13 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:53:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:14 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:15 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:53:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:16 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:53:18 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:19 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:53:20 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:21 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:53:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:22 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:53:24 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:25 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:53:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:27 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:27 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:29 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:53:29 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (13)
+3/20/12 3:53:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:30 PM DEBUG: [kryonet] Connection 1 sent TCP: ArduinoOutput (14)
+3/20/12 3:53:31 PM DEBUG: [kryonet] Connection 1 update: Connection is closed.
+3/20/12 3:53:31 PM  INFO: [kryonet] Connection 1 disconnected.
+3/20/12 3:53:31 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:53:31 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:33 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:53:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:53:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:53:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:53:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:53:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:53:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:53:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:53:48 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:50 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:53:50 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:52 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:53:52 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:54 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:123.0
+3/20/12 3:53:54 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:53:56 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:53:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:53:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:53:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:54:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:54:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:54:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:95.0
+3/20/12 3:54:07 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:54:09 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:54:09 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:11 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:54:11 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:13 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:54:13 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:54:15 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:54:15 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:17 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:54:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:54:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:54:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:54:24 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:54:26 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:54:26 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:28 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:54:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:54:30 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:32 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:54:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:54:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:54:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:54:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:54:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:54:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:54:43 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:45 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:54:45 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:47 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:54:47 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:49 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:54:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:54:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:54:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:54:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:54:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:54:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:54:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:55:00 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:02 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:55:02 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:04 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:55:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:55:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:55:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:55:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:55:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:55:17 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:19 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:19 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:21 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:121.0
+3/20/12 3:55:21 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:23 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:99.0
+3/20/12 3:55:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:55:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:55:27 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:29 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:55:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:31 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:55:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:55:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:55:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:55:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:55:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:55:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:55:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:55:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:55:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:55:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:55:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:55:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:55:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:123.0
+3/20/12 3:56:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:56:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:56:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:56:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:56:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:56:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:56:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:56:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:56:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:56:19 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:56:21 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:56:21 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:23 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:56:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:56:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:27 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:56:27 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:29 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:56:29 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:31 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:56:31 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:33 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:56:33 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:35 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:56:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:56:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:129.0
+3/20/12 3:56:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:56:42 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:44 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:56:44 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:56:46 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:56:46 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:48 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:56:48 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:50 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:98.0
+3/20/12 3:56:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:56:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:56:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:56:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:56:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:56:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:56:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:56:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+3/20/12 3:57:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+3/20/12 3:57:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:07 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:09 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:09 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:11 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:11 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:13 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:57:13 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:15 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:57:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:57:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:57:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:57:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:57:24 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:26 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:57:26 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:28 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:57:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:57:30 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:32 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:57:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:57:36 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:38 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:57:38 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:40 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:57:40 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:42 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:57:43 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:45 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:119.0
+3/20/12 3:57:45 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:47 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:57:47 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:49 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:57:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:57:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:57:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:57:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:57:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:57:57 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:57:59 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:109.0
+3/20/12 3:57:59 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:01 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:105.0
+3/20/12 3:58:01 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:03 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:101.0
+3/20/12 3:58:03 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:05 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:58:05 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:07 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:107.0
+3/20/12 3:58:07 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:09 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:58:09 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:11 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:58:12 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:14 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:58:14 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:16 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:58:16 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:18 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:58:18 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:20 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:98.0
+3/20/12 3:58:20 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:22 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:122.0
+3/20/12 3:58:22 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:24 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:58:24 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:26 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:58:26 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:28 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:58:28 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:30 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:58:30 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:32 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:58:32 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:34 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:58:34 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:36 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:124.0
+3/20/12 3:58:37 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:39 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:106.0
+3/20/12 3:58:39 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:41 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:58:41 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:43 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:58:43 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:45 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:58:45 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:47 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:117.0
+3/20/12 3:58:47 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:49 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:58:49 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:51 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:58:51 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:53 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:115.0
+3/20/12 3:58:53 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:58:55 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:100.0
+3/20/12 3:58:55 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:58:57 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:120.0
+3/20/12 3:58:58 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:00 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:59:00 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:02 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:103.0
+3/20/12 3:59:02 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:59:04 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:59:04 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:06 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:111.0
+3/20/12 3:59:06 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:08 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:112.0
+3/20/12 3:59:08 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:10 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:114.0
+3/20/12 3:59:10 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:12 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:113.0
+3/20/12 3:59:13 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:15 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:110.0
+3/20/12 3:59:15 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:17 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:104.0
+3/20/12 3:59:17 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:59:19 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:108.0
+3/20/12 3:59:19 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:21 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:118.0
+3/20/12 3:59:21 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]
+3/20/12 3:59:23 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:102.0
+3/20/12 3:59:23 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,false]
+3/20/12 3:59:25 PM  INFO: [ExtendedHouseGeneralAdministrator] El valor es:116.0
+3/20/12 3:59:25 PM  INFO: [ExtendedHouseGeneralAdministrator] Se ha prendido [RL,1,true]

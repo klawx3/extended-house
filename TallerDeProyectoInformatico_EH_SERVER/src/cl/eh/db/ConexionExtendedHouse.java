@@ -276,7 +276,7 @@ public final class ConexionExtendedHouse extends Conexion implements ExtendedHou
     public int getIdOfSensor(Sensor obj) {
         if (obj != null) {
             assert (obj.getNombre() == null || obj.getNumero() == 0);
-            String query = "SELECT id FROM SENSOR "
+            String query = "SELECT id FROM sensor "
                     + "WHERE nombre = '" + obj.getNombre() + "' "
                     + "and numero = '" + obj.getNumero() + "'";
             //System.err.println("-->String sql:"+query);

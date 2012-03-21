@@ -9,6 +9,7 @@ import cl.eh.common.ArduinoHelp;
 import cl.eh.serial.SerialOutput;
 import cl.eh.arduino.model.ArduinoEvent;
 import cl.eh.arduino.model.ArduinoEventListener;
+import cl.eh.util.SODetector;
 import javax.swing.event.EventListenerList;
 import gnu.io.*;
 import gnu.io.SerialPortEventListener;
@@ -43,6 +44,10 @@ public final class SerialArduino {
         connecionArduinoEstablecida = false;
         CommPortIdentifier portId = null;
         Enumeration portEnum = null;
+        if(SODetector.isUnix()){
+            System.setProperty("gnu.io.rxtx.SerialPorts", puerto);
+        }
+        
         try {
             portEnum = CommPortIdentifier.getPortIdentifiers();
         } catch (Exception e) {
@@ -50,6 +55,7 @@ public final class SerialArduino {
             error(SECTOR,"Drivers de arduino no encontrados");
             System.exit(1);
         }
+        System.out.println(portEnum.hasMoreElements());
         while (portEnum.hasMoreElements()) {
             CommPortIdentifier currPortId = (CommPortIdentifier) portEnum.nextElement();
             if (currPortId.getName().equals(this.puerto)) {

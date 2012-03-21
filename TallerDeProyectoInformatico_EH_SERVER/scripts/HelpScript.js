@@ -6,7 +6,7 @@ HelpScript.run = function(){
     if(val_sen_tmp != null){ // existe el sensor
         if(!isNaN(val_sen_tmp)){ // tiene algun valor conosido ?
             god.print("El valor es:"+val_sen_tmp);
-            if(val_sen_tmp >= 98){
+            if(val_sen_tmp >= 105){
                 god.accionar("rl",1,true);
             }else{
                 god.accionar("rl",1,false);
