@@ -256,14 +256,14 @@ public final class ExtendedHouseSERVER extends MyServer implements ServerInfo {
                 }
 
             }
-            if (actualizado) {
-                info(SECTOR,
-                        "Dispositivo [" + ardEvt.getNombreDisositivo()
-                        + "," + ardEvt.getNumeroDispositovo() + "] Actualizado (valor actualizado)");
-            } else {
-                info(SECTOR, "No se encontro el dispositivo [" + ardEvt.getNombreDisositivo()
-                        + "," + ardEvt.getNumeroDispositovo() + "] en el cache de la BD.. Imposible actualizar valor");
-            }
+//            if (actualizado) {
+//                info(SECTOR,
+//                        "Dispositivo [" + ardEvt.getNombreDisositivo()
+//                        + "," + ardEvt.getNumeroDispositovo() + "] Actualizado (valor actualizado)");
+//            } else {
+//                info(SECTOR, "No se encontro el dispositivo [" + ardEvt.getNombreDisositivo()
+//                        + "," + ardEvt.getNumeroDispositovo() + "] en el cache de la BD.. Imposible actualizar valor");
+//            }
         }
 
         public Float getSensorValor(String sensor, int number) {
